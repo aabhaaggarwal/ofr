@@ -9,6 +9,7 @@ import com.cg.ofr.entities.Landlord;
 import com.cg.ofr.exception.LandlordNotFoundException;
 import com.cg.ofr.repository.ILandlordRepository;
 
+// this is modified file for service implementation
 @Service
 public class ILandlordServiceImpl implements ILandlordService{
 	
