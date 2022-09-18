@@ -2,7 +2,7 @@ package com.cg.ofr.exception;
 
 public class TenantNotFoundException extends RuntimeException{
 	
-	TenantNotFoundException(String message){
+	public TenantNotFoundException(String message){
 		super(message);
 	}
 

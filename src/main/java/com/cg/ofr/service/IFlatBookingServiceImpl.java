@@ -6,22 +6,20 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.cg.ofr.entities.Flat;
 import com.cg.ofr.entities.FlatBooking;
 import com.cg.ofr.exception.FlatBookingNotFoundException;
 import com.cg.ofr.repository.IFlatBookingRepository;
+
 
 @Service
 public class IFlatBookingServiceImpl implements IFlatBookingService{
 	
 	@Autowired
 	private IFlatBookingRepository iFlatBookingRepository;
-
 	@Override
 	public FlatBooking addFlatBooking(FlatBooking flatBooking) {
-		//FlatBooking newFlatBooking = iFlatBookingRepository.save(flat);
-		//return newFlatBooking;
-		return null;
+		FlatBooking newFlatBooking = iFlatBookingRepository.save(flatBooking);
+		return newFlatBooking;
 	}
 
 	@Override
@@ -59,5 +57,4 @@ public class IFlatBookingServiceImpl implements IFlatBookingService{
 		List<FlatBooking> flatBookings = iFlatBookingRepository.findAll();
 		return flatBookings;
 	}
-
 }

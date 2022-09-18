@@ -1,8 +1,6 @@
 package com.cg.ofr.service;
 
 import java.util.List;
-
-import com.cg.ofr.entities.Flat;
 import com.cg.ofr.entities.FlatBooking;
 import com.cg.ofr.exception.FlatBookingNotFoundException;
 
@@ -18,3 +16,4 @@ public interface IFlatBookingService {
 	//view all flats by landlord id and flat id
 	
 }
+

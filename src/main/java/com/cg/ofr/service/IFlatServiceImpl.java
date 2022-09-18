@@ -1,11 +1,14 @@
 package com.cg.ofr.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cg.ofr.entities.Flat;
+import com.cg.ofr.entities.FlatBooking;
+import com.cg.ofr.exception.FlatBookingNotFoundException;
 import com.cg.ofr.exception.FlatNotFoundException;
 import com.cg.ofr.repository.IFlatRepository;
 

@@ -14,4 +14,10 @@ public class GlobalExceptionHandler {
 		return responseEntity;
 	}
 	
+	@ExceptionHandler(FlatNotFoundException.class)
+	public ResponseEntity<String> handleFlatNotFoundException(Exception e){
+		ResponseEntity<String> responseEntity = new ResponseEntity<>(e.getMessage(),HttpStatus.NOT_FOUND);
+		return responseEntity;
+	}
+	
 }

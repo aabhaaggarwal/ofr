@@ -26,10 +26,7 @@ public class FlatBooking {
 	
 	@Column(name="members")
 	private int members;
-	
-	@Column(name="purpose", length=30)
-	private String purpose;
-	
+
 	@OneToOne
 	@JoinColumn(name="flat")
 	private Flat flat;
@@ -68,14 +65,6 @@ public class FlatBooking {
 
 	public void setMembers(int members) {
 		this.members = members;
-	}
-
-	public String getPurpose() {
-		return purpose;
-	}
-
-	public void setPurpose(String purpose) {
-		this.purpose = purpose;
 	}
 
 	public Flat getFlat() {
