@@ -10,9 +10,9 @@ public interface IFlatBookingService {
 
 	public FlatBooking updateFlatBooking(FlatBooking flatBooking) throws FlatBookingNotFoundException;
 
-	public void deleteFlatBooking(String id) throws FlatBookingNotFoundException;
+	public void deleteFlatBooking(int id) throws FlatBookingNotFoundException;
 
-	public FlatBooking viewFlatBooking(String id) throws FlatBookingNotFoundException;
+	public FlatBooking viewFlatBooking(int id) throws FlatBookingNotFoundException;
 
 	public List<FlatBooking> viewAllFlatBooking();
 

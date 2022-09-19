@@ -2,6 +2,8 @@ package com.cg.ofr.entities;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -13,8 +15,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 public class FlatAddress {
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "address_id")
-	private String addressId;
+	private int addressId;
 
 	@Column(name = "houseno")
 	private int houseNo;
@@ -41,11 +44,11 @@ public class FlatAddress {
 	@OneToOne(mappedBy = "flatAddress")
 	private Flat flat;
 
-	public String getAddressId() {
+	public int getAddressId() {
 		return addressId;
 	}
 
-	public void setAddressId(String addressId) {
+	public void setAddressId(int addressId) {
 		this.addressId = addressId;
 	}
 

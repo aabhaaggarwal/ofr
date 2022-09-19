@@ -4,6 +4,8 @@ import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
@@ -14,8 +16,9 @@ import javax.persistence.Table;
 public class FlatBooking {
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "booking_no", length = 20)
-	private String bookingNo;
+	private int bookingNo;
 
 	@Column(name = "booking_from")
 	private LocalDate bookingFrom;
@@ -34,11 +37,11 @@ public class FlatBooking {
 	@JoinColumn(name = "tenant")
 	private Tenant tenant;
 
-	public String getBookingNo() {
+	public int getBookingNo() {
 		return bookingNo;
 	}
 
-	public void setBookingNo(String bookingNo) {
+	public void setBookingNo(int bookingNo) {
 		this.bookingNo = bookingNo;
 	}
 

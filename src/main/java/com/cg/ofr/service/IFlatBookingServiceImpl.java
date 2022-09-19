@@ -33,7 +33,7 @@ public class IFlatBookingServiceImpl implements IFlatBookingService {
 	}
 
 	@Override
-	public void deleteFlatBooking(String id) throws FlatBookingNotFoundException {
+	public void deleteFlatBooking(int id) throws FlatBookingNotFoundException {
 		Optional<FlatBooking> optionalFlatBooking = iFlatBookingRepository.findById(id);
 		if (optionalFlatBooking.isEmpty()) {
 			throw new FlatBookingNotFoundException("Flat Booking not existing with id :" + id);
@@ -43,7 +43,7 @@ public class IFlatBookingServiceImpl implements IFlatBookingService {
 	}
 
 	@Override
-	public FlatBooking viewFlatBooking(String id) throws FlatBookingNotFoundException {
+	public FlatBooking viewFlatBooking(int id) throws FlatBookingNotFoundException {
 		Optional<FlatBooking> optionalFlatBooking = iFlatBookingRepository.findById(id);
 		if (optionalFlatBooking.isEmpty()) {
 			throw new FlatBookingNotFoundException("Flat booking not existing with id :" + id);

@@ -4,18 +4,18 @@ import java.time.LocalDate;
 
 public class FlatBookingPayload {
 
-	private String bookingNo;
+	private int bookingNo;
 	private LocalDate bookingFrom;
 	private LocalDate bookingTo;
 	private int members;
-	private String flatId;
-	private String tenantId;
+	private int flatId;
+	private int tenantId;
 
-	public String getBookingNo() {
+	public int getBookingNo() {
 		return bookingNo;
 	}
 
-	public void setBookingNo(String bookingNo) {
+	public void setBookingNo(int bookingNo) {
 		this.bookingNo = bookingNo;
 	}
 
@@ -43,19 +43,19 @@ public class FlatBookingPayload {
 		this.members = members;
 	}
 
-	public String getFlatId() {
+	public int getFlatId() {
 		return flatId;
 	}
 
-	public void setFlatId(String flatId) {
+	public void setFlatId(int flatId) {
 		this.flatId = flatId;
 	}
 
-	public String getTenantId() {
+	public int getTenantId() {
 		return tenantId;
 	}
 
-	public void setTenantId(String tenantId) {
+	public void setTenantId(int tenantId) {
 		this.tenantId = tenantId;
 	}
 }

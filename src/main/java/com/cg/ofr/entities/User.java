@@ -1,6 +1,8 @@
 package com.cg.ofr.entities;
 
 import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 
@@ -8,8 +10,9 @@ import javax.persistence.MappedSuperclass;
 public class User {
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "user_id")
-	private String userId;
+	private int userId;
 
 	@Column(name = "username", length = 20, unique = true, nullable = false)
 	private String username;
@@ -17,11 +20,11 @@ public class User {
 	@Column(name = "password", length = 20, nullable = false)
 	private String password;
 
-	public String getUserId() {
+	public int getUserId() {
 		return userId;
 	}
 
-	public void setUserId(String userId) {
+	public void setUserId(int userId) {
 		this.userId = userId;
 	}
 
