@@ -10,13 +10,13 @@ public class FlatPayload {
 	private FlatAddress flatAddress;
 	private String landlordId;
 
-	private String flatId;
+	private int flatId;
 
-	public String getFlatId() {
+	public int getFlatId() {
 		return flatId;
 	}
 
-	public void setFlatId(String flatId) {
+	public void setFlatId(int flatId) {
 		this.flatId = flatId;
 	}
 

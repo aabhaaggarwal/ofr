@@ -11,9 +11,9 @@ public interface IFlatService {
 
 	public Flat updateFlat(Flat flat) throws FlatNotFoundException;
 
-	public void deleteFlat(String flatId) throws FlatNotFoundException;
+	public void deleteFlat(int flatId) throws FlatNotFoundException;
 
-	public Flat viewFlat(String id) throws FlatNotFoundException;
+	public Flat viewFlat(int id) throws FlatNotFoundException;
 
 	public List<Flat> viewAllFlat();
 

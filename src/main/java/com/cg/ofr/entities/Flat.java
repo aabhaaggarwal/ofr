@@ -3,6 +3,8 @@ package com.cg.ofr.entities;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -16,8 +18,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 public class Flat {
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "flat_id")
-	private String flatId;
+	private int flatId;
 
 	@Column(name = "cost")
 	private float cost;
@@ -42,11 +45,11 @@ public class Flat {
 	@OneToOne(mappedBy = "flat")
 	private FlatBooking flatBooking;
 
-	public String getFlatId() {
+	public int getFlatId() {
 		return flatId;
 	}
 
-	public void setFlatId(String flatId) {
+	public void setFlatId(int flatId) {
 		this.flatId = flatId;
 	}
 

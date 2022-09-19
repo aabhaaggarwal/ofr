@@ -29,7 +29,7 @@ public class IFlatServiceImpl implements IFlatService {
 	}
 
 	@Override
-	public void deleteFlat(String flatId) throws FlatNotFoundException {
+	public void deleteFlat(int flatId) throws FlatNotFoundException {
 		Optional<Flat> optionalFlat = iFlatRepository.findById(flatId);
 		if (optionalFlat.isEmpty()) {
 			throw new FlatNotFoundException("Flat not existing with id:" + flatId);
@@ -38,7 +38,7 @@ public class IFlatServiceImpl implements IFlatService {
 	}
 
 	@Override
-	public Flat viewFlat(String id) throws FlatNotFoundException {
+	public Flat viewFlat(int id) throws FlatNotFoundException {
 		Optional<Flat> optionalFlat = iFlatRepository.findById(id);
 		if (optionalFlat.isEmpty()) {
 			throw new FlatNotFoundException("Flat not existing with id: " + id);
