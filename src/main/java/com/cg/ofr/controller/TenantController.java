@@ -25,7 +25,7 @@ public class TenantController {
 	private ITenantService iTenantService;
 
 	@PostMapping("/tenant/save")
-	public ResponseEntity<Tenant> addTenant(@Valid @RequestBody Tenant tenant) {
+	public ResponseEntity<Tenant> addTenant(@RequestBody Tenant tenant) {
 
 		Tenant newTenant = iTenantService.addTenant(tenant);
 		return new ResponseEntity<>(newTenant, HttpStatus.CREATED);
@@ -33,7 +33,7 @@ public class TenantController {
 	}
 
 	@PutMapping("/tenant/update")
-	public ResponseEntity<Tenant> modifyTenant(@Valid @RequestBody Tenant tenant) {
+	public ResponseEntity<Tenant> modifyTenant(@RequestBody Tenant tenant) {
 		Tenant updatedTenant = iTenantService.updateTenant(tenant);
 		return new ResponseEntity<>(updatedTenant, HttpStatus.OK);
 

@@ -32,13 +32,13 @@ public class AdminController {
 	}
 
 	@PutMapping("/update")
-	public ResponseEntity<Admin> modifyAdmin(@Valid @RequestBody Admin admin) {
+	public ResponseEntity<Admin> modifyAdmin(@RequestBody Admin admin) {
 		Admin updateAdmin = iAdminService.updateAdminPassword(admin);
 		return new ResponseEntity<>(updateAdmin, HttpStatus.OK);
 	}
 
 	@PostMapping("/add")
-	public ResponseEntity<Admin> saveAdmin(@Valid @RequestBody Admin admin) {
+	public ResponseEntity<Admin> saveAdmin(@RequestBody Admin admin) {
 		Admin newAdmin = iAdminService.addAdmin(admin);
 		return new ResponseEntity<>(newAdmin, HttpStatus.CREATED);
 

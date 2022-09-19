@@ -32,7 +32,7 @@ public class FlatController {
 	private ILandlordService iLandlordService;
 
 	@PostMapping("/save")
-	public ResponseEntity<Flat> addFlat(@Valid @RequestBody FlatPayload flatPayload) {
+	public ResponseEntity<Flat> addFlat(@RequestBody FlatPayload flatPayload) {
 
 		Landlord landlord = iLandlordService.viewLandlord(flatPayload.getLandlordId());
 		Flat flat = new Flat();
@@ -68,13 +68,13 @@ public class FlatController {
 
 	@GetMapping("/{fCost}/available")
 	public ResponseEntity<Object> fetchFlatByCost(@PathVariable("fCost") float cost) {
-		List<Flat> flats = iFlatService.viewAllFlatByCost(cost, "Available");
+		List<Flat> flats = iFlatService.viewAllFlatByCost(cost, "available");
 		return new ResponseEntity<>(flats, HttpStatus.OK);
 		
 	}
 
 	@PutMapping("/update")
-	public ResponseEntity<Flat> updateFlat(@Valid @RequestBody FlatPayload flatPayload) {
+	public ResponseEntity<Flat> updateFlat(@RequestBody FlatPayload flatPayload) {
 
 		Landlord landlord = iLandlordService.viewLandlord(flatPayload.getLandlordId());
 		Flat flat = new Flat();

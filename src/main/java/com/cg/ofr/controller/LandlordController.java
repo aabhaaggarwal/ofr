@@ -25,13 +25,13 @@ public class LandlordController {
 	private ILandlordService iLandlordService;
 
 	@PostMapping("/landlord/save")
-	public ResponseEntity<Landlord> addLandlord(@Valid @RequestBody Landlord landlord) {
+	public ResponseEntity<Landlord> addLandlord(@RequestBody Landlord landlord) {
 		Landlord newLandlord = iLandlordService.addLandlord(landlord);
 		return new ResponseEntity<>(newLandlord, HttpStatus.CREATED);
 	}
 
 	@PutMapping("/landlord/update")
-	public ResponseEntity<Landlord> modifyLandlord(@Valid @RequestBody Landlord landlord) {
+	public ResponseEntity<Landlord> modifyLandlord(@RequestBody Landlord landlord) {
 		Landlord updatedLandlord = iLandlordService.updateLandlord(landlord);
 		return new ResponseEntity<>(updatedLandlord, HttpStatus.OK);
 	}
