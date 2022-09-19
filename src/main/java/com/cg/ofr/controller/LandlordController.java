@@ -18,27 +18,26 @@ import com.cg.ofr.entities.Landlord;
 import com.cg.ofr.service.ILandlordService;
 
 @RestController
-@RequestMapping("/landlord")
 public class LandlordController {
 
 	@Autowired
 	private ILandlordService iLandlordService;
 
-	@PostMapping("/save")
+	@PostMapping("/landlord/save")
 	public ResponseEntity<Landlord> addLandlord(@RequestBody Landlord landlord) {
 		Landlord newLandlord = iLandlordService.addLandlord(landlord);
 		ResponseEntity<Landlord> responseEntity = new ResponseEntity<>(newLandlord, HttpStatus.CREATED);
 		return responseEntity;
 	}
 
-	@PutMapping("/update")
+	@PutMapping("/landlord/update")
 	public ResponseEntity<Landlord> modifyLandlord(@RequestBody Landlord landlord) {
 		Landlord updatedLandlord = iLandlordService.updateLandlord(landlord);
 		ResponseEntity<Landlord> responseEntity = new ResponseEntity<>(updatedLandlord, HttpStatus.OK);
 		return responseEntity;
 	}
 
-	@DeleteMapping("/{lId}")
+	@DeleteMapping("/landlord/{lId}")
 	public ResponseEntity<String> deleteLandlordById(@PathVariable("lId") String LandlordId) {
 		iLandlordService.deleteLandlord(LandlordId);
 		ResponseEntity<String> responseEntity = new ResponseEntity<>("Lanlord deleted successfully!!", HttpStatus.OK);
@@ -46,14 +45,14 @@ public class LandlordController {
 
 	}
 
-	@GetMapping("/{lId}")
+	@GetMapping("/landlord/{lId}")
 	public ResponseEntity<Object> fetchLandlordById(@PathVariable("lId") String LandlordId) {
 		Landlord landlord = iLandlordService.viewLandlord(LandlordId);
 		ResponseEntity<Object> responseEntity = new ResponseEntity<>(landlord, HttpStatus.OK);
 		return responseEntity;
 	}
 
-	@GetMapping("/all")
+	@GetMapping("/landlord/all")
 	public List<Landlord> fetchAllLandlord() {
 		List<Landlord> landlords = iLandlordService.viewAllLandlord();
 		return landlords;

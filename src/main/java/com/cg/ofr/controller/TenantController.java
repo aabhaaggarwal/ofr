@@ -18,13 +18,12 @@ import com.cg.ofr.entities.Tenant;
 import com.cg.ofr.service.ITenantService;
 
 @RestController
-@RequestMapping("/tenant")
 public class TenantController {
 
 	@Autowired
 	private ITenantService iTenantService;
 
-	@PostMapping("/save")
+	@PostMapping("/tenant/save")
 	public ResponseEntity<Tenant> addTenant(@RequestBody Tenant tenant) {
 
 		Tenant newTenant = iTenantService.addTenant(tenant);
@@ -33,7 +32,7 @@ public class TenantController {
 
 	}
 
-	@PutMapping("/update")
+	@PutMapping("/tenant/update")
 	public ResponseEntity<Tenant> modifyTenant(@RequestBody Tenant tenant) {
 		Tenant updatedTenant = iTenantService.updateTenant(tenant);
 		ResponseEntity<Tenant> responseEntity = new ResponseEntity<>(updatedTenant, HttpStatus.OK);
@@ -41,7 +40,7 @@ public class TenantController {
 
 	}
 
-	@DeleteMapping("/{tId}")
+	@DeleteMapping("/tenant/{tId}")
 	public ResponseEntity<String> deleteTenantById(@PathVariable("tId") String TenantId) {
 
 		iTenantService.deleteTenant(TenantId);
@@ -49,13 +48,13 @@ public class TenantController {
 		return responseEntity;
 	}
 
-	@GetMapping("/all")
+	@GetMapping("tenant/all")
 	public List<Tenant> fetchAllTenant() {
 		List<Tenant> tenants = iTenantService.viewAllTenant();
 		return tenants;
 	}
 
-	@GetMapping("/{tId}")
+	@GetMapping("/tenant/{tId}")
 	public ResponseEntity<Object> fetchTenantById(@PathVariable("tId") String TenantId) {
 
 		Tenant tenant = iTenantService.viewTenant(TenantId);
