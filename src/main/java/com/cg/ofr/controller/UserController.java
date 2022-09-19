@@ -20,7 +20,7 @@ public class UserController {
 	@Autowired
 	private IUserService iUserService;
 
-	@PutMapping("/tenant/update")
+	@PutMapping("/tenant/update/user")
 	public ResponseEntity<Tenant> modifyTenant(@RequestBody Tenant tenant) {
 		Tenant updateTenant = iUserService.updateTenantPassword(tenant);
 		ResponseEntity<Tenant> responseEntity = new ResponseEntity<>(updateTenant, HttpStatus.OK);
@@ -28,7 +28,7 @@ public class UserController {
 
 	}
 
-	@PutMapping("/landlord/update")
+	@PutMapping("/landlord/update/user")
 	public ResponseEntity<Landlord> modifyLandlord(@RequestBody Landlord landlord) {
 		Landlord updateLandlord = iUserService.updateLandlordPassword(landlord);
 		ResponseEntity<Landlord> responseEntity = new ResponseEntity<>(updateLandlord, HttpStatus.OK);
