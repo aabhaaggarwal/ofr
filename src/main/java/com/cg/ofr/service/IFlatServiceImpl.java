@@ -18,14 +18,12 @@ public class IFlatServiceImpl implements IFlatService {
 
 	@Override
 	public Flat addFlat(Flat flat) {
-		Flat newFlat = iFlatRepository.save(flat);
-		return newFlat;
+		return iFlatRepository.save(flat);
 	}
 
 	@Override
 	public List<Flat> viewAllFlat() {
-		List<Flat> flat = iFlatRepository.findAll();
-		return flat;
+		return iFlatRepository.findAll();
 	}
 
 	@Override
@@ -43,8 +41,7 @@ public class IFlatServiceImpl implements IFlatService {
 		if (optionalFlat.isEmpty()) {
 			throw new FlatNotFoundException("Flat not existing with id: " + id);
 		}
-		Flat flat = optionalFlat.get();
-		return flat;
+		return optionalFlat.get();
 	}
 
 	@Override
@@ -62,8 +59,7 @@ public class IFlatServiceImpl implements IFlatService {
 		if (optionalFlat.isEmpty()) {
 			throw new FlatNotFoundException("Flat not existing with id:" + flat.getFlatId());
 		}
-		Flat updatedFlat = iFlatRepository.save(flat);
-		return updatedFlat;
+		return iFlatRepository.save(flat);
 	}
 
 }

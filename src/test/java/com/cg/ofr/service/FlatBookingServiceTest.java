@@ -27,7 +27,7 @@ import com.cg.ofr.repository.IFlatRepository;
 import com.cg.ofr.repository.ITenantRepository;
 
 @SpringBootTest
-public class FlatBookingServiceTest {
+ class FlatBookingServiceTest {
 
 	@InjectMocks
 	IFlatBookingServiceImpl iFlatBookingServiceImpl = new IFlatBookingServiceImpl();
@@ -42,9 +42,9 @@ public class FlatBookingServiceTest {
 	private ITenantRepository iTenantRepository;
 
 	@Test
-	public void testAddFlatBooking() {
+	 void testAddFlatBooking() {
 		Tenant tenant = new Tenant();
-		tenant.setUserId("TEN1");
+		tenant.setUserId(1);
 		tenant.setAge(35);
 		tenant.setEmail("veena@gmail.com");
 		tenant.setGender("Female");
@@ -55,7 +55,7 @@ public class FlatBookingServiceTest {
 		tenant.setPermanentAddr("");
 
 		Landlord landlord = new Landlord();
-		landlord.setUserId("LAN1");
+		landlord.setUserId(1);
 		landlord.setUsername("rajkumar");
 		landlord.setPassword("rajk123");
 		landlord.setAge(45);
@@ -63,7 +63,7 @@ public class FlatBookingServiceTest {
 		landlord.setMobile("9867542134");
 
 		FlatAddress flatAddress = new FlatAddress();
-		flatAddress.setAddressId("FAD1");
+		flatAddress.setAddressId(1);
 		flatAddress.setHouseNo(4);
 		flatAddress.setBuilding("VK Tower");
 		flatAddress.setStreet("Lawrence Road");
@@ -73,7 +73,7 @@ public class FlatBookingServiceTest {
 		flatAddress.setCountry("India");
 
 		Flat flat = new Flat();
-		flat.setFlatId("FLA1");
+		flat.setFlatId(1);
 		flat.setAvailability("Available");
 		flat.setCost(45000);
 		flat.setFlatType("2BHK");
@@ -81,7 +81,7 @@ public class FlatBookingServiceTest {
 		flat.setLandlord(landlord);
 
 		FlatBooking flatBooking = new FlatBooking();
-		flatBooking.setBookingNo("N1");
+		flatBooking.setBookingNo(1);
 		flatBooking.setBookingFrom(LocalDate.of(2022, 07, 01));
 		flatBooking.setBookingTo(LocalDate.of(2022, 10, 30));
 		flatBooking.setMembers(4);
@@ -91,20 +91,20 @@ public class FlatBookingServiceTest {
 		Optional<Flat> optionalFlat = Optional.of(flat);
 		Optional<Tenant> optionalTenant = Optional.of(tenant);
 
-		when(iFlatRepository.findById("FLA1")).thenReturn(optionalFlat);
-		when(iTenantRepository.findById("TEN1")).thenReturn(optionalTenant);
+		when(iFlatRepository.findById(1)).thenReturn(optionalFlat);
+		when(iTenantRepository.findById(1)).thenReturn(optionalTenant);
 		when(iFlatBookingRepository.save(ArgumentMatchers.any(FlatBooking.class))).thenReturn(flatBooking);
 
 		FlatBooking flatBookingObj = iFlatBookingServiceImpl.addFlatBooking(flatBooking);
 
-		assertEquals("N1", flatBookingObj.getBookingNo());
+		assertEquals(1, flatBookingObj.getBookingNo());
 		verify(iFlatBookingRepository).save(flatBooking);
 	}
 
 	@Test
-	public void testViewFlatBooking() {
+	 void testViewFlatBooking() {
 		Tenant tenant = new Tenant();
-		tenant.setUserId("TEN1");
+		tenant.setUserId(1);
 		tenant.setAge(35);
 		tenant.setEmail("veena@gmail.com");
 		tenant.setGender("Female");
@@ -115,7 +115,7 @@ public class FlatBookingServiceTest {
 		tenant.setPermanentAddr("");
 
 		Landlord landlord = new Landlord();
-		landlord.setUserId("LAN1");
+		landlord.setUserId(1);
 		landlord.setUsername("rajkumar");
 		landlord.setPassword("rajk123");
 		landlord.setAge(45);
@@ -123,7 +123,7 @@ public class FlatBookingServiceTest {
 		landlord.setMobile("9867542134");
 
 		FlatAddress flatAddress = new FlatAddress();
-		flatAddress.setAddressId("FAD1");
+		flatAddress.setAddressId(1);
 		flatAddress.setHouseNo(4);
 		flatAddress.setBuilding("VK Tower");
 		flatAddress.setStreet("Lawrence Road");
@@ -133,7 +133,7 @@ public class FlatBookingServiceTest {
 		flatAddress.setCountry("India");
 
 		Flat flat = new Flat();
-		flat.setFlatId("FLA1");
+		flat.setFlatId(1);
 		flat.setAvailability("Available");
 		flat.setCost(45000);
 		flat.setFlatType("2BHK");
@@ -141,7 +141,7 @@ public class FlatBookingServiceTest {
 		flat.setLandlord(landlord);
 
 		FlatBooking flatBooking = new FlatBooking();
-		flatBooking.setBookingNo("N1");
+		flatBooking.setBookingNo(1);
 		flatBooking.setBookingFrom(LocalDate.of(2022, 07, 01));
 		flatBooking.setBookingTo(LocalDate.of(2022, 10, 30));
 		flatBooking.setMembers(4);
@@ -149,24 +149,24 @@ public class FlatBookingServiceTest {
 		flatBooking.setTenant(tenant);
 
 		Optional<FlatBooking> optionalFlatBooking = Optional.of(flatBooking);
-		when(iFlatBookingRepository.findById("N1")).thenReturn(optionalFlatBooking);
+		when(iFlatBookingRepository.findById(1)).thenReturn(optionalFlatBooking);
 
-		FlatBooking viewflatBooking = iFlatBookingServiceImpl.viewFlatBooking("N1");
+		FlatBooking viewflatBooking = iFlatBookingServiceImpl.viewFlatBooking(1);
 		assertEquals(4, viewflatBooking.getMembers());
-		assertEquals("FLA1", viewflatBooking.getFlat().getFlatId());
+		assertEquals(1, viewflatBooking.getFlat().getFlatId());
 	}
 
 	@Test
-	public void testViewFlatBookingException() {
-		when(iFlatBookingRepository.findById("N1")).thenThrow(FlatBookingNotFoundException.class);
+	 void testViewFlatBookingException() {
+		when(iFlatBookingRepository.findById(1)).thenThrow(FlatBookingNotFoundException.class);
 
-		assertThrows(FlatBookingNotFoundException.class, () -> iFlatBookingServiceImpl.viewFlatBooking("N1"));
+		assertThrows(FlatBookingNotFoundException.class, () -> iFlatBookingServiceImpl.viewFlatBooking(1));
 	}
 
 	@Test
-	public void testViewAllFlatBooking() {
+	 void testViewAllFlatBooking() {
 		Tenant tenant = new Tenant();
-		tenant.setUserId("TEN1");
+		tenant.setUserId(1);
 		tenant.setAge(35);
 		tenant.setEmail("veena@gmail.com");
 		tenant.setGender("Female");
@@ -177,7 +177,7 @@ public class FlatBookingServiceTest {
 		tenant.setPermanentAddr("");
 
 		Landlord landlord = new Landlord();
-		landlord.setUserId("LAN1");
+		landlord.setUserId(1);
 		landlord.setUsername("rajkumar");
 		landlord.setPassword("rajk123");
 		landlord.setAge(45);
@@ -185,7 +185,7 @@ public class FlatBookingServiceTest {
 		landlord.setMobile("9867542134");
 
 		FlatAddress flatAddress = new FlatAddress();
-		flatAddress.setAddressId("FAD1");
+		flatAddress.setAddressId(1);
 		flatAddress.setHouseNo(4);
 		flatAddress.setBuilding("VK Tower");
 		flatAddress.setStreet("Lawrence Road");
@@ -195,7 +195,7 @@ public class FlatBookingServiceTest {
 		flatAddress.setCountry("India");
 
 		Flat flat = new Flat();
-		flat.setFlatId("FLA1");
+		flat.setFlatId(1);
 		flat.setAvailability("Available");
 		flat.setCost(45000);
 		flat.setFlatType("2BHK");
@@ -203,7 +203,7 @@ public class FlatBookingServiceTest {
 		flat.setLandlord(landlord);
 
 		FlatBooking flatBooking = new FlatBooking();
-		flatBooking.setBookingNo("N1");
+		flatBooking.setBookingNo(1);
 		flatBooking.setBookingFrom(LocalDate.of(2022, 07, 01));
 		flatBooking.setBookingTo(LocalDate.of(2022, 10, 30));
 		flatBooking.setMembers(4);
@@ -222,15 +222,15 @@ public class FlatBookingServiceTest {
 	}
 
 	@Test
-	public void testViewAllFlatBookingException() {
+	 void testViewAllFlatBookingException() {
 		when(iFlatBookingRepository.findAll()).thenThrow(FlatBookingNotFoundException.class);
 		assertThrows(FlatBookingNotFoundException.class, () -> iFlatBookingServiceImpl.viewAllFlatBooking());
 	}
 
 	@Test
-	public void testDeleteFlatBooking() {
+	 void testDeleteFlatBooking() {
 		Tenant tenant = new Tenant();
-		tenant.setUserId("TEN1");
+		tenant.setUserId(1);
 		tenant.setAge(35);
 		tenant.setEmail("veena@gmail.com");
 		tenant.setGender("Female");
@@ -241,7 +241,7 @@ public class FlatBookingServiceTest {
 		tenant.setPermanentAddr("");
 
 		Landlord landlord = new Landlord();
-		landlord.setUserId("LAN1");
+		landlord.setUserId(1);
 		landlord.setUsername("rajkumar");
 		landlord.setPassword("rajk123");
 		landlord.setAge(45);
@@ -249,7 +249,7 @@ public class FlatBookingServiceTest {
 		landlord.setMobile("9867542134");
 
 		FlatAddress flatAddress = new FlatAddress();
-		flatAddress.setAddressId("FAD1");
+		flatAddress.setAddressId(1);
 		flatAddress.setHouseNo(4);
 		flatAddress.setBuilding("VK Tower");
 		flatAddress.setStreet("Lawrence Road");
@@ -259,7 +259,7 @@ public class FlatBookingServiceTest {
 		flatAddress.setCountry("India");
 
 		Flat flat = new Flat();
-		flat.setFlatId("FLA1");
+		flat.setFlatId(1);
 		flat.setAvailability("Available");
 		flat.setCost(45000);
 		flat.setFlatType("2BHK");
@@ -267,29 +267,29 @@ public class FlatBookingServiceTest {
 		flat.setLandlord(landlord);
 
 		FlatBooking flatBooking = new FlatBooking();
-		flatBooking.setBookingNo("N1");
+		flatBooking.setBookingNo(1);
 		flatBooking.setBookingFrom(LocalDate.of(2022, 07, 01));
 		flatBooking.setBookingTo(LocalDate.of(2022, 10, 30));
 		flatBooking.setMembers(4);
 		flatBooking.setFlat(flat);
 		flatBooking.setTenant(tenant);
 
-		when(iFlatBookingRepository.findById("N1")).thenReturn(Optional.of(flatBooking));
+		when(iFlatBookingRepository.findById(1)).thenReturn(Optional.of(flatBooking));
 
-		iFlatBookingServiceImpl.deleteFlatBooking("N1");
-		verify(iFlatBookingRepository).deleteById("N1");
+		iFlatBookingServiceImpl.deleteFlatBooking(1);
+		verify(iFlatBookingRepository).deleteById(1);
 	}
 
 	@Test
-	public void testDeleteFlatBookingException() {
-		when(iFlatBookingRepository.findById("N1")).thenThrow(FlatBookingNotFoundException.class);
-		assertThrows(FlatBookingNotFoundException.class, () -> iFlatBookingServiceImpl.deleteFlatBooking("N1"));
+	 void testDeleteFlatBookingException() {
+		when(iFlatBookingRepository.findById(1)).thenThrow(FlatBookingNotFoundException.class);
+		assertThrows(FlatBookingNotFoundException.class, () -> iFlatBookingServiceImpl.deleteFlatBooking(1));
 	}
 
 	@Test
-	public void testUpdateFlatBooking() {
+	 void testUpdateFlatBooking() {
 		Tenant tenant = new Tenant();
-		tenant.setUserId("TEN1");
+		tenant.setUserId(1);
 		tenant.setAge(35);
 		tenant.setEmail("veena@gmail.com");
 		tenant.setGender("Female");
@@ -300,7 +300,7 @@ public class FlatBookingServiceTest {
 		tenant.setPermanentAddr("");
 
 		Landlord landlord = new Landlord();
-		landlord.setUserId("LAN1");
+		landlord.setUserId(1);
 		landlord.setUsername("rajkumar");
 		landlord.setPassword("rajk123");
 		landlord.setAge(45);
@@ -308,7 +308,7 @@ public class FlatBookingServiceTest {
 		landlord.setMobile("9867542134");
 
 		FlatAddress flatAddress = new FlatAddress();
-		flatAddress.setAddressId("FAD1");
+		flatAddress.setAddressId(1);
 		flatAddress.setHouseNo(4);
 		flatAddress.setBuilding("VK Tower");
 		flatAddress.setStreet("Lawrence Road");
@@ -318,7 +318,7 @@ public class FlatBookingServiceTest {
 		flatAddress.setCountry("India");
 
 		Flat flat = new Flat();
-		flat.setFlatId("FLA1");
+		flat.setFlatId(1);
 		flat.setAvailability("Available");
 		flat.setCost(45000);
 		flat.setFlatType("2BHK");
@@ -326,7 +326,7 @@ public class FlatBookingServiceTest {
 		flat.setLandlord(landlord);
 
 		FlatBooking flatBooking = new FlatBooking();
-		flatBooking.setBookingNo("N1");
+		flatBooking.setBookingNo(1);
 		flatBooking.setBookingFrom(LocalDate.of(2022, 07, 01));
 		flatBooking.setBookingTo(LocalDate.of(2022, 10, 30));
 		flatBooking.setMembers(4);
@@ -334,7 +334,7 @@ public class FlatBookingServiceTest {
 		flatBooking.setTenant(tenant);
 
 		FlatBooking flatBooking1 = new FlatBooking();
-		flatBooking1.setBookingNo("N1");
+		flatBooking1.setBookingNo(1);
 		flatBooking1.setBookingFrom(LocalDate.of(2022, 07, 01));
 		flatBooking1.setBookingTo(LocalDate.of(2022, 10, 30));
 		flatBooking1.setMembers(5);
@@ -349,10 +349,10 @@ public class FlatBookingServiceTest {
 	}
 
 	@Test
-	public void testUpdateFlatBookingException() {
+	 void testUpdateFlatBookingException() {
 
 		Tenant tenant = new Tenant();
-		tenant.setUserId("TEN1");
+		tenant.setUserId(1);
 		tenant.setAge(35);
 		tenant.setEmail("veena@gmail.com");
 		tenant.setGender("Female");
@@ -363,7 +363,7 @@ public class FlatBookingServiceTest {
 		tenant.setPermanentAddr("");
 
 		Landlord landlord = new Landlord();
-		landlord.setUserId("LAN1");
+		landlord.setUserId(1);
 		landlord.setUsername("rajkumar");
 		landlord.setPassword("rajk123");
 		landlord.setAge(45);
@@ -371,7 +371,7 @@ public class FlatBookingServiceTest {
 		landlord.setMobile("9867542134");
 
 		FlatAddress flatAddress = new FlatAddress();
-		flatAddress.setAddressId("FAD1");
+		flatAddress.setAddressId(1);
 		flatAddress.setHouseNo(4);
 		flatAddress.setBuilding("VK Tower");
 		flatAddress.setStreet("Lawrence Road");
@@ -381,7 +381,7 @@ public class FlatBookingServiceTest {
 		flatAddress.setCountry("India");
 
 		Flat flat = new Flat();
-		flat.setFlatId("FLA1");
+		flat.setFlatId(1);
 		flat.setAvailability("Available");
 		flat.setCost(45000);
 		flat.setFlatType("2BHK");
@@ -389,7 +389,7 @@ public class FlatBookingServiceTest {
 		flat.setLandlord(landlord);
 
 		FlatBooking flatBooking = new FlatBooking();
-		flatBooking.setBookingNo("N1");
+		flatBooking.setBookingNo(1);
 		flatBooking.setBookingFrom(LocalDate.of(2022, 07, 01));
 		flatBooking.setBookingTo(LocalDate.of(2022, 10, 30));
 		flatBooking.setMembers(4);
@@ -397,14 +397,14 @@ public class FlatBookingServiceTest {
 		flatBooking.setTenant(tenant);
 
 		FlatBooking flatBooking1 = new FlatBooking();
-		flatBooking1.setBookingNo("N1");
+		flatBooking1.setBookingNo(1);
 		flatBooking1.setBookingFrom(LocalDate.of(2022, 07, 01));
 		flatBooking1.setBookingTo(LocalDate.of(2022, 10, 30));
 		flatBooking1.setMembers(5);
 		flatBooking1.setFlat(flat);
 		flatBooking1.setTenant(tenant);
 
-		when(iFlatBookingRepository.findById("N1")).thenThrow(FlatBookingNotFoundException.class);
+		when(iFlatBookingRepository.findById(1)).thenThrow(FlatBookingNotFoundException.class);
 		assertThrows(FlatBookingNotFoundException.class, () -> iFlatBookingServiceImpl.updateFlatBooking(flatBooking1));
 
 	}

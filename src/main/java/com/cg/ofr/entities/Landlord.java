@@ -6,6 +6,9 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.Positive;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "landlord_tbl")
@@ -13,13 +16,16 @@ public class Landlord extends User {
 
 	@Column(name = "landlord_name", length = 100, nullable = false)
 	private String landlordName;
-
+	
+	@Email(regexp = "^(.+)@(.+)$")
 	@Column(name = "email", length = 100, nullable = false, unique = true)
 	private String email;
 
+	@Positive(message = "age must be positive")
 	@Column(name = "age", nullable = false)
 	private int age;
 
+	@Size(min =10, max=10)
 	@Column(name = "mobile", length = 10, nullable = false)
 	private String mobile;
 

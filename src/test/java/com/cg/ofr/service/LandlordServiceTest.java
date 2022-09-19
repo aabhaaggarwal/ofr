@@ -22,7 +22,7 @@ import com.cg.ofr.exception.LandlordNotFoundException;
 import com.cg.ofr.repository.ILandlordRepository;
 
 @SpringBootTest
-public class LandlordServiceTest {
+ class LandlordServiceTest {
 
 	@InjectMocks
 	ILandlordServiceImpl iLandlordServiceImpl = new ILandlordServiceImpl();
@@ -31,9 +31,9 @@ public class LandlordServiceTest {
 	ILandlordRepository iLandlordRepository;
 
 	@Test
-	public void testAddLandlord() {
+	 void testAddLandlord() {
 		Landlord landlord = new Landlord();
-		landlord.setUserId("LAN5");
+		landlord.setUserId(1);
 		landlord.setPassword("********");
 		landlord.setUsername("HARRA");
 		landlord.setAge(26);
@@ -49,10 +49,10 @@ public class LandlordServiceTest {
 	}
 
 	@Test
-	public void testUpdateLandlord() {
+	 void testUpdateLandlord() {
 
 		Landlord landlord = new Landlord();
-		landlord.setUserId("LAN5");
+		landlord.setUserId(1);
 		landlord.setPassword("********");
 		landlord.setUsername("HARRA");
 		landlord.setAge(26);
@@ -61,7 +61,7 @@ public class LandlordServiceTest {
 		landlord.setMobile("9876567892");
 
 		Landlord newLandlord = new Landlord();
-		landlord.setUserId("LAN5");
+		landlord.setUserId(1);
 		landlord.setPassword("********");
 		landlord.setUsername("AABB");
 		landlord.setAge(26);
@@ -77,10 +77,10 @@ public class LandlordServiceTest {
 	}
 
 	@Test
-	public void testUpdateLandlordException() {
+	 void testUpdateLandlordException() {
 
 		Landlord landlord = new Landlord();
-		landlord.setUserId("LAN5");
+		landlord.setUserId(1);
 		landlord.setPassword("********");
 		landlord.setUsername("HARRA");
 		landlord.setAge(26);
@@ -89,7 +89,7 @@ public class LandlordServiceTest {
 		landlord.setMobile("9876567892");
 
 		Landlord newLandlord = new Landlord();
-		landlord.setUserId("LAN7");
+		landlord.setUserId(1);
 		landlord.setPassword("********");
 		landlord.setUsername("AABB");
 		landlord.setAge(36);
@@ -103,10 +103,10 @@ public class LandlordServiceTest {
 	}
 
 	@Test
-	public void testViewLandlordById() {
+	 void testViewLandlordById() {
 
 		Landlord landlord = new Landlord();
-		landlord.setUserId("LAN5");
+		landlord.setUserId(1);
 		landlord.setPassword("********");
 		landlord.setUsername("HARRA");
 		landlord.setAge(26);
@@ -116,26 +116,26 @@ public class LandlordServiceTest {
 
 		Optional<Landlord> optionalLandlord = Optional.of(landlord);
 
-		when(iLandlordRepository.findById("LAN5")).thenReturn(optionalLandlord);
+		when(iLandlordRepository.findById(1)).thenReturn(optionalLandlord);
 
-		Landlord landlordObj = iLandlordServiceImpl.viewLandlord("LAN5");
+		Landlord landlordObj = iLandlordServiceImpl.viewLandlord(1);
 
 		assertEquals("Harish Mehta", landlordObj.getLandlordName());
 		assertEquals("har@123", landlordObj.getEmail());
 	}
 
 	@Test
-	public void testViewLandlordByIdException() {
+	 void testViewLandlordByIdException() {
 
-		when(iLandlordRepository.findById("LAN6")).thenThrow(LandlordNotFoundException.class);
+		when(iLandlordRepository.findById(1)).thenThrow(LandlordNotFoundException.class);
 
-		assertThrows(LandlordNotFoundException.class, () -> iLandlordServiceImpl.viewLandlord("LAN6"));
+		assertThrows(LandlordNotFoundException.class, () -> iLandlordServiceImpl.viewLandlord(1));
 	}
 
 	@Test
-	public void testViewAllLandlord() {
+	 void testViewAllLandlord() {
 		Landlord landlord = new Landlord();
-		landlord.setUserId("LAN7");
+		landlord.setUserId(1);
 		landlord.setPassword("********");
 		landlord.setUsername("NIKAR");
 		landlord.setAge(36);
@@ -144,7 +144,7 @@ public class LandlordServiceTest {
 		landlord.setMobile("7889665432");
 
 		Landlord landlord2 = new Landlord();
-		landlord2.setUserId("LAN8");
+		landlord2.setUserId(2);
 		landlord2.setPassword("**********");
 		landlord2.setUsername("TUSMA");
 		landlord2.setAge(50);
@@ -153,7 +153,7 @@ public class LandlordServiceTest {
 		landlord2.setMobile("7889665432");
 
 		Landlord landlord3 = new Landlord();
-		landlord3.setUserId("LAN9");
+		landlord3.setUserId(3);
 		landlord3.setPassword("*********");
 		landlord3.setUsername("SONGAR");
 		landlord3.setAge(55);
@@ -174,17 +174,17 @@ public class LandlordServiceTest {
 	}
 
 	@Test
-	public void testViewAllLandlordException() {
+	 void testViewAllLandlordException() {
 
 		when(iLandlordRepository.findAll()).thenThrow(LandlordNotFoundException.class);
 		assertThrows(LandlordNotFoundException.class, () -> iLandlordServiceImpl.viewAllLandlord());
 	}
 
 	@Test
-	public void testDeleteLandlord() {
+	 void testDeleteLandlord() {
 
 		Landlord landlord = new Landlord();
-		landlord.setUserId("LAN6");
+		landlord.setUserId(1);
 		landlord.setPassword("*********");
 		landlord.setUsername("SHILTY");
 		landlord.setAge(25);
@@ -194,21 +194,21 @@ public class LandlordServiceTest {
 
 		Optional<Landlord> optionalLandlord = Optional.of(landlord);
 
-		when(iLandlordRepository.findById("LAN6")).thenReturn(optionalLandlord);
+		when(iLandlordRepository.findById(1)).thenReturn(optionalLandlord);
 
-		doNothing().when(iLandlordRepository).deleteById("LAN6");
+		doNothing().when(iLandlordRepository).deleteById(1);
 
-		iLandlordServiceImpl.deleteLandlord("LAN6");
+		iLandlordServiceImpl.deleteLandlord(1);
 
-		verify(iLandlordRepository, times(1)).findById("LAN6");
-		verify(iLandlordRepository, times(1)).findById("LAN6");
+		verify(iLandlordRepository, times(1)).findById(1);
+		verify(iLandlordRepository, times(1)).findById(1);
 	}
 
 	@Test
-	public void testDeleteLandlordException() {
+	 void testDeleteLandlordException() {
 
-		when(iLandlordRepository.findById("LAN6")).thenThrow(LandlordNotFoundException.class);
+		when(iLandlordRepository.findById(1)).thenThrow(LandlordNotFoundException.class);
 
-		assertThrows(LandlordNotFoundException.class, () -> iLandlordServiceImpl.deleteLandlord("LAN6"));
+		assertThrows(LandlordNotFoundException.class, () -> iLandlordServiceImpl.deleteLandlord(1));
 	}
 }

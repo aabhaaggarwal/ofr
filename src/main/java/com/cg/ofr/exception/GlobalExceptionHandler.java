@@ -10,20 +10,17 @@ public class GlobalExceptionHandler {
 
 	@ExceptionHandler(FlatBookingNotFoundException.class)
 	public ResponseEntity<String> handleFlatBookingNotFoundException(Exception e) {
-		ResponseEntity<String> responseEntity = new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
-		return responseEntity;
+		return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
 	}
 
 	@ExceptionHandler(FlatNotFoundException.class)
 	public ResponseEntity<String> handleFlatNotFoundException(Exception e) {
-		ResponseEntity<String> responseEntity = new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
-		return responseEntity;
+		return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
 	}
 
 	@ExceptionHandler(LandlordNotFoundException.class)
 	public ResponseEntity<String> handleLandlordNotFoundException(Exception e) {
-		ResponseEntity<String> responseEntity = new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
-		return responseEntity;
+		return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
 	}
 
 	@ExceptionHandler(AdminNotFoundException.class)
@@ -34,7 +31,6 @@ public class GlobalExceptionHandler {
 
 	@ExceptionHandler(TenantNotFoundException.class)
 	public ResponseEntity<String> handleTenantNotFoundException(Exception e) {
-		ResponseEntity<String> responseEntity = new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
-		return responseEntity;
+		return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
 	}
 }

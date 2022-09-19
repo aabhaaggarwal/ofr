@@ -35,24 +35,24 @@ public class FlatBookingController {
 
 	@GetMapping("/all")
 	public List<FlatBooking> fetchAllFlatBooking() {
-		List<FlatBooking> flatBookings = iFlatBookingService.viewAllFlatBooking();
-		return flatBookings;
+		 return iFlatBookingService.viewAllFlatBooking();
+		
 	}
 
 	@GetMapping("/{fbId}")
 	public ResponseEntity<Object> fetchFlatBookingById(@PathVariable("fbId") int id) {
 		FlatBooking flatBooking = iFlatBookingService.viewFlatBooking(id);
-		ResponseEntity<Object> responseEntity = new ResponseEntity<>(flatBooking, HttpStatus.OK);
-		return responseEntity;
+		return new ResponseEntity<>(flatBooking, HttpStatus.OK);
+		
 
 	}
 
 	@DeleteMapping("/{fbId}")
 	public ResponseEntity<Object> deleteFlatBooking(@PathVariable("fbId") int id) {
 		iFlatBookingService.deleteFlatBooking(id);
-		ResponseEntity<Object> responseEntity = new ResponseEntity<>("Flat Booking deleted successfully",
+		return new ResponseEntity<>("Flat Booking deleted successfully",
 				HttpStatus.OK);
-		return responseEntity;
+	
 	}
 
 	@PutMapping("/update")
@@ -67,8 +67,8 @@ public class FlatBookingController {
 		flatBooking.setFlat(flat);
 		flatBooking.setTenant(tenant);
 		FlatBooking updatedFlatBooking = iFlatBookingService.updateFlatBooking(flatBooking);
-		ResponseEntity<FlatBooking> responseEntity = new ResponseEntity<>(updatedFlatBooking, HttpStatus.OK);
-		return responseEntity;
+		return new ResponseEntity<>(updatedFlatBooking, HttpStatus.OK);
+	
 	}
 
 	@PostMapping("/book")
@@ -83,8 +83,8 @@ public class FlatBookingController {
 		flatBooking.setFlat(flat);
 		flatBooking.setTenant(tenant);
 		FlatBooking newFlatBooking = iFlatBookingService.addFlatBooking(flatBooking);
-		ResponseEntity<FlatBooking> responseEntity = new ResponseEntity<>(newFlatBooking, HttpStatus.CREATED);
-		return responseEntity;
+		return new ResponseEntity<>(newFlatBooking, HttpStatus.CREATED);
+	
 	}
 
 }

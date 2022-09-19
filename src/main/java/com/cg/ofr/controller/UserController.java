@@ -1,5 +1,7 @@
 package com.cg.ofr.controller;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,7 +23,7 @@ public class UserController {
 	private IUserService iUserService;
 
 	@PutMapping("/tenant/update/user")
-	public ResponseEntity<Tenant> modifyTenant(@RequestBody Tenant tenant) {
+	public ResponseEntity<Tenant> modifyTenant(@Valid @RequestBody Tenant tenant) {
 		Tenant updateTenant = iUserService.updateTenantPassword(tenant);
 		return new ResponseEntity<>(updateTenant, HttpStatus.OK);
 		
@@ -29,7 +31,7 @@ public class UserController {
 	}
 
 	@PutMapping("/landlord/update/user")
-	public ResponseEntity<Landlord> modifyLandlord(@RequestBody Landlord landlord) {
+	public ResponseEntity<Landlord> modifyLandlord(@Valid @RequestBody Landlord landlord) {
 		Landlord updateLandlord = iUserService.updateLandlordPassword(landlord);
 		return new ResponseEntity<>(updateLandlord, HttpStatus.OK);
 		
@@ -53,14 +55,14 @@ public class UserController {
 	}
 
 	@PostMapping("/tenant/register")
-	public ResponseEntity<Object> register(@RequestBody Tenant tenant) {
+	public ResponseEntity<Object> register(@Valid @RequestBody Tenant tenant) {
 		Tenant newTenant = iUserService.validateNewTenant(tenant);
 		return new ResponseEntity<>(newTenant, HttpStatus.OK);
 		
 	}
 
 	@PostMapping("/landlord/register")
-	public ResponseEntity<Object> register(@RequestBody Landlord landlord) {
+	public ResponseEntity<Object> register(@Valid @RequestBody Landlord landlord) {
 		Landlord newLandlord = iUserService.validateNewLandlord(landlord);
 		return  new ResponseEntity<>(newLandlord, HttpStatus.OK);
 		

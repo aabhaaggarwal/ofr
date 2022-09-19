@@ -2,6 +2,8 @@ package com.cg.ofr.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,7 +13,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cg.ofr.entities.Tenant;
@@ -24,19 +25,17 @@ public class TenantController {
 	private ITenantService iTenantService;
 
 	@PostMapping("/tenant/save")
-	public ResponseEntity<Tenant> addTenant(@RequestBody Tenant tenant) {
+	public ResponseEntity<Tenant> addTenant(@Valid @RequestBody Tenant tenant) {
 
 		Tenant newTenant = iTenantService.addTenant(tenant);
-		ResponseEntity<Tenant> responseEntity = new ResponseEntity<>(newTenant, HttpStatus.CREATED);
-		return responseEntity;
+		return new ResponseEntity<>(newTenant, HttpStatus.CREATED);
 
 	}
 
 	@PutMapping("/tenant/update")
-	public ResponseEntity<Tenant> modifyTenant(@RequestBody Tenant tenant) {
+	public ResponseEntity<Tenant> modifyTenant(@Valid @RequestBody Tenant tenant) {
 		Tenant updatedTenant = iTenantService.updateTenant(tenant);
-		ResponseEntity<Tenant> responseEntity = new ResponseEntity<>(updatedTenant, HttpStatus.OK);
-		return responseEntity;
+		return new ResponseEntity<>(updatedTenant, HttpStatus.OK);
 
 	}
 
@@ -44,22 +43,19 @@ public class TenantController {
 	public ResponseEntity<String> deleteTenantById(@PathVariable("tId") int TenantId) {
 
 		iTenantService.deleteTenant(TenantId);
-		ResponseEntity<String> responseEntity = new ResponseEntity<>("Tenant Deleted Successfully!!", HttpStatus.OK);
-		return responseEntity;
+		return new ResponseEntity<>("Tenant Deleted Successfully!!", HttpStatus.OK);
 	}
 
 	@GetMapping("tenant/all")
 	public List<Tenant> fetchAllTenant() {
-		List<Tenant> tenants = iTenantService.viewAllTenant();
-		return tenants;
+		return iTenantService.viewAllTenant();
 	}
 
 	@GetMapping("/tenant/{tId}")
 	public ResponseEntity<Object> fetchTenantById(@PathVariable("tId") int TenantId) {
 
 		Tenant tenant = iTenantService.viewTenant(TenantId);
-		ResponseEntity<Object> responseEntity = new ResponseEntity<>(tenant, HttpStatus.OK);
-		return responseEntity;
+	    return new ResponseEntity<>(tenant, HttpStatus.OK);
 
 	}
 

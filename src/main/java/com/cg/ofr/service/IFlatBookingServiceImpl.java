@@ -18,8 +18,7 @@ public class IFlatBookingServiceImpl implements IFlatBookingService {
 
 	@Override
 	public FlatBooking addFlatBooking(FlatBooking flatBooking) {
-		FlatBooking newFlatBooking = iFlatBookingRepository.save(flatBooking);
-		return newFlatBooking;
+		return iFlatBookingRepository.save(flatBooking);
 	}
 
 	@Override
@@ -28,8 +27,7 @@ public class IFlatBookingServiceImpl implements IFlatBookingService {
 		if (optionalFlatBooking.isEmpty()) {
 			throw new FlatBookingNotFoundException("Flat Booking not existing with id :" + flatBooking.getBookingNo());
 		}
-		FlatBooking updatedFlatBooking = iFlatBookingRepository.save(flatBooking);
-		return updatedFlatBooking;
+		return iFlatBookingRepository.save(flatBooking);
 	}
 
 	@Override
@@ -48,13 +46,11 @@ public class IFlatBookingServiceImpl implements IFlatBookingService {
 		if (optionalFlatBooking.isEmpty()) {
 			throw new FlatBookingNotFoundException("Flat booking not existing with id :" + id);
 		}
-		FlatBooking flatBooking = optionalFlatBooking.get();
-		return flatBooking;
+		return optionalFlatBooking.get();
 	}
 
 	@Override
 	public List<FlatBooking> viewAllFlatBooking() {
-		List<FlatBooking> flatBookings = iFlatBookingRepository.findAll();
-		return flatBookings;
+		return iFlatBookingRepository.findAll();
 	}
 }

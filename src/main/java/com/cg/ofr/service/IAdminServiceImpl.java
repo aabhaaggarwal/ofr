@@ -32,14 +32,12 @@ public class IAdminServiceImpl implements IAdminService {
 		if (optionalAdmin.isEmpty()) {
 			throw new AdminNotFoundException("Admin not existing with this username");
 		}
-		Admin updateAdmin = iAdminRepository.save(admin);
-		return updateAdmin;
+		return iAdminRepository.save(admin);
 	}
 
 	@Override
 	public Admin addAdmin(Admin admin) {
-		Admin newAdmin = iAdminRepository.save(admin);
-		return newAdmin;
+		return iAdminRepository.save(admin);
 	}
 
 }

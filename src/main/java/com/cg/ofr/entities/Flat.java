@@ -10,6 +10,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -22,12 +24,15 @@ public class Flat {
 	@Column(name = "flat_id")
 	private int flatId;
 
+	@Positive(message = "Cost must be positive value")
 	@Column(name = "cost")
 	private float cost;
 
+	@NotNull(message = "flat type cannot be null")
 	@Column(name = "flat_type", length = 20)
 	private String flatType;
 
+	@NotNull(message = "set availability")
 	@Column(name = "availability", length = 20)
 	private String availability;
 

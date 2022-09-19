@@ -18,8 +18,7 @@ public class ITenantServiceImpl implements ITenantService {
 
 	@Override
 	public Tenant addTenant(Tenant tenant) {
-		Tenant newTenant = iTenantRepository.save(tenant);
-		return newTenant;
+		return iTenantRepository.save(tenant);
 	}
 
 	@Override
@@ -29,8 +28,7 @@ public class ITenantServiceImpl implements ITenantService {
 		if (optionalTenant.isEmpty()) {
 			throw new TenantNotFoundException("Tenant not existing with id: " + tenant.getUserId());
 		}
-		Tenant updatedTenant = iTenantRepository.save(tenant);
-		return updatedTenant;
+		return iTenantRepository.save(tenant);
 	}
 
 	@Override
@@ -49,14 +47,12 @@ public class ITenantServiceImpl implements ITenantService {
 		if (optionalTenant.isEmpty()) {
 			throw new TenantNotFoundException("Tenant not existing with id: " + id);
 		}
-		Tenant tenant = optionalTenant.get();
-		return tenant;
+		return optionalTenant.get();
 	}
 
 	@Override
 	public List<Tenant> viewAllTenant() {
-		List<Tenant> tenants = iTenantRepository.findAll();
-		return tenants;
+		return iTenantRepository.findAll();
 
 	}
 }

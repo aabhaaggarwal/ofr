@@ -1,6 +1,9 @@
 package com.cg.ofr.controller;
 
 import java.util.List;
+
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -29,7 +32,7 @@ public class FlatController {
 	private ILandlordService iLandlordService;
 
 	@PostMapping("/save")
-	public ResponseEntity<Flat> addFlat(@RequestBody FlatPayload flatPayload) {
+	public ResponseEntity<Flat> addFlat(@Valid @RequestBody FlatPayload flatPayload) {
 
 		Landlord landlord = iLandlordService.viewLandlord(flatPayload.getLandlordId());
 		Flat flat = new Flat();
@@ -40,39 +43,38 @@ public class FlatController {
 		flat.setFlatAddress(flatPayload.getFlatAddress());
 		flat.setLandlord(landlord);
 		Flat newFlat = iFlatService.addFlat(flat);
-		ResponseEntity<Flat> responseEntity = new ResponseEntity<>(newFlat, HttpStatus.CREATED);
-		return responseEntity;
+		return new ResponseEntity<>(newFlat, HttpStatus.CREATED);
 	}
 
 	@GetMapping("/all")
 	public List<Flat> fetchAllFlat() {
-		List<Flat> flat = iFlatService.viewAllFlat();
-		return flat;
+		return iFlatService.viewAllFlat();
+		
 	}
 
 	@GetMapping("/{fId}")
 	public ResponseEntity<Object> fetchFlatById(@PathVariable("fId") int flatId) {
 		Flat flat = iFlatService.viewFlat(flatId);
-		ResponseEntity<Object> responseEntity = new ResponseEntity<>(flat, HttpStatus.OK);
-		return responseEntity;
+		return new ResponseEntity<>(flat, HttpStatus.OK);
+	
 	}
 
 	@DeleteMapping("/{fId}")
 	public ResponseEntity<String> deleteFlatById(@PathVariable("fId") int flatId) {
 		iFlatService.deleteFlat(flatId);
-		ResponseEntity<String> responseEntity = new ResponseEntity<>("Flat deleted successfully", HttpStatus.OK);
-		return responseEntity;
+	    return new ResponseEntity<>("Flat deleted successfully", HttpStatus.OK);
+	
 	}
 
 	@GetMapping("/{fCost}/available")
 	public ResponseEntity<Object> fetchFlatByCost(@PathVariable("fCost") float cost) {
 		List<Flat> flats = iFlatService.viewAllFlatByCost(cost, "Available");
-		ResponseEntity<Object> responseEntity = new ResponseEntity<>(flats, HttpStatus.OK);
-		return responseEntity;
+		return new ResponseEntity<>(flats, HttpStatus.OK);
+		
 	}
 
 	@PutMapping("/update")
-	public ResponseEntity<Flat> updateFlat(@RequestBody FlatPayload flatPayload) {
+	public ResponseEntity<Flat> updateFlat(@Valid @RequestBody FlatPayload flatPayload) {
 
 		Landlord landlord = iLandlordService.viewLandlord(flatPayload.getLandlordId());
 		Flat flat = new Flat();
@@ -83,8 +85,7 @@ public class FlatController {
 		flat.setFlatAddress(flatPayload.getFlatAddress());
 		flat.setLandlord(landlord);
 		Flat updatedFlat = iFlatService.updateFlat(flat);
-		ResponseEntity<Flat> responseEntity = new ResponseEntity<>(updatedFlat, HttpStatus.OK);
-		return responseEntity;
+		return new ResponseEntity<>(updatedFlat, HttpStatus.OK);
 	}
 
 }

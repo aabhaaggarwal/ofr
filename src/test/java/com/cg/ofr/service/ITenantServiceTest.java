@@ -22,7 +22,7 @@ import com.cg.ofr.exception.TenantNotFoundException;
 import com.cg.ofr.repository.ITenantRepository;
 
 @SpringBootTest
-public class ITenantServiceTest {
+ class ITenantServiceTest {
 
 	@InjectMocks
 	ITenantServiceImpl iTenantServiceImpl = new ITenantServiceImpl();
@@ -31,10 +31,10 @@ public class ITenantServiceTest {
 	ITenantRepository iTenantRepository;
 
 	@Test
-	public void testViewITenantById() {
+	 void testViewITenantById() {
 
 		Tenant tenant = new Tenant();
-		tenant.setUserId("TEN4");
+		tenant.setUserId(1);
 		tenant.setUsername("Arshi123");
 		tenant.setPassword("arshi435");
 		tenant.setTenantName("Arshi");
@@ -45,27 +45,27 @@ public class ITenantServiceTest {
 
 		Optional<Tenant> optionalTenant = Optional.of(tenant);
 
-		when(iTenantRepository.findById("TEN4")).thenReturn(optionalTenant);
+		when(iTenantRepository.findById(1)).thenReturn(optionalTenant);
 
-		Tenant tenantObj = iTenantServiceImpl.viewTenant("TEN4");
+		Tenant tenantObj = iTenantServiceImpl.viewTenant(1);
 
 		assertEquals("Arshi", tenantObj.getTenantName());
 		assertEquals("arshi435", tenantObj.getPassword());
 	}
 
 	@Test
-	public void testViewTenantByIdException() {
-		when(iTenantRepository.findById("TEN5")).thenThrow(TenantNotFoundException.class);
+	 void testViewTenantByIdException() {
+		when(iTenantRepository.findById(1)).thenThrow(TenantNotFoundException.class);
 
-		assertThrows(TenantNotFoundException.class, () -> iTenantServiceImpl.viewTenant("TEN5"));
+		assertThrows(TenantNotFoundException.class, () -> iTenantServiceImpl.viewTenant(1));
 	}
 
 	@Test
-	public void testViewAllTenants() {
+	 void testViewAllTenants() {
 
 		Tenant tenant = new Tenant();
 		tenant.setTenantName("Megha");
-		tenant.setUserId("TEN6");
+		tenant.setUserId(1);
 		tenant.setAge(22);
 		tenant.setEmail("megha@123");
 		tenant.setGender("female");
@@ -76,7 +76,7 @@ public class ITenantServiceTest {
 
 		Tenant tenant2 = new Tenant();
 		tenant2.setTenantName("Ravi");
-		tenant2.setUserId("TEN7");
+		tenant2.setUserId(2);
 		tenant2.setAge(25);
 		tenant2.setEmail("ravi@123");
 		tenant2.setGender("male");
@@ -87,7 +87,7 @@ public class ITenantServiceTest {
 
 		Tenant tenant3 = new Tenant();
 		tenant3.setTenantName("Janvi");
-		tenant3.setUserId("TEN8");
+		tenant3.setUserId(3);
 		tenant3.setAge(20);
 		tenant3.setEmail("janvi@123");
 		tenant3.setGender("female");
@@ -109,18 +109,18 @@ public class ITenantServiceTest {
 	}
 
 	@Test
-	public void testViewAllTenantByIdException() {
+	 void testViewAllTenantByIdException() {
 		when(iTenantRepository.findAll()).thenThrow(TenantNotFoundException.class);
 
 		assertThrows(TenantNotFoundException.class, () -> iTenantServiceImpl.viewAllTenant());
 	}
 
 	@Test
-	public void testDeleteTenant() {
+	 void testDeleteTenant() {
 
 		Tenant tenant = new Tenant();
 		tenant.setTenantName("Megha");
-		tenant.setUserId("TEN6");
+		tenant.setUserId(1);
 		tenant.setAge(22);
 		tenant.setEmail("megha@123");
 		tenant.setGender("female");
@@ -131,29 +131,28 @@ public class ITenantServiceTest {
 
 		Optional<Tenant> optionalTenant = Optional.of(tenant);
 
-		when(iTenantRepository.findById("Megha")).thenReturn(optionalTenant);
+		when(iTenantRepository.findById(1)).thenReturn(optionalTenant);
 
-		doNothing().when(iTenantRepository).deleteById("Megha");
+		doNothing().when(iTenantRepository).deleteById(1);
+		iTenantServiceImpl.deleteTenant(1);
 
-		iTenantServiceImpl.deleteTenant("Megha");
-
-		verify(iTenantRepository, times(1)).findById("Megha");
-		verify(iTenantRepository, times(1)).deleteById("Megha");
+		verify(iTenantRepository, times(1)).findById(1);
+		verify(iTenantRepository, times(1)).deleteById(1);
 	}
 
 	@Test
-	public void testDeleteTenantByIdException() {
-		when(iTenantRepository.findById("TEN6")).thenThrow(TenantNotFoundException.class);
+	 void testDeleteTenantByIdException() {
+		when(iTenantRepository.findById(1)).thenThrow(TenantNotFoundException.class);
 
-		assertThrows(TenantNotFoundException.class, () -> iTenantServiceImpl.deleteTenant("TEN6"));
+		assertThrows(TenantNotFoundException.class, () -> iTenantServiceImpl.deleteTenant(1));
 	}
 
 	@Test
-	public void testUpdateTenant() {
+	 void testUpdateTenant() {
 
 		Tenant tenant = new Tenant();
 		tenant.setTenantName("Ravi");
-		tenant.setUserId("TEN7");
+		tenant.setUserId(1);
 		tenant.setAge(22);
 		tenant.setEmail("ravi@123");
 		tenant.setGender("male");
@@ -164,7 +163,7 @@ public class ITenantServiceTest {
 
 		Tenant newTenant = new Tenant();
 		newTenant.setTenantName("Rishi");
-		newTenant.setUserId("TEN7");
+		newTenant.setUserId(1);
 		newTenant.setAge(22);
 		newTenant.setEmail("ravi@123");
 		newTenant.setGender("male");
@@ -180,10 +179,10 @@ public class ITenantServiceTest {
 	}
 
 	@Test
-	public void testUpdateTenantByIdException() {
+	 void testUpdateTenantByIdException() {
 		Tenant tenant = new Tenant();
 		tenant.setTenantName("Ravi");
-		tenant.setUserId("TEN7");
+		tenant.setUserId(1);
 		tenant.setAge(22);
 		tenant.setEmail("ravi@123");
 		tenant.setGender("male");
@@ -194,7 +193,7 @@ public class ITenantServiceTest {
 
 		Tenant newTenant = new Tenant();
 		newTenant.setTenantName("Rishi");
-		newTenant.setUserId("TEN7");
+		newTenant.setUserId(1);
 		newTenant.setAge(22);
 		newTenant.setEmail("ravi@123");
 		newTenant.setGender("male");
@@ -208,9 +207,9 @@ public class ITenantServiceTest {
 	}
 
 	@Test
-	public void testAddTenant() {
+	 void testAddTenant() {
 		Tenant tenant = new Tenant();
-		tenant.setUserId("TEN1");
+		tenant.setUserId(1);
 		tenant.setUsername("mayur123");
 		tenant.setTenantName("Mayur");
 		tenant.setAge(25);

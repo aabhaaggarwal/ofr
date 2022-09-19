@@ -19,7 +19,7 @@ import com.cg.ofr.exception.AdminNotFoundException;
 import com.cg.ofr.repository.IAdminRepository;
 
 @SpringBootTest
-public class IAdminServiceTest {
+ class IAdminServiceTest {
 
 	@InjectMocks
 	IAdminServiceImpl iAdminServiceImpl = new IAdminServiceImpl();
@@ -28,7 +28,7 @@ public class IAdminServiceTest {
 	IAdminRepository iAdminRepository;
 
 	@Test
-	public void testValidateAdmin() {
+	 void testValidateAdmin() {
 
 		Admin admin = new Admin();
 		admin.setAdminName("Ram Gopal");
@@ -42,13 +42,13 @@ public class IAdminServiceTest {
 	}
 
 	@Test
-	public void testValidateAdminException() {
+	 void testValidateAdminException() {
 		when(iAdminRepository.findByUsernameAndPassword("Rahul", "9876")).thenThrow(AdminNotFoundException.class);
 		assertThrows(AdminNotFoundException.class, () -> iAdminServiceImpl.validateAdmin("Rohan", "1234"));
 	}
 
 	@Test
-	public void testUpdateAdminPassword() {
+	 void testUpdateAdminPassword() {
 
 		Admin admin = new Admin();
 		admin.setAdminName("Ram Gopal");
@@ -66,7 +66,7 @@ public class IAdminServiceTest {
 	}
 
 	@Test
-	public void testUpdateLandlordPasswordException() {
+	 void testUpdateLandlordPasswordException() {
 
 		Admin admin = new Admin();
 		admin.setAdminName("Ram Gopal");
@@ -79,7 +79,7 @@ public class IAdminServiceTest {
 	}
 
 	@Test
-	public void testaddAdmin() {
+	 void testaddAdmin() {
 		Admin admin = new Admin();
 		admin.setAdminName("Ram Gopal");
 		admin.setUsername("Ram");

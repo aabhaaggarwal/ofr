@@ -4,6 +4,10 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
+import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -11,18 +15,22 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Table(name = "tenant_tbl")
 public class Tenant extends User {
 
+	@NotNull(message = "Name cannot be null")
 	@Column(name = "tenant_name", length = 50, nullable = false)
 	private String tenantName;
 
+	@Positive(message = "age must be positive number")
 	@Column(name = "age", nullable = false)
 	private int age;
 
+	@Email(regexp = "^(.+)@(.+)$")
 	@Column(name = "email", length = 100, nullable = false, unique = true)
 	private String email;
 
 	@Column(name = "gender", length = 20)
 	private String gender;
 
+	@Size(min=10,max=10)
 	@Column(name = "mobile", length = 10, nullable = false)
 	private String mobile;
 

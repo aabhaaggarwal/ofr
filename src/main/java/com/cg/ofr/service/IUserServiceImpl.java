@@ -38,8 +38,7 @@ public class IUserServiceImpl implements IUserService {
 		if (optionalTenant.isEmpty()) {
 			throw new TenantNotFoundException("Tenant not existing with id:" + tenant.getUserId());
 		}
-		Tenant updateTenant = iTenantRepository.save(tenant);
-		return updateTenant;
+		return iTenantRepository.save(tenant);
 
 	}
 
@@ -49,8 +48,7 @@ public class IUserServiceImpl implements IUserService {
 		if (optionalLandlord.isEmpty()) {
 			throw new LandlordNotFoundException("Landlord not existing with username:" + landlord.getUsername());
 		}
-		Landlord updateLandlord = iLandlordRepository.save(landlord);
-		return updateLandlord;
+		return iLandlordRepository.save(landlord);
 	}
 
 	@Override
@@ -69,8 +67,7 @@ public class IUserServiceImpl implements IUserService {
 		if (optionaltenant != null) {
 			throw new TenantNotFoundException("Tenant with this name already exist");
 		}
-		Tenant newTenant = iTenantRepository.save(tenant);
-		return newTenant;
+		return iTenantRepository.save(tenant);
 	}
 
 	@Override
@@ -79,8 +76,7 @@ public class IUserServiceImpl implements IUserService {
 		if (optionallandlord != null) {
 			throw new LandlordNotFoundException("Landlord with this name already exist");
 		}
-		Landlord newLandlord = iLandlordRepository.save(landlord);
-		return newLandlord;
+		return iLandlordRepository.save(landlord);
 	}
 
 }

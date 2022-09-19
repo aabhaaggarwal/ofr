@@ -21,7 +21,7 @@ import com.cg.ofr.repository.ILandlordRepository;
 import com.cg.ofr.repository.ITenantRepository;
 
 @SpringBootTest
-public class IUserServiceTest {
+ class IUserServiceTest {
 
 	@InjectMocks
 	IUserServiceImpl iUserServiceImpl = new IUserServiceImpl();
@@ -33,10 +33,10 @@ public class IUserServiceTest {
 	ILandlordRepository iLandlordRepository;
 
 	@Test
-	public void testValidateTenant() {
+	 void testValidateTenant() {
 
 		Tenant tenant = new Tenant();
-		tenant.setUserId("TEN5");
+		tenant.setUserId(1);
 		tenant.setUsername("Rohan");
 		tenant.setPassword("1234");
 		tenant.setTenantName("Rohan Sharma");
@@ -55,16 +55,16 @@ public class IUserServiceTest {
 	}
 
 	@Test
-	public void testValidateTenantException() {
+	 void testValidateTenantException() {
 		when(iTenantRepository.findByUsernameAndPassword("Rahul", "9876")).thenThrow(TenantNotFoundException.class);
 		assertThrows(TenantNotFoundException.class, () -> iUserServiceImpl.validateTenant("Rohan", "1234"));
 	}
 
 	@Test
-	public void testValidateLandlord() {
+	 void testValidateLandlord() {
 
 		Landlord landlord = new Landlord();
-		landlord.setUserId("LAN4");
+		landlord.setUserId(1);
 		landlord.setUsername("Rohan");
 		landlord.setPassword("1234");
 		landlord.setLandlordName("Rohan Sharma");
@@ -82,16 +82,16 @@ public class IUserServiceTest {
 	}
 
 	@Test
-	public void testValidateLandlordException() {
+	 void testValidateLandlordException() {
 		when(iLandlordRepository.findByUsernameAndPassword("Rahul", "9876")).thenThrow(LandlordNotFoundException.class);
 		assertThrows(LandlordNotFoundException.class, () -> iUserServiceImpl.validateLandlord("Rohan", "1234"));
 	}
 
 	@Test
-	public void testvalidateNewLandlord() {
+	 void testvalidateNewLandlord() {
 
 		Landlord landlord = new Landlord();
-		landlord.setUserId("LAN4");
+		landlord.setUserId(1);
 		landlord.setUsername("Rohan");
 		landlord.setPassword("1234");
 		landlord.setLandlordName("Rohan Sharma");
@@ -108,10 +108,10 @@ public class IUserServiceTest {
 	}
 
 	@Test
-	public void testvalidateNewLandlordException() {
+	 void testvalidateNewLandlordException() {
 
 		Landlord landlord = new Landlord();
-		landlord.setUserId("LAN4");
+		landlord.setUserId(1);
 		landlord.setUsername("Rohan");
 		landlord.setPassword("1234");
 		landlord.setLandlordName("Rohan Sharma");
@@ -124,9 +124,9 @@ public class IUserServiceTest {
 	}
 
 	@Test
-	public void testvalidateNewTenant() {
+	 void testvalidateNewTenant() {
 		Tenant tenant = new Tenant();
-		tenant.setUserId("TEN5");
+		tenant.setUserId(1);
 		tenant.setUsername("Rohan");
 		tenant.setPassword("1234");
 		tenant.setTenantName("Rohan Sharma");
@@ -144,9 +144,9 @@ public class IUserServiceTest {
 	}
 
 	@Test
-	public void testvalidateNewTenantException() {
+	 void testvalidateNewTenantException() {
 		Tenant tenant = new Tenant();
-		tenant.setUserId("TEN5");
+		tenant.setUserId(1);
 		tenant.setUsername("Rohan");
 		tenant.setPassword("1234");
 		tenant.setTenantName("Rohan Sharma");
@@ -160,10 +160,10 @@ public class IUserServiceTest {
 	}
 
 	@Test
-	public void testUpdateLandlordPassword() {
+	 void testUpdateLandlordPassword() {
 
 		Landlord landlord = new Landlord();
-		landlord.setUserId("LAN4");
+		landlord.setUserId(1);
 		landlord.setUsername("Rohan");
 		landlord.setPassword("1234");
 		landlord.setLandlordName("Rohan Sharma");
@@ -173,7 +173,7 @@ public class IUserServiceTest {
 
 		Optional<Landlord> optionalLandlord = Optional.of(landlord);
 
-		when(iLandlordRepository.findById("LAN4")).thenReturn(optionalLandlord);
+		when(iLandlordRepository.findById(1)).thenReturn(optionalLandlord);
 
 		iUserServiceImpl.updateLandlordPassword(landlord);
 
@@ -182,10 +182,10 @@ public class IUserServiceTest {
 	}
 
 	@Test
-	public void testUpdateLandlordPasswordException() {
+	 void testUpdateLandlordPasswordException() {
 
 		Landlord landlord2 = new Landlord();
-		landlord2.setUserId("LAN5");
+		landlord2.setUserId(1);
 		landlord2.setUsername("Angad");
 		landlord2.setPassword("1234");
 		landlord2.setLandlordName("Angad Bhatia");
@@ -193,16 +193,16 @@ public class IUserServiceTest {
 		landlord2.setEmail("angad@gmail.com");
 		landlord2.setMobile("9876798398");
 
-		when(iLandlordRepository.findById("LAN5")).thenThrow(LandlordNotFoundException.class);
+		when(iLandlordRepository.findById(1)).thenThrow(LandlordNotFoundException.class);
 		assertThrows(LandlordNotFoundException.class, () -> iUserServiceImpl.updateLandlordPassword(landlord2));
 
 	}
 
 	@Test
-	public void testUpdateTenantPassword() {
+	 void testUpdateTenantPassword() {
 
 		Tenant tenant = new Tenant();
-		tenant.setUserId("TEN5");
+		tenant.setUserId(1);
 		tenant.setUsername("Rohan");
 		tenant.setPassword("1234");
 		tenant.setTenantName("Rohan Sharma");
@@ -213,7 +213,7 @@ public class IUserServiceTest {
 
 		Optional<Tenant> optionalTenant = Optional.of(tenant);
 
-		when(iTenantRepository.findById("TEN5")).thenReturn(optionalTenant);
+		when(iTenantRepository.findById(1)).thenReturn(optionalTenant);
 
 		iUserServiceImpl.updateTenantPassword(tenant);
 
@@ -222,18 +222,18 @@ public class IUserServiceTest {
 	}
 
 	@Test
-	public void testUpdateTenantPasswordException() {
+	 void testUpdateTenantPasswordException() {
 		Tenant tenant = new Tenant();
-		tenant.setUserId("TEN6");
+		tenant.setUserId(1);
 		tenant.setUsername("Rahul");
 		tenant.setPassword("8765");
 		tenant.setTenantName("Rahul Sharma");
-		tenant.setAge(30);
+		tenant.setAge(30); 
 		tenant.setEmail("rahul@gmail.com");
 		tenant.setMobile("9874598399");
 		tenant.setPermanentAddr("Taran Road");
 
-		when(iTenantRepository.findById("TEN6")).thenThrow(TenantNotFoundException.class);
+		when(iTenantRepository.findById(1)).thenThrow(TenantNotFoundException.class);
 		assertThrows(TenantNotFoundException.class, () -> iUserServiceImpl.updateTenantPassword(tenant));
 
 	}

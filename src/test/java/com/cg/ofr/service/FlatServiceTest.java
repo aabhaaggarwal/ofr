@@ -25,7 +25,7 @@ import com.cg.ofr.exception.FlatNotFoundException;
 import com.cg.ofr.repository.IFlatRepository;
 
 @SpringBootTest
-public class FlatServiceTest {
+ class FlatServiceTest {
 
 	@InjectMocks
 	IFlatServiceImpl iFlatServiceImpl = new IFlatServiceImpl();
@@ -34,7 +34,7 @@ public class FlatServiceTest {
 	IFlatRepository iFlatRepository;
 
 	@Test
-	public void testViewAllFlatException() {
+	 void testViewAllFlatException() {
 
 		when(iFlatRepository.findAll()).thenThrow(FlatNotFoundException.class);
 
@@ -43,16 +43,16 @@ public class FlatServiceTest {
 	}
 
 	@Test
-	public void testViewAllFlat() {
+	 void testViewAllFlat() {
 
 		Flat flat = new Flat();
-		flat.setFlatId("FLA5");
+		flat.setFlatId(1);
 		flat.setFlatType("2-bhk");
 		flat.setCost(45000);
 		flat.setAvailability("available");
 
 		FlatAddress flatAddress = new FlatAddress();
-		flatAddress.setAddressId("FAD1");
+		flatAddress.setAddressId(1);
 		flatAddress.setCity("nashik");
 		flatAddress.setBuilding("primaryTower");
 		flatAddress.setCountry("India");
@@ -62,7 +62,7 @@ public class FlatServiceTest {
 		flat.setFlatAddress(flatAddress);
 
 		Landlord landlord = new Landlord();
-		landlord.setUserId("LAN1");
+		landlord.setUserId(1);
 		landlord.setPassword("********");
 		landlord.setUsername("LAND");
 		landlord.setAge(35);
@@ -71,13 +71,13 @@ public class FlatServiceTest {
 		landlord.setMobile("1234567891");
 
 		Flat flat2 = new Flat();
-		flat2.setFlatId("FLA2");
+		flat2.setFlatId(2);
 		flat2.setFlatType("3-bhk");
 		flat2.setCost(35000);
 		flat2.setAvailability("available");
 
 		FlatAddress flatAddress2 = new FlatAddress();
-		flatAddress2.setAddressId("FAD2");
+		flatAddress2.setAddressId(2);
 		flatAddress2.setCity("Nanded");
 		flatAddress2.setBuilding("primaryTower");
 		flatAddress2.setCountry("India");
@@ -86,7 +86,7 @@ public class FlatServiceTest {
 		flatAddress2.setHouseNo(68);
 
 		Landlord landlord2 = new Landlord();
-		landlord2.setUserId("LAN2");
+		landlord2.setUserId(2);
 		landlord2.setPassword("********");
 		landlord2.setUsername("LAND");
 		landlord2.setAge(35);
@@ -96,13 +96,13 @@ public class FlatServiceTest {
 		landlord2.setMobile("1234567891");
 
 		Flat flat3 = new Flat();
-		flat3.setFlatId("FLA3");
+		flat3.setFlatId(3);
 		flat3.setFlatType("3-bhk");
 		flat3.setCost(65000);
 		flat3.setAvailability("available");
 
 		FlatAddress flatAddress3 = new FlatAddress();
-		flatAddress3.setAddressId("FAD3");
+		flatAddress3.setAddressId(3);
 		flatAddress3.setCity("mumbai");
 		flatAddress3.setBuilding("primaryTower");
 		flatAddress3.setCountry("India");
@@ -111,7 +111,7 @@ public class FlatServiceTest {
 		flatAddress3.setHouseNo(67);
 
 		Landlord landlord3 = new Landlord();
-		landlord3.setUserId("LAN3");
+		landlord3.setUserId(3);
 		landlord3.setPassword("********");
 		landlord3.setUsername("LAND");
 		landlord3.setAge(35);
@@ -133,15 +133,15 @@ public class FlatServiceTest {
 	}
 
 	@Test
-	public void testAddFlat() {
+	 void testAddFlat() {
 		Flat flat = new Flat();
-		flat.setFlatId("FLA5");
+		flat.setFlatId(1);
 		flat.setFlatType("2-bhk");
 		flat.setCost(45000);
 		flat.setAvailability("available");
 
 		FlatAddress flatAddress = new FlatAddress();
-		flatAddress.setAddressId("FAD1");
+		flatAddress.setAddressId(1);
 		flatAddress.setCity("nashik");
 		flatAddress.setBuilding("primaryTower");
 		flatAddress.setCountry("India");
@@ -151,7 +151,7 @@ public class FlatServiceTest {
 		flat.setFlatAddress(flatAddress);
 
 		Landlord landlord = new Landlord();
-		landlord.setUserId("LAN1");
+		landlord.setUserId(1);
 		landlord.setPassword("********");
 		landlord.setUsername("LAND");
 		landlord.setAge(35);
@@ -169,16 +169,16 @@ public class FlatServiceTest {
 	}
 
 	@Test
-	public void testViewFlat() {
+	 void testViewFlat() {
 
 		Flat flat = new Flat();
-		flat.setFlatId("FLA1");
+		flat.setFlatId(1);
 		flat.setAvailability("Available");
 		flat.setCost(98000);
 		flat.setFlatType("5BHK");
 
 		FlatAddress flatAddress = new FlatAddress();
-		flatAddress.setAddressId("FAD1");
+		flatAddress.setAddressId(1);
 		flatAddress.setBuilding("ABCTower");
 		flatAddress.setCity("Amritsar");
 		flatAddress.setCountry("India");
@@ -196,38 +196,38 @@ public class FlatServiceTest {
 		landlord.setUsername("RAAJ");
 		landlord.setMobile("9876543210");
 		landlord.setPassword("*****");
-		landlord.setUserId("LAN1");
+		landlord.setUserId(1);
 
 		flat.setLandlord(landlord);
 
 		Optional<Flat> optionalFlat = Optional.of(flat);
 
-		when(iFlatRepository.findById("FLA1")).thenReturn(optionalFlat);
+		when(iFlatRepository.findById(1)).thenReturn(optionalFlat);
 
-		Flat flatObj = iFlatServiceImpl.viewFlat("FLA1");
-		assertEquals("FLA1", flatObj.getFlatId());
+		Flat flatObj = iFlatServiceImpl.viewFlat(1);
+		assertEquals(1, flatObj.getFlatId());
 
 	}
 
 	@Test
-	public void testViewFlatByIdException() {
+	 void testViewFlatByIdException() {
 
-		when(iFlatRepository.findById("FLA2")).thenThrow(FlatNotFoundException.class);
+		when(iFlatRepository.findById(1)).thenThrow(FlatNotFoundException.class);
 
-		assertThrows(FlatNotFoundException.class, () -> iFlatServiceImpl.viewFlat("FLA2"));
+		assertThrows(FlatNotFoundException.class, () -> iFlatServiceImpl.viewFlat(1));
 	}
 
 	@Test
-	public void testViewAllFlatByCost() {
+	 void testViewAllFlatByCost() {
 
 		Flat flat = new Flat();
-		flat.setFlatId("FLA1");
+		flat.setFlatId(1);
 		flat.setAvailability("Available");
 		flat.setCost(38000);
 		flat.setFlatType("5BHK");
 
 		FlatAddress flatAddress = new FlatAddress();
-		flatAddress.setAddressId("FAD1");
+		flatAddress.setAddressId(1);
 		flatAddress.setBuilding("ABCTower");
 		flatAddress.setCity("Amritsar");
 		flatAddress.setCountry("India");
@@ -245,18 +245,18 @@ public class FlatServiceTest {
 		landlord.setUsername("RAAJ");
 		landlord.setMobile("9876543210");
 		landlord.setPassword("*****");
-		landlord.setUserId("LAN1");
+		landlord.setUserId(1);
 
 		flat.setLandlord(landlord);
 
 		Flat flat2 = new Flat();
-		flat2.setFlatId("FLA2");
+		flat2.setFlatId(2);
 		flat2.setAvailability("Available");
 		flat2.setCost(38000);
 		flat2.setFlatType("2BHK");
 
 		FlatAddress flatAddress2 = new FlatAddress();
-		flatAddress2.setAddressId("FAD2");
+		flatAddress2.setAddressId(2);
 		flatAddress2.setBuilding("XYZTower");
 		flatAddress2.setCity("Pune");
 		flatAddress2.setCountry("India");
@@ -274,7 +274,7 @@ public class FlatServiceTest {
 		landlord2.setUsername("RAAJ");
 		landlord2.setMobile("9876543210");
 		landlord2.setPassword("*****");
-		landlord2.setUserId("LAN1");
+		landlord2.setUserId(1);
 
 		flat.setLandlord(landlord2);
 
@@ -290,7 +290,7 @@ public class FlatServiceTest {
 	}
 
 	@Test
-	public void testViewAllFlatByCostException() {
+	 void testViewAllFlatByCostException() {
 
 		when(iFlatRepository.findByCostAndAvailability(38000, "Available")).thenThrow(FlatNotFoundException.class);
 
@@ -298,15 +298,15 @@ public class FlatServiceTest {
 	}
 
 	@Test
-	public void testDeleteFlat() {
+	 void testDeleteFlat() {
 		Flat flat = new Flat();
-		flat.setFlatId("FLA1");
+		flat.setFlatId(1);
 		flat.setAvailability("Available");
 		flat.setCost(98000);
 		flat.setFlatType("5BHK");
 
 		FlatAddress flatAddress = new FlatAddress();
-		flatAddress.setAddressId("FAD1");
+		flatAddress.setAddressId(1);
 		flatAddress.setBuilding("ABCTower");
 		flatAddress.setCity("Amritsar");
 		flatAddress.setCountry("India");
@@ -318,34 +318,34 @@ public class FlatServiceTest {
 		flat.setFlatAddress(flatAddress);
 
 		Optional<Flat> optionalFlat = Optional.of(flat);
-		when(iFlatRepository.findById("FLA1")).thenReturn(optionalFlat);
+		when(iFlatRepository.findById(1)).thenReturn(optionalFlat);
 
-		doNothing().when(iFlatRepository).deleteById("FLA1");
+		doNothing().when(iFlatRepository).deleteById(1);
 
-		iFlatServiceImpl.deleteFlat("FLA1");
+		iFlatServiceImpl.deleteFlat(1);
 
-		verify(iFlatRepository, times(1)).findById("FLA1");
-		verify(iFlatRepository, times(1)).deleteById("FLA1");
+		verify(iFlatRepository, times(1)).findById(1);
+		verify(iFlatRepository, times(1)).deleteById(1);
 	}
 
 	@Test
-	public void testDeleteFlatByIdException() {
+	 void testDeleteFlatByIdException() {
 
-		when(iFlatRepository.findById("FLA2")).thenThrow(FlatNotFoundException.class);
+		when(iFlatRepository.findById(1)).thenThrow(FlatNotFoundException.class);
 
-		assertThrows(FlatNotFoundException.class, () -> iFlatServiceImpl.viewFlat("FLA2"));
+		assertThrows(FlatNotFoundException.class, () -> iFlatServiceImpl.viewFlat(1));
 	}
 
 	@Test
 	void testupdateFlat() {
 		Flat flat = new Flat();
-		flat.setFlatId("FLA1");
+		flat.setFlatId(1);
 		flat.setAvailability("Available");
 		flat.setCost(98000);
 		flat.setFlatType("5BHK");
 
 		FlatAddress flatAddress = new FlatAddress();
-		flatAddress.setAddressId("FAD1");
+		flatAddress.setAddressId(1);
 		flatAddress.setBuilding("ABCTower");
 		flatAddress.setCity("Amritsar");
 		flatAddress.setCountry("India");
@@ -362,19 +362,19 @@ public class FlatServiceTest {
 		landlord.setUsername("RAAJ");
 		landlord.setMobile("9876543210");
 		landlord.setPassword("*****");
-		landlord.setUserId("LAN1");
+		landlord.setUserId(1);
 
 		flat.setLandlord(landlord);
 
 		Optional<Flat> optionalFlat = Optional.of(flat);
 		Flat flat1 = new Flat();
-		flat1.setFlatId("FLA1");
+		flat1.setFlatId(1);
 		flat1.setAvailability("Available");
 		flat1.setCost(68000);
 		flat1.setFlatType("5BHK");
 
 		FlatAddress flatAddress1 = new FlatAddress();
-		flatAddress1.setAddressId("FAD1");
+		flatAddress1.setAddressId(1);
 		flatAddress1.setBuilding("ABCTower");
 		flatAddress1.setCity("Amritsar");
 		flatAddress1.setCountry("India");
@@ -390,7 +390,7 @@ public class FlatServiceTest {
 		landlord1.setUsername("RAAJ");
 		landlord1.setMobile("9876543210");
 		landlord1.setPassword("*****");
-		landlord1.setUserId("LAN1");
+		landlord1.setUserId(1);
 
 		flat1.setLandlord(landlord1);
 
@@ -401,15 +401,15 @@ public class FlatServiceTest {
 	}
 
 	@Test
-	public void testUpdateFlatException() {
+	 void testUpdateFlatException() {
 		Flat flat = new Flat();
-		flat.setFlatId("FLA1");
+		flat.setFlatId(1);
 		flat.setAvailability("Available");
 		flat.setCost(98000);
 		flat.setFlatType("5BHK");
 
 		FlatAddress flatAddress = new FlatAddress();
-		flatAddress.setAddressId("FAD1");
+		flatAddress.setAddressId(1);
 		flatAddress.setBuilding("ABCTower");
 		flatAddress.setCity("Amritsar");
 		flatAddress.setCountry("India");
@@ -426,18 +426,18 @@ public class FlatServiceTest {
 		landlord.setUsername("RAAJ");
 		landlord.setMobile("9876543210");
 		landlord.setPassword("*****");
-		landlord.setUserId("LAN1");
+		landlord.setUserId(1);
 
 		flat.setLandlord(landlord);
 
 		Flat flat1 = new Flat();
-		flat1.setFlatId("FLA1");
+		flat1.setFlatId(1);
 		flat1.setAvailability("Available");
 		flat1.setCost(68000);
 		flat1.setFlatType("5BHK");
 
 		FlatAddress flatAddress1 = new FlatAddress();
-		flatAddress1.setAddressId("FAD1");
+		flatAddress1.setAddressId(1);
 		flatAddress1.setBuilding("ABCTower");
 		flatAddress1.setCity("Amritsar");
 		flatAddress1.setCountry("India");
@@ -453,7 +453,7 @@ public class FlatServiceTest {
 		landlord1.setUsername("RAAJ");
 		landlord1.setMobile("9876543210");
 		landlord1.setPassword("*****");
-		landlord1.setUserId("LAN1");
+		landlord1.setUserId(1);
 
 		flat1.setLandlord(landlord1);
 

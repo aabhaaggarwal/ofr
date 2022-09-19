@@ -18,8 +18,7 @@ public class ILandlordServiceImpl implements ILandlordService {
 
 	@Override
 	public Landlord addLandlord(Landlord landlord) {
-		Landlord newLandlord = iLandlordRepository.save(landlord);
-		return newLandlord;
+		return iLandlordRepository.save(landlord);
 	}
 
 	@Override
@@ -28,8 +27,7 @@ public class ILandlordServiceImpl implements ILandlordService {
 		if (optionalLandlord.isEmpty()) {
 			throw new LandlordNotFoundException("No landlord with this name:" + landlord.getUserId());
 		}
-		Landlord updatedLandlord = iLandlordRepository.save(landlord);
-		return updatedLandlord;
+		return iLandlordRepository.save(landlord);
 	}
 
 	@Override
@@ -49,13 +47,11 @@ public class ILandlordServiceImpl implements ILandlordService {
 		if (optionalLandlord.isEmpty()) {
 			throw new LandlordNotFoundException("Landlord not found with this id: " + id);
 		}
-		Landlord landlord = optionalLandlord.get();
-		return landlord;
+		return optionalLandlord.get();
 	}
 
 	@Override
 	public List<Landlord> viewAllLandlord() {
-		List<Landlord> landlord = iLandlordRepository.findAll();
-		return landlord;
+		return iLandlordRepository.findAll();
 	}
 }

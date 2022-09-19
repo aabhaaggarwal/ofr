@@ -5,6 +5,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
+import javax.validation.constraints.NotNull;
 
 @MappedSuperclass
 public class User {
@@ -14,6 +15,7 @@ public class User {
 	@Column(name = "user_id")
 	private int userId;
 
+	@NotNull(message = "username cannot be null")
 	@Column(name = "username", length = 20, unique = true, nullable = false)
 	private String username;
 
