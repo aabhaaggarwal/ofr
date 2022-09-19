@@ -20,4 +20,10 @@ public class GlobalExceptionHandler {
 		return responseEntity;
 	}
 	
+	@ExceptionHandler(LandlordNotFoundException.class)
+	public ResponseEntity<String> handleLandlordNotFoundException(Exception e){
+		ResponseEntity<String> responseEntity = new ResponseEntity(e.getMessage(),HttpStatus.NOT_FOUND);
+		return responseEntity;
+	}	
+	
 }
