@@ -30,5 +30,9 @@ public class GlobalExceptionHandler {
 		return new ResponseEntity<>(e.getMessage(),HttpStatus.NOT_FOUND);
 	
 	}
-	
+	@ExceptionHandler(TenantNotFoundException.class)
+	public ResponseEntity<String> handleTenantNotFoundException(Exception e){
+		ResponseEntity<String> responseEntity=new ResponseEntity<>(e.getMessage(),HttpStatus.NOT_FOUND);
+		return responseEntity;
+		}
 }

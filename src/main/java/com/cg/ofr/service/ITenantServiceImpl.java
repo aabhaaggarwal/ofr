@@ -1,6 +1,7 @@
 package com.cg.ofr.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,32 +18,45 @@ public class ITenantServiceImpl implements ITenantService{
 
 	@Override
 	public Tenant addTenant(Tenant tenant) {
-		// TODO Auto-generated method stub
-		return null;
+		Tenant newTenant = iTenantRepository.save(tenant);
+		return newTenant;
 	}
 
 	@Override
 	public Tenant updateTenant(Tenant tenant) throws TenantNotFoundException {
-		// TODO Auto-generated method stub
-		return null;
+	
+		Optional<Tenant> optionalTenant = iTenantRepository.findById(tenant.getUserId());
+		if(optionalTenant.isEmpty()) {
+			throw new TenantNotFoundException("Tenant not existing with id: "+tenant.getUserId());
+		}
+		Tenant updatedTenant = iTenantRepository.save(tenant);
+		return updatedTenant;
 	}
 
 	@Override
-	public Tenant deleteTenant(Tenant tenant) throws TenantNotFoundException {
-		// TODO Auto-generated method stub
-		return null;
+	public void deleteTenant(String tenantId) throws TenantNotFoundException {
+		Optional<Tenant> optionalTenant = iTenantRepository.findById(tenantId);
+		if(optionalTenant.isEmpty()) {
+			throw new TenantNotFoundException("Tenant not existing with id: "+tenantId);
+		}
+		iTenantRepository.deleteById(tenantId);
+		
 	}
 
 	@Override
 	public Tenant viewTenant(String id) throws TenantNotFoundException {
-		// TODO Auto-generated method stub
-		return null;
+		Optional<Tenant> optionalTenant = iTenantRepository.findById(id);
+		if(optionalTenant.isEmpty()) {
+			throw new TenantNotFoundException("Tenant not existing with id: "+id);
+		}
+		Tenant tenant = optionalTenant.get();
+		return tenant;
 	}
 
 	@Override
 	public List<Tenant> viewAllTenant() {
-		// TODO Auto-generated method stub
-		return null;
+			List<Tenant> tenants = iTenantRepository.findAll();
+			return tenants;
+	
 	}
-
 }
