@@ -177,37 +177,302 @@ public class FlatServiceTest {
 		
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	@Test
+    public void testViewFlat() {
+
+        Flat flat = new Flat();
+        flat.setFlatId("FLA1");
+        flat.setAvailability("Available");
+        flat.setCost(98000);
+        flat.setFlatType("5BHK");
+       
+        FlatAddress flatAddress=new FlatAddress();
+        flatAddress.setAddressId("FAD1");
+        flatAddress.setBuilding("ABCTower");
+        flatAddress.setCity("Amritsar");
+        flatAddress.setCountry("India");
+        flatAddress.setHouseNo(86);
+        flatAddress.setPincode(143001);
+        flatAddress.setState("Punjab");
+        flatAddress.setStreet("5");
+        
+        flat.setFlatAddress(flatAddress);
+        
+       Landlord landlord=new Landlord();
+       landlord.setLandlordName("Raj");
+       landlord.setAge(35);
+       landlord.setEmail("raj@123");
+       landlord.setUsername("RAAJ");
+       landlord.setMobile("9876543210");
+       landlord.setPassword("*****");
+       landlord.setUserId("LAN1");
+       
+       flat.setLandlord(landlord);
+     
+        Optional<Flat> optionalFlat = Optional.of(flat);
+
+        when(iFlatRepository.findById("FLA1")).thenReturn(optionalFlat);
+
+        Flat flatObj = iFlatServiceImpl.viewFlat("FLA1");
+        assertEquals("FLA1",flatObj.getFlatId());
+               
+    }
+
+    @Test
+    public void testViewFlatByIdException() {
+
+       when(iFlatRepository.findById("FLA2")).thenThrow(FlatNotFoundException.class);
+
+        assertThrows(FlatNotFoundException.class,()->iFlatServiceImpl.viewFlat("FLA2"));
+    }
+    
+    @Test
+    public void testViewAllFlatByCost() {
+
+        Flat flat = new Flat();
+        flat.setFlatId("FLA1");
+        flat.setAvailability("Available");
+        flat.setCost(38000);
+        flat.setFlatType("5BHK");
+        
+        FlatAddress flatAddress=new FlatAddress();
+        flatAddress.setAddressId("FAD1");
+        flatAddress.setBuilding("ABCTower");
+        flatAddress.setCity("Amritsar");
+        flatAddress.setCountry("India");
+        flatAddress.setHouseNo(86);
+        flatAddress.setPincode(143001);
+        flatAddress.setState("Punjab");
+        flatAddress.setStreet("5");
+        
+        flat.setFlatAddress(flatAddress);
+        
+        Landlord landlord=new Landlord();
+        landlord.setLandlordName("Raj");
+        landlord.setAge(35);
+        landlord.setEmail("raj@123");
+        landlord.setUsername("RAAJ");
+        landlord.setMobile("9876543210");
+        landlord.setPassword("*****");
+        landlord.setUserId("LAN1");
+        
+        flat.setLandlord(landlord);
+        
+        Flat flat2 = new Flat();
+        flat2.setFlatId("FLA2");
+        flat2.setAvailability("Available");
+        flat2.setCost(38000);
+        flat2.setFlatType("2BHK");
+        
+        FlatAddress flatAddress2=new FlatAddress();
+        flatAddress2.setAddressId("FAD2");
+        flatAddress2.setBuilding("XYZTower");
+        flatAddress2.setCity("Pune");
+        flatAddress2.setCountry("India");
+        flatAddress2.setHouseNo(36);
+        flatAddress2.setPincode(431001);
+        flatAddress2.setState("Maharashtra");
+        flatAddress2.setStreet("5");
+        
+        flat.setFlatAddress(flatAddress);
+        
+        Landlord landlord2=new Landlord();
+        landlord2.setLandlordName("Raj");
+        landlord2.setAge(35);
+        landlord2.setEmail("raj@123");
+        landlord2.setUsername("RAAJ");
+        landlord2.setMobile("9876543210");
+        landlord2.setPassword("*****");
+        landlord2.setUserId("LAN1");
+        
+        flat.setLandlord(landlord2);
+        
+        
+
+        List<Flat> flatList = new ArrayList<>();
+        flatList.add(flat2);
+        flatList.add(flat);
+
+        when(iFlatRepository.findByCostAndAvailability(38000,"Available")).thenReturn(flatList);
+
+        List<Flat> flats = iFlatServiceImpl.viewAllFlatByCost(38000,"Available");
+
+        assertEquals(2, flats.size());
+    }
+ 
+
+    @Test
+    public void testViewAllFlatByCostException() {
+
+       when(iFlatRepository.findByCostAndAvailability(38000,"Available")).thenThrow(FlatNotFoundException.class);
+
+        assertThrows(FlatNotFoundException.class,()->iFlatServiceImpl.viewAllFlatByCost(38000,"Available"));
+    }
+    
+    
+    @Test
+    public void testDeleteFlat() {
+    	 Flat flat = new Flat();
+         flat.setFlatId("FLA1");
+         flat.setAvailability("Available");
+         flat.setCost(98000);
+         flat.setFlatType("5BHK");
+        
+         FlatAddress flatAddress=new FlatAddress();
+         flatAddress.setAddressId("FAD1");
+         flatAddress.setBuilding("ABCTower");
+         flatAddress.setCity("Amritsar");
+         flatAddress.setCountry("India");
+         flatAddress.setHouseNo(86);
+         flatAddress.setPincode(143001);
+         flatAddress.setState("Punjab");
+         flatAddress.setStreet("5");
+         
+         flat.setFlatAddress(flatAddress);
+      
+         Optional<Flat> optionalFlat = Optional.of(flat);
+        when(iFlatRepository.findById("FLA1")).thenReturn(optionalFlat);
+
+        doNothing().when(iFlatRepository).deleteById("FLA1");
+
+        iFlatServiceImpl.deleteFlat("FLA1");
+
+        verify(iFlatRepository,times(1)).findById("FLA1");
+        verify(iFlatRepository,times(1)).deleteById("FLA1");
+    }
+    @Test
+    public void testDeleteFlatByIdException() {
+
+       when(iFlatRepository.findById("FLA2")).thenThrow(FlatNotFoundException.class);
+
+        assertThrows(FlatNotFoundException.class,()->iFlatServiceImpl.viewFlat("FLA2"));
+    }
+  
+    @Test
+    void testupdateFlat()  {
+        Flat flat = new Flat();
+        flat.setFlatId("FLA1");
+        flat.setAvailability("Available");
+        flat.setCost(98000);
+        flat.setFlatType("5BHK");
+        
+        FlatAddress flatAddress=new FlatAddress();
+        flatAddress.setAddressId("FAD1");
+        flatAddress.setBuilding("ABCTower");
+        flatAddress.setCity("Amritsar");
+        flatAddress.setCountry("India");
+        flatAddress.setHouseNo(86);
+        flatAddress.setPincode(143001);
+        flatAddress.setState("Punjab");
+        flatAddress.setStreet("5");
+        flat.setFlatAddress(flatAddress);
+        
+        Landlord landlord=new Landlord();
+        landlord.setLandlordName("Raj");
+        landlord.setAge(35);
+        landlord.setEmail("raj@123");
+        landlord.setUsername("RAAJ");
+        landlord.setMobile("9876543210");
+        landlord.setPassword("*****");
+        landlord.setUserId("LAN1");
+        
+        flat.setLandlord(landlord);
+      
+        Optional<Flat> optionalFlat= Optional.of(flat);  
+        Flat flat1 = new Flat();
+        flat1.setFlatId("FLA1");
+        flat1.setAvailability("Available");
+        flat1.setCost(68000);
+        flat1.setFlatType("5BHK");
+        
+        FlatAddress flatAddress1=new FlatAddress();
+        flatAddress1.setAddressId("FAD1");
+        flatAddress1.setBuilding("ABCTower");
+        flatAddress1.setCity("Amritsar");
+        flatAddress1.setCountry("India");
+        flatAddress1.setHouseNo(86);
+        flatAddress1.setPincode(143001);
+        flatAddress1.setState("Punjab");
+        flatAddress1.setStreet("5");
+        
+        Landlord landlord1=new Landlord();
+        landlord1.setLandlordName("Raj");
+        landlord1.setAge(35);
+        landlord1.setEmail("raj@123");
+        landlord1.setUsername("RAAJ");
+        landlord1.setMobile("9876543210");
+        landlord1.setPassword("*****");
+        landlord1.setUserId("LAN1");
+        
+        flat1.setLandlord(landlord1);
+        
+        when(iFlatRepository.findById(flat1.getFlatId())).thenReturn(optionalFlat);
+        when( iFlatRepository.save(flat1)).thenReturn(flat1);
+        Flat updatedFlat=iFlatServiceImpl.updateFlat(flat1);
+        assertEquals(flat1,updatedFlat); 
+    }
+    
+    @Test
+    public void testUpdateFlatException() {
+    	Flat flat = new Flat();
+        flat.setFlatId("FLA1");
+        flat.setAvailability("Available");
+        flat.setCost(98000);
+        flat.setFlatType("5BHK");
+        
+        FlatAddress flatAddress=new FlatAddress();
+        flatAddress.setAddressId("FAD1");
+        flatAddress.setBuilding("ABCTower");
+        flatAddress.setCity("Amritsar");
+        flatAddress.setCountry("India");
+        flatAddress.setHouseNo(86);
+        flatAddress.setPincode(143001);
+        flatAddress.setState("Punjab");
+        flatAddress.setStreet("5");
+        flat.setFlatAddress(flatAddress);
+        
+        Landlord landlord=new Landlord();
+        landlord.setLandlordName("Raj");
+        landlord.setAge(35);
+        landlord.setEmail("raj@123");
+        landlord.setUsername("RAAJ");
+        landlord.setMobile("9876543210");
+        landlord.setPassword("*****");
+        landlord.setUserId("LAN1");
+        
+        flat.setLandlord(landlord);
+      
+        Optional<Flat> optionalFlat= Optional.of(flat);  
+        Flat flat1 = new Flat();
+        flat1.setFlatId("FLA1");
+        flat1.setAvailability("Available");
+        flat1.setCost(68000);
+        flat1.setFlatType("5BHK");
+        
+        FlatAddress flatAddress1=new FlatAddress();
+        flatAddress1.setAddressId("FAD1");
+        flatAddress1.setBuilding("ABCTower");
+        flatAddress1.setCity("Amritsar");
+        flatAddress1.setCountry("India");
+        flatAddress1.setHouseNo(86);
+        flatAddress1.setPincode(143001);
+        flatAddress1.setState("Punjab");
+        flatAddress1.setStreet("5");
+        
+        Landlord landlord1=new Landlord();
+        landlord1.setLandlordName("Raj");
+        landlord1.setAge(35);
+        landlord1.setEmail("raj@123");
+        landlord1.setUsername("RAAJ");
+        landlord1.setMobile("9876543210");
+        landlord1.setPassword("*****");
+        landlord1.setUserId("LAN1");
+        
+        flat1.setLandlord(landlord1);
+    	
+    	when(iFlatRepository.findById(flat1.getFlatId())).thenThrow(FlatNotFoundException.class);
+    	assertThrows(FlatNotFoundException.class,()->iFlatServiceImpl.updateFlat(flat));
+    } 
 	
 }       
 

@@ -21,28 +21,7 @@ public class IFlatServiceImpl implements IFlatService {
 		Flat newFlat = iFlatRepository.save(flat);
 		return newFlat;
 	}
-
-	@Override
-	public Flat updateFlat(Flat flat) throws FlatNotFoundException {
-		Optional<Flat> optionalFlat = iFlatRepository.findById(flat.getFlatId());
-		if(optionalFlat.isEmpty()) {
-			throw new FlatNotFoundException("No Flat With This Id"+flat.getFlatId());
-		}
-		Flat updatedFlat = iFlatRepository.save(flat);	
-		return updatedFlat;
-	}
-
-	@Override
-	public Flat deleteFlat(Flat flat) throws FlatNotFoundException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Flat viewFlat(String id) throws FlatNotFoundException {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
 
 	@Override
 	public List<Flat> viewAllFlat() {
@@ -51,9 +30,42 @@ public class IFlatServiceImpl implements IFlatService {
 	}
 
 	@Override
-	public List<Flat> viewAllFlatByCost(float cost, String availability) {
-		// TODO Auto-generated method stub
-		return null;
+	public void deleteFlat(String flatId) throws FlatNotFoundException{
+		Optional <Flat> optionalFlat=iFlatRepository.findById(flatId);
+		if(optionalFlat.isEmpty()) {
+			throw new FlatNotFoundException("Flat not existing with id:" +flatId);
+		}
+		iFlatRepository.deleteById(flatId);
+		}
+
+	@Override
+	public Flat viewFlat(String id) throws FlatNotFoundException {
+       Optional<Flat> optionalFlat= iFlatRepository.findById(id);
+       if(optionalFlat.isEmpty()) {
+	      throw new FlatNotFoundException("Flat not existing with id: "+id);
+        }
+      Flat flat=optionalFlat.get();
+       return flat;
+      }
+
+	
+	@Override
+	public List<Flat> viewAllFlatByCost(float cost,String availability) {
+		List<Flat> flats=iFlatRepository.findByCostAndAvailability(cost,availability);
+		 if(flats.isEmpty()) {
+				throw new FlatNotFoundException("Flat not existing with cost:"+cost);
+		 }
+		 return flats;
+		 }
+	
+	@Override 
+	public Flat updateFlat(Flat flat) throws FlatNotFoundException {
+		Optional<Flat> optionalFlat=iFlatRepository.findById(flat.getFlatId());
+		if(optionalFlat.isEmpty()) {
+			throw new FlatNotFoundException("Flat not existing with id:"+flat.getFlatId());
+		}
+		Flat updatedFlat=iFlatRepository.save(flat);
+		return updatedFlat; 
 	}
 
 }
