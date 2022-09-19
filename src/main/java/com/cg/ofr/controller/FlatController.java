@@ -51,14 +51,14 @@ public class FlatController {
 	}
 
 	@GetMapping("/{fId}")
-	public ResponseEntity<Object> fetchFlatById(@PathVariable("fId") String flatId) {
+	public ResponseEntity<Object> fetchFlatById(@PathVariable("fId") int flatId) {
 		Flat flat = iFlatService.viewFlat(flatId);
 		ResponseEntity<Object> responseEntity = new ResponseEntity<>(flat, HttpStatus.OK);
 		return responseEntity;
 	}
 
 	@DeleteMapping("/{fId}")
-	public ResponseEntity<String> deleteFlatById(@PathVariable("fId") String flatId) {
+	public ResponseEntity<String> deleteFlatById(@PathVariable("fId") int flatId) {
 		iFlatService.deleteFlat(flatId);
 		ResponseEntity<String> responseEntity = new ResponseEntity<>("Flat deleted successfully", HttpStatus.OK);
 		return responseEntity;

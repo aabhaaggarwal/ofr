@@ -40,7 +40,7 @@ public class FlatBookingController {
 	}
 
 	@GetMapping("/{fbId}")
-	public ResponseEntity<Object> fetchFlatBookingById(@PathVariable("fbId") String id) {
+	public ResponseEntity<Object> fetchFlatBookingById(@PathVariable("fbId") int id) {
 		FlatBooking flatBooking = iFlatBookingService.viewFlatBooking(id);
 		ResponseEntity<Object> responseEntity = new ResponseEntity<>(flatBooking, HttpStatus.OK);
 		return responseEntity;
@@ -48,7 +48,7 @@ public class FlatBookingController {
 	}
 
 	@DeleteMapping("/{fbId}")
-	public ResponseEntity<Object> deleteFlatBooking(@PathVariable("fbId") String id) {
+	public ResponseEntity<Object> deleteFlatBooking(@PathVariable("fbId") int id) {
 		iFlatBookingService.deleteFlatBooking(id);
 		ResponseEntity<Object> responseEntity = new ResponseEntity<>("Flat Booking deleted successfully",
 				HttpStatus.OK);

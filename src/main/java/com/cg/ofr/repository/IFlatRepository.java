@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import com.cg.ofr.entities.Flat;
 
 @Repository
-public interface IFlatRepository extends JpaRepository<Flat, String> {
+public interface IFlatRepository extends JpaRepository<Flat, Integer> {
 	public List<Flat> findByCostAndAvailability(float cost, String availability);
 
 }

@@ -11,9 +11,9 @@ public interface ITenantService {
 
 	public Tenant updateTenant(Tenant tenant) throws TenantNotFoundException;
 
-	public void deleteTenant(String tenantId) throws TenantNotFoundException;
+	public void deleteTenant(int tenantId) throws TenantNotFoundException;
 
-	public Tenant viewTenant(String id) throws TenantNotFoundException;
+	public Tenant viewTenant(int i) throws TenantNotFoundException;
 
 	public List<Tenant> viewAllTenant();
 

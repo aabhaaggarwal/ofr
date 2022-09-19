@@ -41,7 +41,7 @@ public class TenantController {
 	}
 
 	@DeleteMapping("/tenant/{tId}")
-	public ResponseEntity<String> deleteTenantById(@PathVariable("tId") String TenantId) {
+	public ResponseEntity<String> deleteTenantById(@PathVariable("tId") int TenantId) {
 
 		iTenantService.deleteTenant(TenantId);
 		ResponseEntity<String> responseEntity = new ResponseEntity<>("Tenant Deleted Successfully!!", HttpStatus.OK);
@@ -55,7 +55,7 @@ public class TenantController {
 	}
 
 	@GetMapping("/tenant/{tId}")
-	public ResponseEntity<Object> fetchTenantById(@PathVariable("tId") String TenantId) {
+	public ResponseEntity<Object> fetchTenantById(@PathVariable("tId") int TenantId) {
 
 		Tenant tenant = iTenantService.viewTenant(TenantId);
 		ResponseEntity<Object> responseEntity = new ResponseEntity<>(tenant, HttpStatus.OK);

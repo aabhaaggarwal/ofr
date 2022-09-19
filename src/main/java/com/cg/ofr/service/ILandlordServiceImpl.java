@@ -33,7 +33,7 @@ public class ILandlordServiceImpl implements ILandlordService {
 	}
 
 	@Override
-	public void deleteLandlord(String landlordId) throws LandlordNotFoundException {
+	public void deleteLandlord(int landlordId) throws LandlordNotFoundException {
 		Optional<Landlord> optionalLandlord = iLandlordRepository.findById(landlordId);
 		if (optionalLandlord.isEmpty()) {
 			throw new LandlordNotFoundException("Landlord not found with this id: " + landlordId);
@@ -43,7 +43,7 @@ public class ILandlordServiceImpl implements ILandlordService {
 	}
 
 	@Override
-	public Landlord viewLandlord(String id) throws LandlordNotFoundException {
+	public Landlord viewLandlord(int id) throws LandlordNotFoundException {
 
 		Optional<Landlord> optionalLandlord = iLandlordRepository.findById(id);
 		if (optionalLandlord.isEmpty()) {

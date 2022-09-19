@@ -34,7 +34,7 @@ public class ITenantServiceImpl implements ITenantService {
 	}
 
 	@Override
-	public void deleteTenant(String tenantId) throws TenantNotFoundException {
+	public void deleteTenant(int tenantId) throws TenantNotFoundException {
 		Optional<Tenant> optionalTenant = iTenantRepository.findById(tenantId);
 		if (optionalTenant.isEmpty()) {
 			throw new TenantNotFoundException("Tenant not existing with id: " + tenantId);
@@ -44,7 +44,7 @@ public class ITenantServiceImpl implements ITenantService {
 	}
 
 	@Override
-	public Tenant viewTenant(String id) throws TenantNotFoundException {
+	public Tenant viewTenant(int id) throws TenantNotFoundException {
 		Optional<Tenant> optionalTenant = iTenantRepository.findById(id);
 		if (optionalTenant.isEmpty()) {
 			throw new TenantNotFoundException("Tenant not existing with id: " + id);

@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 import com.cg.ofr.entities.Landlord;
 
 @Repository
-public interface ILandlordRepository extends JpaRepository<Landlord, String> {
+public interface ILandlordRepository extends JpaRepository<Landlord, Integer> {
 
 	public Landlord findByUsernameAndPassword(String username, String password);
 

@@ -8,7 +8,7 @@ public class FlatPayload {
 	private String flatType;
 	private String availability;
 	private FlatAddress flatAddress;
-	private String landlordId;
+	private int landlordId;
 
 	private int flatId;
 
@@ -52,11 +52,11 @@ public class FlatPayload {
 		this.flatAddress = flatAddress;
 	}
 
-	public String getLandlordId() {
+	public int getLandlordId() {
 		return landlordId;
 	}
 
-	public void setLandlordId(String landlordId) {
+	public void setLandlordId(int landlordId) {
 		this.landlordId = landlordId;
 	}
 
