@@ -11,9 +11,9 @@ public interface ILandlordService {
 
 	public Landlord updateLandlord(Landlord landlord) throws LandlordNotFoundException;
 
-	public void deleteLandlord(String landlordId) throws LandlordNotFoundException;
+	public void deleteLandlord(int landlordId) throws LandlordNotFoundException;
 
-	public Landlord viewLandlord(String id) throws LandlordNotFoundException;
+	public Landlord viewLandlord(int id) throws LandlordNotFoundException;
 
 	public List<Landlord> viewAllLandlord();
 
