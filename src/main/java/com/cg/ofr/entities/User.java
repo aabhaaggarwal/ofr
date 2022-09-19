@@ -6,15 +6,15 @@ import javax.persistence.MappedSuperclass;
 
 @MappedSuperclass
 public class User {
-	
+
 	@Id
-	@Column(name="user_id")
+	@Column(name = "user_id")
 	private String userId;
-	
-	@Column(name="username", length=20, unique=true,nullable=false)
+
+	@Column(name = "username", length = 20, unique = true, nullable = false)
 	private String username;
-	
-	@Column(name="password",length=20,nullable=false)
+
+	@Column(name = "password", length = 20, nullable = false)
 	private String password;
 
 	public String getUserId() {
@@ -40,7 +40,5 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
-	
 
 }

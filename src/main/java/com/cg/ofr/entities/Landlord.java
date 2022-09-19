@@ -8,22 +8,22 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="landlord_tbl")
-public class Landlord extends User{
-	
-	@Column(name="landlord_name",length=100,nullable=false)
+@Table(name = "landlord_tbl")
+public class Landlord extends User {
+
+	@Column(name = "landlord_name", length = 100, nullable = false)
 	private String landlordName;
-	
-	@Column(name="email",length=100,nullable=false,unique=true)
+
+	@Column(name = "email", length = 100, nullable = false, unique = true)
 	private String email;
-	
-	@Column(name="age",nullable=false)
+
+	@Column(name = "age", nullable = false)
 	private int age;
-	
-	@Column(name="mobile", length=10, nullable=false)
+
+	@Column(name = "mobile", length = 10, nullable = false)
 	private String mobile;
-	
-	@OneToMany(mappedBy="landlord")
+
+	@OneToMany(mappedBy = "landlord")
 	private List<Flat> flats;
 
 	public String getLandlordName() {

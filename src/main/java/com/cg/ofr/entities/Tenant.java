@@ -8,29 +8,29 @@ import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-@Table(name="tenant_tbl")
-public class Tenant extends User{
-	
-	@Column(name="tenant_name",length=50,nullable=false)
+@Table(name = "tenant_tbl")
+public class Tenant extends User {
+
+	@Column(name = "tenant_name", length = 50, nullable = false)
 	private String tenantName;
-	
-	@Column(name="age", nullable=false)
+
+	@Column(name = "age", nullable = false)
 	private int age;
-	
-	@Column(name="email", length=100, nullable=false, unique=true)
+
+	@Column(name = "email", length = 100, nullable = false, unique = true)
 	private String email;
-	
-	@Column(name="gender",length=20)
+
+	@Column(name = "gender", length = 20)
 	private String gender;
-	
-	@Column(name="mobile",length=10,nullable=false)
+
+	@Column(name = "mobile", length = 10, nullable = false)
 	private String mobile;
-	
-	@Column(name="permanent_addr",nullable=true)
+
+	@Column(name = "permanent_addr", nullable = true)
 	private String permanentAddr;
-	
+
 	@JsonIgnore
-	@OneToOne(mappedBy="tenant")
+	@OneToOne(mappedBy = "tenant")
 	private FlatBooking flatBooking;
 
 	public FlatBooking getFlatBooking() {

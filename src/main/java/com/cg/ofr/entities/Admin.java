@@ -6,17 +6,17 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="admin_tbl")
+@Table(name = "admin_tbl")
 public class Admin {
-	
+
 	@Id
-	@Column(name="username",length=20,nullable=false,unique=true)
+	@Column(name = "username", length = 20, nullable = false, unique = true)
 	private String username;
-	
-	@Column(name="password", length=20,nullable=false)
+
+	@Column(name = "password", length = 20, nullable = false)
 	private String password;
-	
-	@Column(name="admin_name", length=50 ,nullable=false)
+
+	@Column(name = "admin_name", length = 50, nullable = false)
 	private String adminName;
 
 	public String getUsername() {
@@ -42,7 +42,5 @@ public class Admin {
 	public void setAdminName(String adminName) {
 		this.adminName = adminName;
 	}
-	
-	
 
 }

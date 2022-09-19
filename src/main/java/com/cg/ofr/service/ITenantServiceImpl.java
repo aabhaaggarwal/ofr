@@ -11,8 +11,8 @@ import com.cg.ofr.exception.TenantNotFoundException;
 import com.cg.ofr.repository.ITenantRepository;
 
 @Service
-public class ITenantServiceImpl implements ITenantService{
-	
+public class ITenantServiceImpl implements ITenantService {
+
 	@Autowired
 	private ITenantRepository iTenantRepository;
 
@@ -24,10 +24,10 @@ public class ITenantServiceImpl implements ITenantService{
 
 	@Override
 	public Tenant updateTenant(Tenant tenant) throws TenantNotFoundException {
-	
+
 		Optional<Tenant> optionalTenant = iTenantRepository.findById(tenant.getUserId());
-		if(optionalTenant.isEmpty()) {
-			throw new TenantNotFoundException("Tenant not existing with id: "+tenant.getUserId());
+		if (optionalTenant.isEmpty()) {
+			throw new TenantNotFoundException("Tenant not existing with id: " + tenant.getUserId());
 		}
 		Tenant updatedTenant = iTenantRepository.save(tenant);
 		return updatedTenant;
@@ -36,18 +36,18 @@ public class ITenantServiceImpl implements ITenantService{
 	@Override
 	public void deleteTenant(String tenantId) throws TenantNotFoundException {
 		Optional<Tenant> optionalTenant = iTenantRepository.findById(tenantId);
-		if(optionalTenant.isEmpty()) {
-			throw new TenantNotFoundException("Tenant not existing with id: "+tenantId);
+		if (optionalTenant.isEmpty()) {
+			throw new TenantNotFoundException("Tenant not existing with id: " + tenantId);
 		}
 		iTenantRepository.deleteById(tenantId);
-		
+
 	}
 
 	@Override
 	public Tenant viewTenant(String id) throws TenantNotFoundException {
 		Optional<Tenant> optionalTenant = iTenantRepository.findById(id);
-		if(optionalTenant.isEmpty()) {
-			throw new TenantNotFoundException("Tenant not existing with id: "+id);
+		if (optionalTenant.isEmpty()) {
+			throw new TenantNotFoundException("Tenant not existing with id: " + id);
 		}
 		Tenant tenant = optionalTenant.get();
 		return tenant;
@@ -55,8 +55,8 @@ public class ITenantServiceImpl implements ITenantService{
 
 	@Override
 	public List<Tenant> viewAllTenant() {
-			List<Tenant> tenants = iTenantRepository.findAll();
-			return tenants;
-	
+		List<Tenant> tenants = iTenantRepository.findAll();
+		return tenants;
+
 	}
 }

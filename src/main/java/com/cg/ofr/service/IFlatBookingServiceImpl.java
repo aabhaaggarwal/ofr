@@ -10,12 +10,12 @@ import com.cg.ofr.entities.FlatBooking;
 import com.cg.ofr.exception.FlatBookingNotFoundException;
 import com.cg.ofr.repository.IFlatBookingRepository;
 
-
 @Service
-public class IFlatBookingServiceImpl implements IFlatBookingService{
-	
+public class IFlatBookingServiceImpl implements IFlatBookingService {
+
 	@Autowired
 	private IFlatBookingRepository iFlatBookingRepository;
+
 	@Override
 	public FlatBooking addFlatBooking(FlatBooking flatBooking) {
 		FlatBooking newFlatBooking = iFlatBookingRepository.save(flatBooking);
@@ -25,8 +25,8 @@ public class IFlatBookingServiceImpl implements IFlatBookingService{
 	@Override
 	public FlatBooking updateFlatBooking(FlatBooking flatBooking) throws FlatBookingNotFoundException {
 		Optional<FlatBooking> optionalFlatBooking = iFlatBookingRepository.findById(flatBooking.getBookingNo());
-		if(optionalFlatBooking.isEmpty()) {
-			throw new FlatBookingNotFoundException("Flat Booking not existing with id :"+flatBooking.getBookingNo());
+		if (optionalFlatBooking.isEmpty()) {
+			throw new FlatBookingNotFoundException("Flat Booking not existing with id :" + flatBooking.getBookingNo());
 		}
 		FlatBooking updatedFlatBooking = iFlatBookingRepository.save(flatBooking);
 		return updatedFlatBooking;
@@ -35,18 +35,18 @@ public class IFlatBookingServiceImpl implements IFlatBookingService{
 	@Override
 	public void deleteFlatBooking(String id) throws FlatBookingNotFoundException {
 		Optional<FlatBooking> optionalFlatBooking = iFlatBookingRepository.findById(id);
-		if(optionalFlatBooking.isEmpty()) {
-			throw new FlatBookingNotFoundException("Flat Booking not existing with id :"+id);
+		if (optionalFlatBooking.isEmpty()) {
+			throw new FlatBookingNotFoundException("Flat Booking not existing with id :" + id);
 		}
 		iFlatBookingRepository.deleteById(id);
-		
+
 	}
 
 	@Override
 	public FlatBooking viewFlatBooking(String id) throws FlatBookingNotFoundException {
 		Optional<FlatBooking> optionalFlatBooking = iFlatBookingRepository.findById(id);
-		if(optionalFlatBooking.isEmpty()) {
-			throw new FlatBookingNotFoundException("Flat booking not existing with id :"+id);
+		if (optionalFlatBooking.isEmpty()) {
+			throw new FlatBookingNotFoundException("Flat booking not existing with id :" + id);
 		}
 		FlatBooking flatBooking = optionalFlatBooking.get();
 		return flatBooking;

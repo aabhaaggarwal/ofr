@@ -1,6 +1,5 @@
 package com.cg.ofr.entities;
 
-
 import java.time.LocalDate;
 
 import javax.persistence.Column;
@@ -11,28 +10,28 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="flatbooking_tbl")
+@Table(name = "flatbooking_tbl")
 public class FlatBooking {
-	
+
 	@Id
-	@Column(name="booking_no", length=20)
+	@Column(name = "booking_no", length = 20)
 	private String bookingNo;
-	
-	@Column(name="booking_from")
+
+	@Column(name = "booking_from")
 	private LocalDate bookingFrom;
-	
-	@Column(name="booking_to")
+
+	@Column(name = "booking_to")
 	private LocalDate bookingTo;
-	
-	@Column(name="members")
+
+	@Column(name = "members")
 	private int members;
 
 	@OneToOne
-	@JoinColumn(name="flat")
+	@JoinColumn(name = "flat")
 	private Flat flat;
-	
+
 	@OneToOne
-	@JoinColumn(name="tenant")
+	@JoinColumn(name = "tenant")
 	private Tenant tenant;
 
 	public String getBookingNo() {

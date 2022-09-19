@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.cg.ofr.entities.FlatBooking;
 
 @Repository
-public interface IFlatBookingRepository extends JpaRepository<FlatBooking,String>{
+public interface IFlatBookingRepository extends JpaRepository<FlatBooking, String> {
 
 }

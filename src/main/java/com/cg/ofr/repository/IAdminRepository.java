@@ -5,11 +5,9 @@ import org.springframework.stereotype.Repository;
 
 import com.cg.ofr.entities.Admin;
 
-
 @Repository
-public interface IAdminRepository extends JpaRepository<Admin,String> {
+public interface IAdminRepository extends JpaRepository<Admin, String> {
 
-	public Admin findByUsernameAndPassword(String username,String password);
-	
-	
+	public Admin findByUsernameAndPassword(String username, String password);
+
 }

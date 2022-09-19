@@ -12,7 +12,7 @@ import com.cg.ofr.repository.IFlatRepository;
 
 @Service
 public class IFlatServiceImpl implements IFlatService {
-	
+
 	@Autowired
 	private IFlatRepository iFlatRepository;
 
@@ -21,7 +21,6 @@ public class IFlatServiceImpl implements IFlatService {
 		Flat newFlat = iFlatRepository.save(flat);
 		return newFlat;
 	}
-	
 
 	@Override
 	public List<Flat> viewAllFlat() {
@@ -30,42 +29,41 @@ public class IFlatServiceImpl implements IFlatService {
 	}
 
 	@Override
-	public void deleteFlat(String flatId) throws FlatNotFoundException{
-		Optional <Flat> optionalFlat=iFlatRepository.findById(flatId);
-		if(optionalFlat.isEmpty()) {
-			throw new FlatNotFoundException("Flat not existing with id:" +flatId);
+	public void deleteFlat(String flatId) throws FlatNotFoundException {
+		Optional<Flat> optionalFlat = iFlatRepository.findById(flatId);
+		if (optionalFlat.isEmpty()) {
+			throw new FlatNotFoundException("Flat not existing with id:" + flatId);
 		}
 		iFlatRepository.deleteById(flatId);
-		}
+	}
 
 	@Override
 	public Flat viewFlat(String id) throws FlatNotFoundException {
-       Optional<Flat> optionalFlat= iFlatRepository.findById(id);
-       if(optionalFlat.isEmpty()) {
-	      throw new FlatNotFoundException("Flat not existing with id: "+id);
-        }
-      Flat flat=optionalFlat.get();
-       return flat;
-      }
-
-	
-	@Override
-	public List<Flat> viewAllFlatByCost(float cost,String availability) {
-		List<Flat> flats=iFlatRepository.findByCostAndAvailability(cost,availability);
-		 if(flats.isEmpty()) {
-				throw new FlatNotFoundException("Flat not existing with cost:"+cost);
-		 }
-		 return flats;
-		 }
-	
-	@Override 
-	public Flat updateFlat(Flat flat) throws FlatNotFoundException {
-		Optional<Flat> optionalFlat=iFlatRepository.findById(flat.getFlatId());
-		if(optionalFlat.isEmpty()) {
-			throw new FlatNotFoundException("Flat not existing with id:"+flat.getFlatId());
+		Optional<Flat> optionalFlat = iFlatRepository.findById(id);
+		if (optionalFlat.isEmpty()) {
+			throw new FlatNotFoundException("Flat not existing with id: " + id);
 		}
-		Flat updatedFlat=iFlatRepository.save(flat);
-		return updatedFlat; 
+		Flat flat = optionalFlat.get();
+		return flat;
+	}
+
+	@Override
+	public List<Flat> viewAllFlatByCost(float cost, String availability) {
+		List<Flat> flats = iFlatRepository.findByCostAndAvailability(cost, availability);
+		if (flats.isEmpty()) {
+			throw new FlatNotFoundException("Flat not existing with cost:" + cost);
+		}
+		return flats;
+	}
+
+	@Override
+	public Flat updateFlat(Flat flat) throws FlatNotFoundException {
+		Optional<Flat> optionalFlat = iFlatRepository.findById(flat.getFlatId());
+		if (optionalFlat.isEmpty()) {
+			throw new FlatNotFoundException("Flat not existing with id:" + flat.getFlatId());
+		}
+		Flat updatedFlat = iFlatRepository.save(flat);
+		return updatedFlat;
 	}
 
 }

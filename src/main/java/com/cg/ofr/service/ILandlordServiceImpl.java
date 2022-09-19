@@ -11,8 +11,8 @@ import com.cg.ofr.exception.LandlordNotFoundException;
 import com.cg.ofr.repository.ILandlordRepository;
 
 @Service
-public class ILandlordServiceImpl implements ILandlordService{
-	
+public class ILandlordServiceImpl implements ILandlordService {
+
 	@Autowired
 	private ILandlordRepository iLandlordRepository;
 
@@ -25,31 +25,29 @@ public class ILandlordServiceImpl implements ILandlordService{
 	@Override
 	public Landlord updateLandlord(Landlord landlord) throws LandlordNotFoundException {
 		Optional<Landlord> optionalLandlord = iLandlordRepository.findById(landlord.getUserId());
-		if(optionalLandlord.isEmpty()) {
-			throw new LandlordNotFoundException("No landlord with this name:"+landlord.getUserId());
+		if (optionalLandlord.isEmpty()) {
+			throw new LandlordNotFoundException("No landlord with this name:" + landlord.getUserId());
 		}
 		Landlord updatedLandlord = iLandlordRepository.save(landlord);
 		return updatedLandlord;
 	}
-	
-	
 
 	@Override
 	public void deleteLandlord(String landlordId) throws LandlordNotFoundException {
 		Optional<Landlord> optionalLandlord = iLandlordRepository.findById(landlordId);
-        if(optionalLandlord.isEmpty()) {
-			throw new LandlordNotFoundException("Landlord not found with this id: "+landlordId);
+		if (optionalLandlord.isEmpty()) {
+			throw new LandlordNotFoundException("Landlord not found with this id: " + landlordId);
 		}
 		iLandlordRepository.deleteById(landlordId);
-		
+
 	}
 
 	@Override
 	public Landlord viewLandlord(String id) throws LandlordNotFoundException {
-		
+
 		Optional<Landlord> optionalLandlord = iLandlordRepository.findById(id);
-		if(optionalLandlord.isEmpty()) {
-			throw new LandlordNotFoundException("Landlord not found with this id: "+id);
+		if (optionalLandlord.isEmpty()) {
+			throw new LandlordNotFoundException("Landlord not found with this id: " + id);
 		}
 		Landlord landlord = optionalLandlord.get();
 		return landlord;

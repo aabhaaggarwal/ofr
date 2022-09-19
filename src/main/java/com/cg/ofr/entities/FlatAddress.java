@@ -9,36 +9,36 @@ import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-@Table(name="flataddress_tbl")
+@Table(name = "flataddress_tbl")
 public class FlatAddress {
 
 	@Id
-	@Column(name="address_id")
+	@Column(name = "address_id")
 	private String addressId;
-	
-	@Column(name="houseno")
+
+	@Column(name = "houseno")
 	private int houseNo;
-	
-	@Column(name="building",length=50)
+
+	@Column(name = "building", length = 50)
 	private String building;
-	
-	@Column(name="street", length=50)
+
+	@Column(name = "street", length = 50)
 	private String street;
-	
-	@Column(name="city",length=30)
+
+	@Column(name = "city", length = 30)
 	private String city;
-	
-	@Column(name="state", length=30)
+
+	@Column(name = "state", length = 30)
 	private String state;
-	
-	@Column(name="pincode")
+
+	@Column(name = "pincode")
 	private int pincode;
-	
-	@Column(name="country",length=30)
+
+	@Column(name = "country", length = 30)
 	private String country;
-	
+
 	@JsonIgnore
-	@OneToOne(mappedBy="flatAddress")
+	@OneToOne(mappedBy = "flatAddress")
 	private Flat flat;
 
 	public String getAddressId() {
