@@ -7,13 +7,14 @@ import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "landlord_tbl")
 public class Landlord extends User {
-
+    @NotNull(message = "name shoul not be null")
 	@Column(name = "landlord_name", length = 100, nullable = false)
 	private String landlordName;
 	
