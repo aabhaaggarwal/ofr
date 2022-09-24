@@ -7,11 +7,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
+import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-@Table(name = "flataddress_tbl")
+@Table(name="flataddress_tbl",uniqueConstraints= {@UniqueConstraint(columnNames={"houseno", "building"})})
 public class FlatAddress {
 
 	@Id

@@ -1,6 +1,5 @@
 package com.cg.ofr.controller;
 
-import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -26,16 +25,12 @@ public class UserController {
 	public ResponseEntity<Tenant> modifyTenant(@RequestBody Tenant tenant) {
 		Tenant updateTenant = iUserService.updateTenantPassword(tenant);
 		return new ResponseEntity<>(updateTenant, HttpStatus.OK);
-		
-
 	}
 
 	@PutMapping("/landlord/update/user")
 	public ResponseEntity<Landlord> modifyLandlord(@RequestBody Landlord landlord) {
 		Landlord updateLandlord = iUserService.updateLandlordPassword(landlord);
 		return new ResponseEntity<>(updateLandlord, HttpStatus.OK);
-		
-
 	}
 
 	@GetMapping("/tenant/{username}/{password}")

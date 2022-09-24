@@ -58,7 +58,7 @@ public class FlatBookingController {
 	@PutMapping("/update")
 	public ResponseEntity<FlatBooking> modifyProduct(@RequestBody FlatBookingPayload flatBookingPayload) {
 		Flat flat = iFlatService.viewFlat(flatBookingPayload.getFlatId());
-		Tenant tenant = iTenantService.viewTenant(flatBookingPayload.getTenantId());
+	    Tenant tenant = iTenantService.viewTenant(flatBookingPayload.getTenantId());
 		FlatBooking flatBooking = new FlatBooking();
 		flatBooking.setBookingNo(flatBookingPayload.getBookingNo());
 		flatBooking.setBookingFrom(flatBookingPayload.getBookingFrom());

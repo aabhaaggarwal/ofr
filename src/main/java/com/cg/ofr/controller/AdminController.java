@@ -1,6 +1,5 @@
 package com.cg.ofr.controller;
 
-import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -41,7 +40,6 @@ public class AdminController {
 	public ResponseEntity<Admin> saveAdmin(@RequestBody Admin admin) {
 		Admin newAdmin = iAdminService.addAdmin(admin);
 		return new ResponseEntity<>(newAdmin, HttpStatus.CREATED);
-
 	}
 }
 
