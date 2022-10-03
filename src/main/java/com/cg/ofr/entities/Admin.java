@@ -17,6 +17,10 @@ public class Admin {
 	@Column(name = "password", length = 20, nullable = false)
 	private String password;
 	
+	@Column(name = "email", nullable = false,unique=true)
+	private String email;
+	
+
 	@NotNull(message = "This field cannot be null")
 	@Column(name = "admin_name", length = 50, nullable = false)
 	private String adminName;
@@ -44,5 +48,14 @@ public class Admin {
 	public void setAdminName(String adminName) {
 		this.adminName = adminName;
 	}
+	
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
 
 }

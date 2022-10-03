@@ -1,5 +1,6 @@
 package com.cg.ofr.service;
 
+import com.cg.ofr.entities.Admin;
 import com.cg.ofr.entities.Landlord;
 import com.cg.ofr.entities.Tenant;
 
@@ -12,12 +13,8 @@ public interface IUserService {
 
 	public Landlord validateLandlord(String username, String password) throws LandlordNotFoundException;
 
-	public Tenant updateTenantPassword(Tenant tenant) throws TenantNotFoundException;
+	public Tenant forgetPasswordTenant(String email);
 
-	public Landlord updateLandlordPassword(Landlord landlord) throws LandlordNotFoundException;
-
-	public Tenant validateNewTenant(Tenant tenant) throws TenantNotFoundException;
-
-	public Landlord validateNewLandlord(Landlord landlord) throws LandlordNotFoundException;
+	public Landlord forgetPasswordLandlord(String email);
 
 }

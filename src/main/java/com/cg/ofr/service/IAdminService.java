@@ -8,8 +8,10 @@ public interface IAdminService {
 
 	public Admin validateAdmin(String username, String password) throws AdminNotFoundException;
 
-	public Admin updateAdminPassword(Admin admin) throws AdminNotFoundException;
+	public Admin updateAdmin(Admin admin) throws AdminNotFoundException;
 
 	public Admin addAdmin(Admin admin);
+	
+	public Admin forgetPassword(String email);
 
 }

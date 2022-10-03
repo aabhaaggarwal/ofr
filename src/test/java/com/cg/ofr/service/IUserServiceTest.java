@@ -87,155 +87,155 @@ import com.cg.ofr.repository.ITenantRepository;
 		assertThrows(LandlordNotFoundException.class, () -> iUserServiceImpl.validateLandlord("Rohan", "1234"));
 	}
 
-	@Test
-	 void testvalidateNewLandlord() {
+//	@Test
+//	 void testvalidateNewLandlord() {
+//
+//		Landlord landlord = new Landlord();
+//		landlord.setUserId(1);
+//		landlord.setUsername("Rohan");
+//		landlord.setPassword("1234");
+//		landlord.setLandlordName("Rohan Sharma");
+//		landlord.setAge(30);
+//		landlord.setEmail("rohan@gmail.com");
+//		landlord.setMobile("9874598398");
+//
+//		when(iLandlordRepository.findByUsername(landlord.getUsername())).thenReturn(null);
+//		when(iLandlordRepository.save(ArgumentMatchers.any(Landlord.class))).thenReturn(landlord);
+//		Landlord newLandlord = iUserServiceImpl.validateNewLandlord(landlord);
+//
+//		verify(iLandlordRepository).save(newLandlord);
+//
+//	}
 
-		Landlord landlord = new Landlord();
-		landlord.setUserId(1);
-		landlord.setUsername("Rohan");
-		landlord.setPassword("1234");
-		landlord.setLandlordName("Rohan Sharma");
-		landlord.setAge(30);
-		landlord.setEmail("rohan@gmail.com");
-		landlord.setMobile("9874598398");
+//	@Test
+//	 void testvalidateNewLandlordException() {
+//
+//		Landlord landlord = new Landlord();
+//		landlord.setUserId(1);
+//		landlord.setUsername("Rohan");
+//		landlord.setPassword("1234");
+//		landlord.setLandlordName("Rohan Sharma");
+//		landlord.setAge(30);
+//		landlord.setEmail("rohan@gmail.com");
+//		landlord.setMobile("9874598398");
+//
+//		when(iLandlordRepository.findByUsername("Rohan")).thenThrow(LandlordNotFoundException.class);
+//		assertThrows(LandlordNotFoundException.class, () -> iUserServiceImpl.validateNewLandlord(landlord));
+//	}
 
-		when(iLandlordRepository.findByUsername(landlord.getUsername())).thenReturn(null);
-		when(iLandlordRepository.save(ArgumentMatchers.any(Landlord.class))).thenReturn(landlord);
-		Landlord newLandlord = iUserServiceImpl.validateNewLandlord(landlord);
+//	@Test
+//	 void testvalidateNewTenant() {
+//		Tenant tenant = new Tenant();
+//		tenant.setUserId(1);
+//		tenant.setUsername("Rohan");
+//		tenant.setPassword("1234");
+//		tenant.setTenantName("Rohan Sharma");
+//		tenant.setAge(30);
+//		tenant.setEmail("rohan@gmail.com");
+//		tenant.setMobile("9874598398");
+//		tenant.setPermanentAddr("GT Road");
+//
+//		when(iTenantRepository.findByUsername(tenant.getUsername())).thenReturn(null);
+//		when(iTenantRepository.save(ArgumentMatchers.any(Tenant.class))).thenReturn(tenant);
+//		Tenant newTenant = iUserServiceImpl.validateNewTenant(tenant);
+//
+//		verify(iTenantRepository).save(newTenant);
+//
+//	}
 
-		verify(iLandlordRepository).save(newLandlord);
+//	@Test
+//	 void testvalidateNewTenantException() {
+//		Tenant tenant = new Tenant();
+//		tenant.setUserId(1);
+//		tenant.setUsername("Rohan");
+//		tenant.setPassword("1234");
+//		tenant.setTenantName("Rohan Sharma");
+//		tenant.setAge(30);
+//		tenant.setEmail("rohan@gmail.com");
+//		tenant.setMobile("9874598398");
+//		tenant.setPermanentAddr("GT Road");
+//
+//		when(iTenantRepository.findByUsername("Rohan")).thenThrow(TenantNotFoundException.class);
+//		assertThrows(TenantNotFoundException.class, () -> iUserServiceImpl.validateNewTenant(tenant));
+//	}
 
-	}
+//	@Test
+//	 void testUpdateLandlordPassword() {
+//
+//		Landlord landlord = new Landlord();
+//		landlord.setUserId(1);
+//		landlord.setUsername("Rohan");
+//		landlord.setPassword("1234");
+//		landlord.setLandlordName("Rohan Sharma");
+//		landlord.setAge(30);
+//		landlord.setEmail("rohan@gmail.com");
+//		landlord.setMobile("9874598398");
+//
+//		Optional<Landlord> optionalLandlord = Optional.of(landlord);
+//
+//		when(iLandlordRepository.findById(1)).thenReturn(optionalLandlord);
+//
+//		iUserServiceImpl.updateLandlordPassword(landlord);
+//
+//		verify(iLandlordRepository).save(landlord);
+//
+//	}
 
-	@Test
-	 void testvalidateNewLandlordException() {
+//	@Test
+//	 void testUpdateLandlordPasswordException() {
+//
+//		Landlord landlord2 = new Landlord();
+//		landlord2.setUserId(1);
+//		landlord2.setUsername("Angad");
+//		landlord2.setPassword("1234");
+//		landlord2.setLandlordName("Angad Bhatia");
+//		landlord2.setAge(30);
+//		landlord2.setEmail("angad@gmail.com");
+//		landlord2.setMobile("9876798398");
+//
+//		when(iLandlordRepository.findById(1)).thenThrow(LandlordNotFoundException.class);
+//		assertThrows(LandlordNotFoundException.class, () -> iUserServiceImpl.updateLandlordPassword(landlord2));
+//
+//	}
+//
+//	@Test
+//	 void testUpdateTenantPassword() {
+//
+//		Tenant tenant = new Tenant();
+//		tenant.setUserId(1);
+//		tenant.setUsername("Rohan");
+//		tenant.setPassword("1234");
+//		tenant.setTenantName("Rohan Sharma");
+//		tenant.setAge(30);
+//		tenant.setEmail("rohan@gmail.com");
+//		tenant.setMobile("9874598398");
+//		tenant.setPermanentAddr("GT Road");
+//
+//		Optional<Tenant> optionalTenant = Optional.of(tenant);
+//
+//		when(iTenantRepository.findById(1)).thenReturn(optionalTenant);
+//
+//		iUserServiceImpl.updateTenantPassword(tenant);
+//
+//		verify(iTenantRepository).save(tenant);
+//
+//	}
 
-		Landlord landlord = new Landlord();
-		landlord.setUserId(1);
-		landlord.setUsername("Rohan");
-		landlord.setPassword("1234");
-		landlord.setLandlordName("Rohan Sharma");
-		landlord.setAge(30);
-		landlord.setEmail("rohan@gmail.com");
-		landlord.setMobile("9874598398");
-
-		when(iLandlordRepository.findByUsername("Rohan")).thenThrow(LandlordNotFoundException.class);
-		assertThrows(LandlordNotFoundException.class, () -> iUserServiceImpl.validateNewLandlord(landlord));
-	}
-
-	@Test
-	 void testvalidateNewTenant() {
-		Tenant tenant = new Tenant();
-		tenant.setUserId(1);
-		tenant.setUsername("Rohan");
-		tenant.setPassword("1234");
-		tenant.setTenantName("Rohan Sharma");
-		tenant.setAge(30);
-		tenant.setEmail("rohan@gmail.com");
-		tenant.setMobile("9874598398");
-		tenant.setPermanentAddr("GT Road");
-
-		when(iTenantRepository.findByUsername(tenant.getUsername())).thenReturn(null);
-		when(iTenantRepository.save(ArgumentMatchers.any(Tenant.class))).thenReturn(tenant);
-		Tenant newTenant = iUserServiceImpl.validateNewTenant(tenant);
-
-		verify(iTenantRepository).save(newTenant);
-
-	}
-
-	@Test
-	 void testvalidateNewTenantException() {
-		Tenant tenant = new Tenant();
-		tenant.setUserId(1);
-		tenant.setUsername("Rohan");
-		tenant.setPassword("1234");
-		tenant.setTenantName("Rohan Sharma");
-		tenant.setAge(30);
-		tenant.setEmail("rohan@gmail.com");
-		tenant.setMobile("9874598398");
-		tenant.setPermanentAddr("GT Road");
-
-		when(iTenantRepository.findByUsername("Rohan")).thenThrow(TenantNotFoundException.class);
-		assertThrows(TenantNotFoundException.class, () -> iUserServiceImpl.validateNewTenant(tenant));
-	}
-
-	@Test
-	 void testUpdateLandlordPassword() {
-
-		Landlord landlord = new Landlord();
-		landlord.setUserId(1);
-		landlord.setUsername("Rohan");
-		landlord.setPassword("1234");
-		landlord.setLandlordName("Rohan Sharma");
-		landlord.setAge(30);
-		landlord.setEmail("rohan@gmail.com");
-		landlord.setMobile("9874598398");
-
-		Optional<Landlord> optionalLandlord = Optional.of(landlord);
-
-		when(iLandlordRepository.findById(1)).thenReturn(optionalLandlord);
-
-		iUserServiceImpl.updateLandlordPassword(landlord);
-
-		verify(iLandlordRepository).save(landlord);
-
-	}
-
-	@Test
-	 void testUpdateLandlordPasswordException() {
-
-		Landlord landlord2 = new Landlord();
-		landlord2.setUserId(1);
-		landlord2.setUsername("Angad");
-		landlord2.setPassword("1234");
-		landlord2.setLandlordName("Angad Bhatia");
-		landlord2.setAge(30);
-		landlord2.setEmail("angad@gmail.com");
-		landlord2.setMobile("9876798398");
-
-		when(iLandlordRepository.findById(1)).thenThrow(LandlordNotFoundException.class);
-		assertThrows(LandlordNotFoundException.class, () -> iUserServiceImpl.updateLandlordPassword(landlord2));
-
-	}
-
-	@Test
-	 void testUpdateTenantPassword() {
-
-		Tenant tenant = new Tenant();
-		tenant.setUserId(1);
-		tenant.setUsername("Rohan");
-		tenant.setPassword("1234");
-		tenant.setTenantName("Rohan Sharma");
-		tenant.setAge(30);
-		tenant.setEmail("rohan@gmail.com");
-		tenant.setMobile("9874598398");
-		tenant.setPermanentAddr("GT Road");
-
-		Optional<Tenant> optionalTenant = Optional.of(tenant);
-
-		when(iTenantRepository.findById(1)).thenReturn(optionalTenant);
-
-		iUserServiceImpl.updateTenantPassword(tenant);
-
-		verify(iTenantRepository).save(tenant);
-
-	}
-
-	@Test
-	 void testUpdateTenantPasswordException() {
-		Tenant tenant = new Tenant();
-		tenant.setUserId(1);
-		tenant.setUsername("Rahul");
-		tenant.setPassword("8765");
-		tenant.setTenantName("Rahul Sharma");
-		tenant.setAge(30); 
-		tenant.setEmail("rahul@gmail.com");
-		tenant.setMobile("9874598399");
-		tenant.setPermanentAddr("Taran Road");
-
-		when(iTenantRepository.findById(1)).thenThrow(TenantNotFoundException.class);
-		assertThrows(TenantNotFoundException.class, () -> iUserServiceImpl.updateTenantPassword(tenant));
-
-	}
+//	@Test
+//	 void testUpdateTenantPasswordException() {
+//		Tenant tenant = new Tenant();
+//		tenant.setUserId(1);
+//		tenant.setUsername("Rahul");
+//		tenant.setPassword("8765");
+//		tenant.setTenantName("Rahul Sharma");
+//		tenant.setAge(30); 
+//		tenant.setEmail("rahul@gmail.com");
+//		tenant.setMobile("9874598399");
+//		tenant.setPermanentAddr("Taran Road");
+//
+//		when(iTenantRepository.findById(1)).thenThrow(TenantNotFoundException.class);
+//		assertThrows(TenantNotFoundException.class, () -> iUserServiceImpl.updateTenantPassword(tenant));
+//
+//	}
 
 }

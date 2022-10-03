@@ -216,86 +216,86 @@ import com.cg.ofr.repository.IFlatRepository;
 
 		assertThrows(FlatNotFoundException.class, () -> iFlatServiceImpl.viewFlat(1));
 	}
+//
+//	@Test
+//	 void testViewAllFlatByCost() {
+//
+//		Flat flat = new Flat();
+//		flat.setFlatId(1);
+//		flat.setAvailability("Available");
+//		flat.setCost(38000);
+//		flat.setFlatType("5BHK");
+//
+//		FlatAddress flatAddress = new FlatAddress();
+//		flatAddress.setAddressId(1);
+//		flatAddress.setBuilding("ABCTower");
+//		flatAddress.setCity("Amritsar");
+//		flatAddress.setCountry("India");
+//		flatAddress.setHouseNo(86);
+//		flatAddress.setPincode(143001);
+//		flatAddress.setState("Punjab");
+//		flatAddress.setStreet("5");
+//
+//		flat.setFlatAddress(flatAddress);
+//
+//		Landlord landlord = new Landlord();
+//		landlord.setLandlordName("Raj");
+//		landlord.setAge(35);
+//		landlord.setEmail("raj@123");
+//		landlord.setUsername("RAAJ");
+//		landlord.setMobile("9876543210");
+//		landlord.setPassword("*****");
+//		landlord.setUserId(1);
+//
+//		flat.setLandlord(landlord);
+//
+//		Flat flat2 = new Flat();
+//		flat2.setFlatId(2);
+//		flat2.setAvailability("Available");
+//		flat2.setCost(38000);
+//		flat2.setFlatType("2BHK");
+//
+//		FlatAddress flatAddress2 = new FlatAddress();
+//		flatAddress2.setAddressId(2);
+//		flatAddress2.setBuilding("XYZTower");
+//		flatAddress2.setCity("Pune");
+//		flatAddress2.setCountry("India");
+//		flatAddress2.setHouseNo(36);
+//		flatAddress2.setPincode(431001);
+//		flatAddress2.setState("Maharashtra");
+//		flatAddress2.setStreet("5");
+//
+//		flat.setFlatAddress(flatAddress);
+//
+//		Landlord landlord2 = new Landlord();
+//		landlord2.setLandlordName("Raj");
+//		landlord2.setAge(35);
+//		landlord2.setEmail("raj@123");
+//		landlord2.setUsername("RAAJ");
+//		landlord2.setMobile("9876543210");
+//		landlord2.setPassword("*****");
+//		landlord2.setUserId(1);
+//
+//		flat.setLandlord(landlord2);
+//
+//		List<Flat> flatList = new ArrayList<>();
+//		flatList.add(flat2);
+//		flatList.add(flat);
+//
+//		when(iFlatRepository.findByCostAndAvailability(38000, "Available")).thenReturn(flatList);
+//
+//		List<Flat> flats = iFlatServiceImpl.viewAllFlatByCost(38000, "Available");
+//
+//		assertEquals(2, flats.size());
+//	}
 
-	@Test
-	 void testViewAllFlatByCost() {
-
-		Flat flat = new Flat();
-		flat.setFlatId(1);
-		flat.setAvailability("Available");
-		flat.setCost(38000);
-		flat.setFlatType("5BHK");
-
-		FlatAddress flatAddress = new FlatAddress();
-		flatAddress.setAddressId(1);
-		flatAddress.setBuilding("ABCTower");
-		flatAddress.setCity("Amritsar");
-		flatAddress.setCountry("India");
-		flatAddress.setHouseNo(86);
-		flatAddress.setPincode(143001);
-		flatAddress.setState("Punjab");
-		flatAddress.setStreet("5");
-
-		flat.setFlatAddress(flatAddress);
-
-		Landlord landlord = new Landlord();
-		landlord.setLandlordName("Raj");
-		landlord.setAge(35);
-		landlord.setEmail("raj@123");
-		landlord.setUsername("RAAJ");
-		landlord.setMobile("9876543210");
-		landlord.setPassword("*****");
-		landlord.setUserId(1);
-
-		flat.setLandlord(landlord);
-
-		Flat flat2 = new Flat();
-		flat2.setFlatId(2);
-		flat2.setAvailability("Available");
-		flat2.setCost(38000);
-		flat2.setFlatType("2BHK");
-
-		FlatAddress flatAddress2 = new FlatAddress();
-		flatAddress2.setAddressId(2);
-		flatAddress2.setBuilding("XYZTower");
-		flatAddress2.setCity("Pune");
-		flatAddress2.setCountry("India");
-		flatAddress2.setHouseNo(36);
-		flatAddress2.setPincode(431001);
-		flatAddress2.setState("Maharashtra");
-		flatAddress2.setStreet("5");
-
-		flat.setFlatAddress(flatAddress);
-
-		Landlord landlord2 = new Landlord();
-		landlord2.setLandlordName("Raj");
-		landlord2.setAge(35);
-		landlord2.setEmail("raj@123");
-		landlord2.setUsername("RAAJ");
-		landlord2.setMobile("9876543210");
-		landlord2.setPassword("*****");
-		landlord2.setUserId(1);
-
-		flat.setLandlord(landlord2);
-
-		List<Flat> flatList = new ArrayList<>();
-		flatList.add(flat2);
-		flatList.add(flat);
-
-		when(iFlatRepository.findByCostAndAvailability(38000, "Available")).thenReturn(flatList);
-
-		List<Flat> flats = iFlatServiceImpl.viewAllFlatByCost(38000, "Available");
-
-		assertEquals(2, flats.size());
-	}
-
-	@Test
-	 void testViewAllFlatByCostException() {
-
-		when(iFlatRepository.findByCostAndAvailability(38000, "Available")).thenThrow(FlatNotFoundException.class);
-
-		assertThrows(FlatNotFoundException.class, () -> iFlatServiceImpl.viewAllFlatByCost(38000, "Available"));
-	}
+//	@Test
+//	 void testViewAllFlatByCostException() {
+//
+//		when(iFlatRepository.findByCostAndAvailability(38000, "Available")).thenThrow(FlatNotFoundException.class);
+//
+//		assertThrows(FlatNotFoundException.class, () -> iFlatServiceImpl.viewAllFlatByCost(38000, "Available"));
+//	}
 
 	@Test
 	 void testDeleteFlat() {

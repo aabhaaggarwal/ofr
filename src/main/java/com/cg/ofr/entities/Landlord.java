@@ -25,13 +25,24 @@ public class Landlord extends User {
 	@Positive(message = "age must be positive")
 	@Column(name = "age", nullable = false)
 	private int age;
-
+	
+	@Column(name = "gender", nullable = false)
+	private String gender;
+	
 	@Size(min =10, max=10)
 	@Column(name = "mobile", length = 10, nullable = false)
 	private String mobile;
 
 	@OneToMany(mappedBy = "landlord")
 	private List<Flat> flats;
+
+	public String getGender() {
+		return gender;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
 
 	public String getLandlordName() {
 		return landlordName;

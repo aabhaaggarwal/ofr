@@ -65,9 +65,32 @@ public class FlatController {
 	
 	}
 
-	@GetMapping("/{fCost}/available")
-	public ResponseEntity<Object> fetchFlatByCost(@PathVariable("fCost") float cost) {
-		List<Flat> flats = iFlatService.viewAllFlatByCost(cost, "available");
+	@GetMapping("/{minCost}/{maxCost}")
+	public ResponseEntity<Object> fetchFlatByCost(@PathVariable("minCost") float minCost,@PathVariable("maxCost") float maxCost) {
+		List<Flat> flats = iFlatService.viewAllFlatByCost(minCost,maxCost);
+		return new ResponseEntity<>(flats, HttpStatus.OK);
+		
+	}
+
+	@GetMapping("/{city}")
+	public ResponseEntity<Object> fetchFlatByCity(@PathVariable("city") String city) {
+		List<Flat> flats = iFlatService.viewAllFlatByCity(city);
+		return new ResponseEntity<>(flats, HttpStatus.OK);
+		
+	}
+
+
+	@GetMapping("/available")
+	public ResponseEntity<Object> fetchFlatByAvailability() {
+		List<Flat> flats = iFlatService.viewAllFlatByAvailability();
+		return new ResponseEntity<>(flats, HttpStatus.OK);
+		
+	}
+
+
+	@GetMapping("/{type}")
+	public ResponseEntity<Object> fetchFlatBytype(@PathVariable("type") String type) {
+		List<Flat> flats = iFlatService.viewAllFlatByType(type);
 		return new ResponseEntity<>(flats, HttpStatus.OK);
 		
 	}

@@ -45,21 +45,48 @@ public class IFlatServiceImpl implements IFlatService {
 	}
 
 	@Override
-	public List<Flat> viewAllFlatByCost(float cost, String availability) {
-		List<Flat> flats = iFlatRepository.findByCostAndAvailability(cost, availability);
-		if (flats.isEmpty()) {
-			throw new FlatNotFoundException("Flat not existing with cost:" + cost);
-		}
-		return flats;
-	}
-
-	@Override
 	public Flat updateFlat(Flat flat) throws FlatNotFoundException {
 		Optional<Flat> optionalFlat = iFlatRepository.findById(flat.getFlatId());
 		if (optionalFlat.isEmpty()) {
 			throw new FlatNotFoundException("Flat not existing with id:" + flat.getFlatId());
 		}
 		return iFlatRepository.save(flat);
+	}
+
+	@Override
+	public List<Flat> viewAllFlatByCost(float mincost, float maxcost) {
+		List<Flat> flats = iFlatRepository.findByCost(mincost, maxcost);
+		if (flats.isEmpty()) {
+			throw new FlatNotFoundException("Flat not existing in this range");
+		}
+		return flats;
+	}
+
+	@Override
+	public List<Flat> viewAllFlatByCity(String city) {
+		List<Flat> flats = iFlatRepository.findByCity(city);
+		if (flats.isEmpty()) {
+			throw new FlatNotFoundException("Flat not existing in this city");
+		}
+		return flats;
+	}
+
+	@Override
+	public List<Flat> viewAllFlatByAvailability() {
+		List<Flat> flats = iFlatRepository.findByAvailability();
+		if (flats.isEmpty()) {
+			throw new FlatNotFoundException("Flat is not available");
+		}
+		return flats;
+	}
+
+	@Override
+	public List<Flat> viewAllFlatByType(String type) {
+		List<Flat> flats = iFlatRepository.findByType(type);
+		if (flats.isEmpty()) {
+			throw new FlatNotFoundException("Flat is not available");
+		}
+		return flats;
 	}
 
 }

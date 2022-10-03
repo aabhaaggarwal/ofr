@@ -27,7 +27,7 @@ public class IAdminServiceImpl implements IAdminService {
 	}
 
 	@Override
-	public Admin updateAdminPassword(Admin admin) throws AdminNotFoundException {
+	public Admin updateAdmin(Admin admin) throws AdminNotFoundException {
 		Optional<Admin> optionalAdmin = iAdminRepository.findById(admin.getUsername());
 		if (optionalAdmin.isEmpty()) {
 			throw new AdminNotFoundException("Admin not existing with this username");
@@ -38,6 +38,15 @@ public class IAdminServiceImpl implements IAdminService {
 	@Override
 	public Admin addAdmin(Admin admin) {
 		return iAdminRepository.save(admin);
+	}
+
+	@Override
+	public Admin forgetPassword(String email) {
+		Admin admin = iAdminRepository.findByEmail(email);
+		if(admin==null) {
+			throw new AdminNotFoundException("Admin not existing");
+		}
+		return admin;
 	}
 
 }

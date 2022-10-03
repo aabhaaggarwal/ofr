@@ -12,4 +12,6 @@ public interface ILandlordRepository extends JpaRepository<Landlord, Integer> {
 
 	public Landlord findByUsername(String username);
 
+	public Landlord findByEmail(String email);
+
 }

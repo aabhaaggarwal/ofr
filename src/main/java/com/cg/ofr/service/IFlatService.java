@@ -17,6 +17,12 @@ public interface IFlatService {
 
 	public List<Flat> viewAllFlat();
 
-	public List<Flat> viewAllFlatByCost(float cost, String availability);
+	public List<Flat> viewAllFlatByCost(float mincost,float maxcost);
+	
+	public List<Flat> viewAllFlatByCity(String city);
+	
+	public List<Flat> viewAllFlatByAvailability();
+	
+	public List<Flat> viewAllFlatByType(String type);
 
 }

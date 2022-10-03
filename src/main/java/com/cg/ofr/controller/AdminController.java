@@ -24,7 +24,7 @@ public class AdminController {
 	private IAdminService iAdminService;
 
 	@GetMapping("/{username}/{password}")
-	public ResponseEntity<Object> validateAd(@PathVariable("username") String username,
+	public ResponseEntity<Object> validateAdmin(@PathVariable("username") String username,
 			@PathVariable("password") String password) {
 		Admin admin = iAdminService.validateAdmin(username, password);
 		return new ResponseEntity<>(admin, HttpStatus.OK);
@@ -32,7 +32,7 @@ public class AdminController {
 
 	@PutMapping("/update")
 	public ResponseEntity<Admin> modifyAdmin(@RequestBody Admin admin) {
-		Admin updateAdmin = iAdminService.updateAdminPassword(admin);
+		Admin updateAdmin = iAdminService.updateAdmin(admin);
 		return new ResponseEntity<>(updateAdmin, HttpStatus.OK);
 	}
 
@@ -40,6 +40,12 @@ public class AdminController {
 	public ResponseEntity<Admin> saveAdmin(@RequestBody Admin admin) {
 		Admin newAdmin = iAdminService.addAdmin(admin);
 		return new ResponseEntity<>(newAdmin, HttpStatus.CREATED);
+	}
+	
+	@GetMapping("/{email}")
+	public ResponseEntity<Object> forgetPassword(@PathVariable("email") String email) {
+		Admin admin = iAdminService.forgetPassword(email);
+		return new ResponseEntity<>(admin, HttpStatus.OK);
 	}
 }
 

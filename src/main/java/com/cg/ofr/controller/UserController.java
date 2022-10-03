@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.cg.ofr.entities.Admin;
 import com.cg.ofr.entities.Landlord;
 import com.cg.ofr.entities.Tenant;
 import com.cg.ofr.service.IUserService;
@@ -21,20 +22,9 @@ public class UserController {
 	@Autowired
 	private IUserService iUserService;
 
-	@PutMapping("/tenant/update/user")
-	public ResponseEntity<Tenant> modifyTenant(@RequestBody Tenant tenant) {
-		Tenant updateTenant = iUserService.updateTenantPassword(tenant);
-		return new ResponseEntity<>(updateTenant, HttpStatus.OK);
-	}
-
-	@PutMapping("/landlord/update/user")
-	public ResponseEntity<Landlord> modifyLandlord(@RequestBody Landlord landlord) {
-		Landlord updateLandlord = iUserService.updateLandlordPassword(landlord);
-		return new ResponseEntity<>(updateLandlord, HttpStatus.OK);
-	}
 
 	@GetMapping("/tenant/{username}/{password}")
-	public ResponseEntity<Object> validateTen(@PathVariable("username") String username,
+	public ResponseEntity<Object> validateTenant(@PathVariable("username") String username,
 			@PathVariable("password") String password) {
 		Tenant tenant = iUserService.validateTenant(username, password);
 		return new ResponseEntity<>(tenant, HttpStatus.OK);
@@ -42,25 +32,23 @@ public class UserController {
 	}
 
 	@GetMapping("/landlord/{username}/{password}")
-	public ResponseEntity<Object> validateLan(@PathVariable("username") String username,
+	public ResponseEntity<Object> validateLandlord(@PathVariable("username") String username,
 			@PathVariable("password") String password) {
 		Landlord landlord = iUserService.validateLandlord(username, password);
 		return  new ResponseEntity<>(landlord, HttpStatus.OK);
 		
 	}
-
-	@PostMapping("/tenant/register")
-	public ResponseEntity<Object> register(@RequestBody Tenant tenant) {
-		Tenant newTenant = iUserService.validateNewTenant(tenant);
-		return new ResponseEntity<>(newTenant, HttpStatus.OK);
-		
+	
+	@GetMapping("/tenant/{email}")
+	public ResponseEntity<Object> forgetPasswordTenant(@PathVariable("email") String email) {
+		Tenant tenant = iUserService.forgetPasswordTenant(email);
+		return new ResponseEntity<>(tenant, HttpStatus.OK);
 	}
-
-	@PostMapping("/landlord/register")
-	public ResponseEntity<Object> register(@RequestBody Landlord landlord) {
-		Landlord newLandlord = iUserService.validateNewLandlord(landlord);
-		return  new ResponseEntity<>(newLandlord, HttpStatus.OK);
-		
+	
+	@GetMapping("/landlord/{email}")
+	public ResponseEntity<Object> forgetPasswordLandlord(@PathVariable("email") String email) {
+		Landlord landlord = iUserService.forgetPasswordLandlord(email);
+		return new ResponseEntity<>(landlord, HttpStatus.OK);
 	}
 
 }

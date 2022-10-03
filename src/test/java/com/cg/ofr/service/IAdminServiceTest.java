@@ -47,36 +47,36 @@ import com.cg.ofr.repository.IAdminRepository;
 		assertThrows(AdminNotFoundException.class, () -> iAdminServiceImpl.validateAdmin("Rohan", "1234"));
 	}
 
-	@Test
-	 void testUpdateAdminPassword() {
+//	@Test
+//	 void testUpdateAdminPassword() {
+//
+//		Admin admin = new Admin();
+//		admin.setAdminName("Ram Gopal");
+//		admin.setUsername("Ram");
+//		admin.setPassword("1234");
+//
+//		Optional<Admin> optionalAdmin = Optional.of(admin);
+//
+//		when(iAdminRepository.findById(admin.getUsername())).thenReturn(optionalAdmin);
+//
+//		iAdminServiceImpl.updateAdminPassword(admin);
+//
+//		verify(iAdminRepository).save(admin);
+//
+//	}
 
-		Admin admin = new Admin();
-		admin.setAdminName("Ram Gopal");
-		admin.setUsername("Ram");
-		admin.setPassword("1234");
-
-		Optional<Admin> optionalAdmin = Optional.of(admin);
-
-		when(iAdminRepository.findById(admin.getUsername())).thenReturn(optionalAdmin);
-
-		iAdminServiceImpl.updateAdminPassword(admin);
-
-		verify(iAdminRepository).save(admin);
-
-	}
-
-	@Test
-	 void testUpdateLandlordPasswordException() {
-
-		Admin admin = new Admin();
-		admin.setAdminName("Ram Gopal");
-		admin.setUsername("Ram");
-		admin.setPassword("1234");
-
-		when(iAdminRepository.findById(admin.getUsername())).thenThrow(AdminNotFoundException.class);
-		assertThrows(AdminNotFoundException.class, () -> iAdminServiceImpl.updateAdminPassword(admin));
-
-	}
+//	@Test
+//	 void testUpdateLandlordPasswordException() {
+//
+//		Admin admin = new Admin();
+//		admin.setAdminName("Ram Gopal");
+//		admin.setUsername("Ram");
+//		admin.setPassword("1234");
+//
+//		when(iAdminRepository.findById(admin.getUsername())).thenThrow(AdminNotFoundException.class);
+//		assertThrows(AdminNotFoundException.class, () -> iAdminServiceImpl.updateAdminPassword(admin));
+//
+//	}
 
 	@Test
 	 void testaddAdmin() {

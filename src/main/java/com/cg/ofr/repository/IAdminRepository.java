@@ -10,4 +10,6 @@ public interface IAdminRepository extends JpaRepository<Admin, String> {
 
 	public Admin findByUsernameAndPassword(String username, String password);
 
+	public Admin findByEmail(String email);
+
 }

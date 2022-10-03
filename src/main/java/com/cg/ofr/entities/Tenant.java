@@ -1,7 +1,11 @@
 package com.cg.ofr.entities;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
@@ -38,14 +42,14 @@ public class Tenant extends User {
 	private String permanentAddr;
 
 	@JsonIgnore
-	@OneToOne(mappedBy = "tenant")
-	private FlatBooking flatBooking;
+	@OneToMany(mappedBy = "tenant")
+	private List<FlatBooking> flatBooking;
 
-	public FlatBooking getFlatBooking() {
+	public List<FlatBooking> getFlatBooking() {
 		return flatBooking;
 	}
 
-	public void setFlatBooking(FlatBooking flatBooking) {
+	public void setFlatBooking(List<FlatBooking> flatBooking) {
 		this.flatBooking = flatBooking;
 	}
 
