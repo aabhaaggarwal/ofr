@@ -1,6 +1,5 @@
 package com.cg.ofr.controller;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cg.ofr.entities.Admin;
-
+import com.cg.ofr.model.LoginResponse;
 import com.cg.ofr.service.IAdminService;
 
 @RestController
@@ -27,7 +26,9 @@ public class AdminController {
 	public ResponseEntity<Object> validateAdmin(@PathVariable("username") String username,
 			@PathVariable("password") String password) {
 		Admin admin = iAdminService.validateAdmin(username, password);
-		return new ResponseEntity<>(admin, HttpStatus.OK);
+		LoginResponse loginResponse = new LoginResponse();
+		loginResponse.setName(admin.getAdminName());
+		return new ResponseEntity<>(loginResponse, HttpStatus.OK);
 	}
 
 	@PutMapping("/update")
@@ -41,11 +42,10 @@ public class AdminController {
 		Admin newAdmin = iAdminService.addAdmin(admin);
 		return new ResponseEntity<>(newAdmin, HttpStatus.CREATED);
 	}
-	
+
 	@GetMapping("/{email}")
 	public ResponseEntity<Object> forgetPassword(@PathVariable("email") String email) {
 		Admin admin = iAdminService.forgetPassword(email);
 		return new ResponseEntity<>(admin, HttpStatus.OK);
 	}
 }
-
