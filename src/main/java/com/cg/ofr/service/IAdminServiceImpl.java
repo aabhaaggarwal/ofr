@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import com.cg.ofr.entities.Admin;
 
 import com.cg.ofr.exception.AdminNotFoundException;
-
+import com.cg.ofr.exception.AuthenticationFailureException;
 import com.cg.ofr.repository.IAdminRepository;
 
 @Service
@@ -21,7 +21,7 @@ public class IAdminServiceImpl implements IAdminService {
 	public Admin validateAdmin(String username, String password) throws AdminNotFoundException {
 		Admin optionalAdmin = iAdminRepository.findByUsernameAndPassword(username, password);
 		if (optionalAdmin == null) {
-			throw new AdminNotFoundException("Admin not existing with username and password");
+			throw new AuthenticationFailureException("Invalid username or password");
 		}
 		return optionalAdmin;
 	}

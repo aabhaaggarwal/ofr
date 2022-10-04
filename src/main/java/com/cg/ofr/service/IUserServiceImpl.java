@@ -9,6 +9,7 @@ import com.cg.ofr.entities.Admin;
 import com.cg.ofr.entities.Landlord;
 import com.cg.ofr.entities.Tenant;
 import com.cg.ofr.exception.AdminNotFoundException;
+import com.cg.ofr.exception.AuthenticationFailureException;
 import com.cg.ofr.exception.LandlordNotFoundException;
 import com.cg.ofr.exception.TenantNotFoundException;
 import com.cg.ofr.repository.ILandlordRepository;
@@ -27,7 +28,7 @@ public class IUserServiceImpl implements IUserService {
 	public Landlord validateLandlord(String username, String password) throws LandlordNotFoundException {
 		Landlord optionallandlord = iLandlordRepository.findByUsernameAndPassword(username, password);
 		if (optionallandlord == null) {
-			throw new LandlordNotFoundException("Landlord not existing with username and password");
+			throw new AuthenticationFailureException("Invalid username or password");
 		}
 		return optionallandlord;
 
@@ -38,7 +39,7 @@ public class IUserServiceImpl implements IUserService {
 	public Tenant validateTenant(String username, String password) throws TenantNotFoundException {
 		Tenant tenant = iTenantRepository.findByUsernameAndPassword(username, password);
 		if (tenant == null) {
-			throw new TenantNotFoundException("Tenant not existing with username and password");
+			throw new AuthenticationFailureException("Invalid username or password");
 		}
 		return tenant;
 
