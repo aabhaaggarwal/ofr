@@ -3,8 +3,17 @@ package com.cg.ofr.model;
 public class LoginResponse {
 	
     private String name;
+    private int id;
 
-    public String getName() {
+    public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getName() {
     	return name;
     }
 

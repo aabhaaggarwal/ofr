@@ -27,7 +27,7 @@ public class UserController {
 			@PathVariable("password") String password) {
 		Tenant tenant = iUserService.validateTenant(username, password);
 		LoginResponse loginResponse = new LoginResponse();
-
+		loginResponse.setId(tenant.getUserId());
 		loginResponse.setName(tenant.getTenantName());
 		return new ResponseEntity<>(loginResponse, HttpStatus.OK);
 
@@ -39,6 +39,7 @@ public class UserController {
 		Landlord landlord = iUserService.validateLandlord(username, password);
 		LoginResponse loginResponse = new LoginResponse();
 		loginResponse.setName(landlord.getLandlordName());
+		loginResponse.setId(landlord.getUserId());
 		return new ResponseEntity<>(landlord, HttpStatus.OK);
 
 	}

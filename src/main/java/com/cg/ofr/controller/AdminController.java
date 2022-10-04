@@ -28,6 +28,7 @@ public class AdminController {
 		Admin admin = iAdminService.validateAdmin(username, password);
 		LoginResponse loginResponse = new LoginResponse();
 		loginResponse.setName(admin.getAdminName());
+		loginResponse.setId(admin.getUserId());
 		return new ResponseEntity<>(loginResponse, HttpStatus.OK);
 	}
 
