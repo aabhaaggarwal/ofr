@@ -44,13 +44,13 @@ public class UserController {
 
 	}
 
-	@GetMapping("/tenant/{email}")
+	@GetMapping("/tenant/email/{email}")
 	public ResponseEntity<Object> forgetPasswordTenant(@PathVariable("email") String email) {
 		Tenant tenant = iUserService.forgetPasswordTenant(email);
 		return new ResponseEntity<>(tenant, HttpStatus.OK);
 	}
 
-	@GetMapping("/landlord/{email}")
+	@GetMapping("/landlord/email/{email}")
 	public ResponseEntity<Object> forgetPasswordLandlord(@PathVariable("email") String email) {
 		Landlord landlord = iUserService.forgetPasswordLandlord(email);
 		return new ResponseEntity<>(landlord, HttpStatus.OK);
