@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,6 +25,7 @@ import com.cg.ofr.service.ITenantService;
 
 @RestController
 @RequestMapping("/flatbooking")
+@CrossOrigin("http://localhost:3000")
 public class FlatBookingController {
 
 	@Autowired
@@ -36,15 +38,18 @@ public class FlatBookingController {
 	@GetMapping("/all")
 	public List<FlatBooking> fetchAllFlatBooking() {
 		 return iFlatBookingService.viewAllFlatBooking();
-		
 	}
 
 	@GetMapping("/{fbId}")
 	public ResponseEntity<Object> fetchFlatBookingById(@PathVariable("fbId") int id) {
 		FlatBooking flatBooking = iFlatBookingService.viewFlatBooking(id);
 		return new ResponseEntity<>(flatBooking, HttpStatus.OK);
-		
-
+	}
+	
+	@GetMapping("/tenant/{fbId}")
+	public ResponseEntity<Object> fetchAllByTenant(@PathVariable("fbId") int id) {
+		List<FlatBooking> flatBookings = iFlatBookingService.viewAllByTenant(id);
+		return new ResponseEntity<>(flatBookings, HttpStatus.OK);
 	}
 
 	@DeleteMapping("/{fbId}")
@@ -85,6 +90,18 @@ public class FlatBookingController {
 		FlatBooking newFlatBooking = iFlatBookingService.addFlatBooking(flatBooking);
 		return new ResponseEntity<>(newFlatBooking, HttpStatus.CREATED);
 	
+	}
+	
+	@GetMapping("/approval")
+	public ResponseEntity<Object> fetchFlatBookingByApproval() {
+		List<FlatBooking> flatBookings = iFlatBookingService.viewAllByApproval("confirm");
+		return new ResponseEntity<>(flatBookings, HttpStatus.OK);	
+	}
+	
+	@GetMapping("/landlord/approval")
+	public ResponseEntity<Object> fetchFlatBookingByLandlord() {
+		List<FlatBooking> flatBookings = iFlatBookingService.viewAllByLandlord("pending");
+		return new ResponseEntity<>(flatBookings, HttpStatus.OK);	
 	}
 
 }

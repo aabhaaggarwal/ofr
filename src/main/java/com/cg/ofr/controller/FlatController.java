@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,6 +23,7 @@ import com.cg.ofr.service.ILandlordService;
 
 @RestController
 @RequestMapping("/flat")
+@CrossOrigin("http://localhost:3000")
 public class FlatController {
 
 	@Autowired
@@ -109,5 +111,22 @@ public class FlatController {
 		Flat updatedFlat = iFlatService.updateFlat(flat);
 		return new ResponseEntity<>(updatedFlat, HttpStatus.OK);
 	}
+	
+	@GetMapping("/landlord/{lId}")
+	public ResponseEntity<Object> fetchAllByLandlord(@PathVariable("lId") int id) {
+		List<Flat> flats = iFlatService.viewAllByLandlord(id);
+		return new ResponseEntity<>(flats, HttpStatus.OK);
+	}
+	
+	@GetMapping("/search")
+	public ResponseEntity<Object> fetchFlatByStatus() {
+		List<Flat> flats = iFlatService.viewAllByStatus("approved");
+		return new ResponseEntity<>(flats, HttpStatus.OK);	
+	}
 
+	@GetMapping("/approval")
+	public ResponseEntity<Object> fetchFlatByApproval() {
+		List<Flat> flats = iFlatService.viewAllByApproval("requested");
+		return new ResponseEntity<>(flats, HttpStatus.OK);	
+	}
 }

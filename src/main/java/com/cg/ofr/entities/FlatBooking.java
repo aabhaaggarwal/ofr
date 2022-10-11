@@ -9,7 +9,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -30,7 +29,18 @@ public class FlatBooking {
 
 	@Column(name = "members")
 	private int members;
+	
+	public String getStatus() {
+		return status;
+	}
 
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	@Column(name = "status")
+	private String status;
+	
 	@OneToOne
 	@JoinColumn(name = "flat")
 	private Flat flat;

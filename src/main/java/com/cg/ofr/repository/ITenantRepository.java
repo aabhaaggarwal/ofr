@@ -7,9 +7,5 @@ import com.cg.ofr.entities.Tenant;
 
 @Repository
 public interface ITenantRepository extends JpaRepository<Tenant, Integer> {
-	public Tenant findByUsernameAndPassword(String username, String password);
-
-	public Tenant findByUsername(String username);
-
 	public Tenant findByEmail(String email);
 }

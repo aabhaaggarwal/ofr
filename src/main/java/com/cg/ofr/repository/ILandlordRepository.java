@@ -8,10 +8,6 @@ import com.cg.ofr.entities.Landlord;
 @Repository
 public interface ILandlordRepository extends JpaRepository<Landlord, Integer> {
 
-	public Landlord findByUsernameAndPassword(String username, String password);
-
-	public Landlord findByUsername(String username);
-
 	public Landlord findByEmail(String email);
 
 }

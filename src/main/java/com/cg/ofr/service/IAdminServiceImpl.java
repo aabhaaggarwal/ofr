@@ -6,29 +6,23 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cg.ofr.entities.Admin;
-
+import com.cg.ofr.entities.User;
 import com.cg.ofr.exception.AdminNotFoundException;
-import com.cg.ofr.exception.AuthenticationFailureException;
 import com.cg.ofr.repository.IAdminRepository;
+import com.cg.ofr.repository.IUserRepository;
 
 @Service
 public class IAdminServiceImpl implements IAdminService {
 
 	@Autowired
 	private IAdminRepository iAdminRepository;
+	@Autowired
+	private IUserRepository iUserRepository;
 
-	@Override
-	public Admin validateAdmin(String username, String password) throws AdminNotFoundException {
-		Admin optionalAdmin = iAdminRepository.findByUsernameAndPassword(username, password);
-		if (optionalAdmin == null) {
-			throw new AuthenticationFailureException("Invalid username or password");
-		}
-		return optionalAdmin;
-	}
 
 	@Override
 	public Admin updateAdmin(Admin admin) throws AdminNotFoundException {
-		Optional<Admin> optionalAdmin = iAdminRepository.findById(admin.getUsername());
+		Optional<Admin> optionalAdmin = iAdminRepository.findById(admin.getUserId());
 		if (optionalAdmin.isEmpty()) {
 			throw new AdminNotFoundException("Admin not existing with this username");
 		}
@@ -37,16 +31,16 @@ public class IAdminServiceImpl implements IAdminService {
 
 	@Override
 	public Admin addAdmin(Admin admin) {
-		return iAdminRepository.save(admin);
-	}
-
-	@Override
-	public Admin forgetPassword(String email) {
-		Admin admin = iAdminRepository.findByEmail(email);
-		if(admin==null) {
-			throw new AdminNotFoundException("Admin not existing");
+		Optional<User> user =iUserRepository.findByUsername(admin.getUsername());
+		Optional<User> user1=iUserRepository.findByEmail(admin.getEmail());
+		if(!user.isEmpty()) {
+			throw new AdminNotFoundException("This username is not available");
 		}
-		return admin;
+		if(!user1.isEmpty()) {
+			throw new AdminNotFoundException("This email is already registered");
+		}
+		admin.setRole("admin");
+		return iAdminRepository.save(admin);
 	}
 
 }

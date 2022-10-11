@@ -7,17 +7,23 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cg.ofr.entities.Flat;
+import com.cg.ofr.entities.Landlord;
 import com.cg.ofr.exception.FlatNotFoundException;
 import com.cg.ofr.repository.IFlatRepository;
+import com.cg.ofr.repository.ILandlordRepository;
 
 @Service
 public class IFlatServiceImpl implements IFlatService {
 
 	@Autowired
 	private IFlatRepository iFlatRepository;
+	
+	@Autowired
+	private ILandlordRepository iLandlordRepository;
 
 	@Override
 	public Flat addFlat(Flat flat) {
+		flat.setStatus("requested");
 		return iFlatRepository.save(flat);
 	}
 
@@ -49,6 +55,12 @@ public class IFlatServiceImpl implements IFlatService {
 		Optional<Flat> optionalFlat = iFlatRepository.findById(flat.getFlatId());
 		if (optionalFlat.isEmpty()) {
 			throw new FlatNotFoundException("Flat not existing with id:" + flat.getFlatId());
+		}
+		if(flat.getStatus().equals("approved")) {
+			flat.setStatus("approved");
+		}
+		if(flat.getStatus().equals("rejected")) {
+			flat.setStatus("rejected");
 		}
 		return iFlatRepository.save(flat);
 	}
@@ -87,6 +99,22 @@ public class IFlatServiceImpl implements IFlatService {
 			throw new FlatNotFoundException("Flat is not available");
 		}
 		return flats;
+	}
+
+	@Override
+	public List<Flat> viewAllByStatus(String status) {
+		return iFlatRepository.findByStatus(status);
+	}
+
+	@Override
+	public List<Flat> viewAllByApproval(String status) {
+		return iFlatRepository.findByStatus(status);
+	}
+
+	@Override
+	public List<Flat> viewAllByLandlord(int id) {
+		Optional<Landlord> landlord=iLandlordRepository.findById(id);
+		return iFlatRepository.findByLandlord(landlord.get());
 	}
 
 }

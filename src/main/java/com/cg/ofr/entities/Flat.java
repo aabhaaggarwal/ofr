@@ -24,24 +24,27 @@ public class Flat {
 	@Column(name = "flat_id")
 	private int flatId;
 
+	@NotNull(message = "This field cannot be null")
 	@Positive(message = "Cost must be positive value")
 	@Column(name = "cost")
 	private float cost;
 
-	@NotNull(message = "flat type cannot be null")
+	@NotNull(message = "This field cannot be null")
 	@Column(name = "flat_type", length = 20)
 	private String flatType;
 
-	@NotNull(message = "set availability")
+	@NotNull(message = "This field cannot be null")
 	@Column(name = "availability", length = 20)
 	private String availability;
+	
+	@NotNull(message = "This field cannot be null")
+	@Column(name = "status", length = 20)
+	private String status;
 
-	@JsonIgnore
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "flat_address")
 	private FlatAddress flatAddress;
 
-	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "landlord")
 	private Landlord landlord;
@@ -49,6 +52,14 @@ public class Flat {
 	@JsonIgnore
 	@OneToOne(mappedBy = "flat")
 	private FlatBooking flatBooking;
+	
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
 
 	public int getFlatId() {
 		return flatId;

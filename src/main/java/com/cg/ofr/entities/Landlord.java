@@ -5,59 +5,56 @@ import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
-import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Positive;
 import javax.validation.constraints.Size;
 
-@Entity
-@Table(name = "landlord_tbl")
-public class Landlord extends User {
-    @NotNull(message = "name shoul not be null")
-	@Column(name = "landlord_name", length = 100, nullable = false)
-	private String landlordName;
-	
-	@Email(regexp = "^(.+)@(.+)$")
-	@Column(name = "email", length = 100, nullable = false, unique = true)
-	private String email;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
-	@Positive(message = "age must be positive")
+@Entity
+@Table(name="landlord_tbl")
+@PrimaryKeyJoinColumn(name = "user_id")
+public class Landlord extends User {
+
+	@NotNull(message = "This field cannot be null")
+	@Column(name = "first_name", length = 50, nullable = false)
+	private String firstName;
+	
+	@NotNull(message = "This field cannot be null")
+	@Column(name = "last_name", length = 50, nullable = false)
+	private String lastName;
+
 	@Column(name = "age", nullable = false)
 	private int age;
-	
-	@Column(name = "gender", nullable = false)
+
+	@Column(name = "gender", length = 20)
 	private String gender;
 	
-	@Size(min =10, max=10)
+	@Size(min=10,max=10)
 	@Column(name = "mobile", length = 10, nullable = false)
 	private String mobile;
-
+	
+	@JsonIgnore
 	@OneToMany(mappedBy = "landlord")
 	private List<Flat> flats;
+	
+	
 
-	public String getGender() {
-		return gender;
+	public String getFirstName() {
+		return firstName;
 	}
 
-	public void setGender(String gender) {
-		this.gender = gender;
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
 	}
 
-	public String getLandlordName() {
-		return landlordName;
+	public String getLastName() {
+		return lastName;
 	}
 
-	public void setLandlordName(String landlordName) {
-		this.landlordName = landlordName;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
 	}
 
 	public int getAge() {
@@ -66,6 +63,14 @@ public class Landlord extends User {
 
 	public void setAge(int age) {
 		this.age = age;
+	}
+
+	public String getGender() {
+		return gender;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
 	}
 
 	public String getMobile() {

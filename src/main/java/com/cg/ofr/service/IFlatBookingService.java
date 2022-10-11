@@ -15,6 +15,13 @@ public interface IFlatBookingService {
 	public FlatBooking viewFlatBooking(int id) throws FlatBookingNotFoundException;
 
 	public List<FlatBooking> viewAllFlatBooking();
+	
+	public List<FlatBooking> viewAllByTenant(int id);
+
+	public List<FlatBooking> viewAllByApproval(String status);
+
+	public List<FlatBooking> viewAllByLandlord(String status);
+
 
 }
 

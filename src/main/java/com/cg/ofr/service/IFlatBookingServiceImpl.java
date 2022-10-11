@@ -10,7 +10,6 @@ import com.cg.ofr.entities.FlatBooking;
 import com.cg.ofr.entities.Tenant;
 import com.cg.ofr.exception.FlatBookingNotFoundException;
 import com.cg.ofr.exception.FlatNotFoundException;
-import com.cg.ofr.exception.TenantNotFoundException;
 import com.cg.ofr.repository.IFlatBookingRepository;
 import com.cg.ofr.repository.IFlatRepository;
 import com.cg.ofr.repository.ITenantRepository;
@@ -30,17 +29,14 @@ public class IFlatBookingServiceImpl implements IFlatBookingService {
 	@Override
 	public FlatBooking addFlatBooking(FlatBooking flatBooking) {
 		Optional<Flat> flat = iFlatRepository.findById(flatBooking.getFlat().getFlatId());
-		Optional<Tenant> tenant =iTenantRepository.findById(flatBooking.getTenant().getUserId());
-		if(tenant.get().getFlatBooking()!=null) {
-			throw new TenantNotFoundException("Tenant with this id has already booked a flat");
-		}
 		if(flat.get().getAvailability().equals("not available")) {
 			throw new FlatNotFoundException("Flat is not available with id :"+flat.get().getFlatId());
 		}
 		if(flatBooking.getBookingFrom().compareTo(flatBooking.getBookingTo())>0 || flatBooking.getBookingFrom().compareTo(flatBooking.getBookingTo())==0) {
 			throw new FlatBookingNotFoundException("Booking end date should exceed booking start date");
 		}
-		flat.get().setAvailability("not available");
+		flat.get().setAvailability("pending");
+		flatBooking.setStatus("pending");
 		return iFlatBookingRepository.save(flatBooking);
 	}
 
@@ -48,20 +44,23 @@ public class IFlatBookingServiceImpl implements IFlatBookingService {
 	public FlatBooking updateFlatBooking(FlatBooking flatBooking) throws FlatBookingNotFoundException {
 		Optional<FlatBooking> optionalFlatBooking = iFlatBookingRepository.findById(flatBooking.getBookingNo());
 		Optional<Flat> flat = iFlatRepository.findById(flatBooking.getFlat().getFlatId());
-		Optional<Tenant> tenant =iTenantRepository.findById(flatBooking.getTenant().getUserId());
-		if(tenant.get().getFlatBooking()!=null) {
-			throw new TenantNotFoundException("Tenant with this id has already booked a flat");
-		}
 		if (optionalFlatBooking.isEmpty()) {
 			throw new FlatBookingNotFoundException("Flat Booking not existing with id :" + flatBooking.getBookingNo());
-		}
-		if(flat.get().getAvailability().equals("not available")) {
-			throw new FlatNotFoundException("Flat is not available with id :"+flat.get().getFlatId());
 		}
 		if(flatBooking.getBookingFrom().compareTo(flatBooking.getBookingTo())>0 || flatBooking.getBookingFrom().compareTo(flatBooking.getBookingTo())==0) {
 			throw new FlatBookingNotFoundException("Booking end date should exceed booking start date");
 		}
-		flat.get().setAvailability("not available");
+		if(flatBooking.getStatus().equals("approved")) {
+		flatBooking.setStatus("approved");
+		flat.get().setAvailability("booked");
+		}
+		if(flatBooking.getStatus().equals("rejected")) {
+			flatBooking.setStatus("rejected");
+			flat.get().setAvailability("available");
+		}
+		if(flatBooking.getStatus().equals("confirm")) {
+			flatBooking.setStatus("confirm");
+		}
 		return iFlatBookingRepository.save(flatBooking);
 	}
 
@@ -88,5 +87,21 @@ public class IFlatBookingServiceImpl implements IFlatBookingService {
 	@Override
 	public List<FlatBooking> viewAllFlatBooking() {
 		return iFlatBookingRepository.findAll();
+	}
+
+	@Override
+	public List<FlatBooking> viewAllByTenant(int id) {
+		Optional<Tenant> tenant=iTenantRepository.findById(id);
+		return iFlatBookingRepository.findByTenant(tenant.get());
+	}
+
+	@Override
+	public List<FlatBooking> viewAllByApproval(String status) {
+		 return iFlatBookingRepository.findByStatus(status);
+	}
+
+	@Override
+	public List<FlatBooking> viewAllByLandlord(String status) {
+		return iFlatBookingRepository.findByStatus(status);
 	}
 }

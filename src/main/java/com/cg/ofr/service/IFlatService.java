@@ -24,5 +24,11 @@ public interface IFlatService {
 	public List<Flat> viewAllFlatByAvailability();
 	
 	public List<Flat> viewAllFlatByType(String type);
+	
+	public List<Flat> viewAllByStatus(String status);
+	
+	public List<Flat> viewAllByApproval(String status);
+
+	public List<Flat> viewAllByLandlord(int id);
 
 }
