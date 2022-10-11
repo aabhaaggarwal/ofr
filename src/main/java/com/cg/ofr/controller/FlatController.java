@@ -74,7 +74,7 @@ public class FlatController {
 		
 	}
 
-	@GetMapping("/{city}")
+	@GetMapping("/city/{city}")
 	public ResponseEntity<Object> fetchFlatByCity(@PathVariable("city") String city) {
 		List<Flat> flats = iFlatService.viewAllFlatByCity(city);
 		return new ResponseEntity<>(flats, HttpStatus.OK);
@@ -90,7 +90,7 @@ public class FlatController {
 	}
 
 
-	@GetMapping("/{type}")
+	@GetMapping("/type/{type}")
 	public ResponseEntity<Object> fetchFlatBytype(@PathVariable("type") String type) {
 		List<Flat> flats = iFlatService.viewAllFlatByType(type);
 		return new ResponseEntity<>(flats, HttpStatus.OK);
