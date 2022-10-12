@@ -7,6 +7,7 @@ public class FlatPayload {
 	private float cost;
 	private String flatType;
 	private String availability;
+	private String status;
 	private FlatAddress flatAddress;
 	private int landlordId;
 
@@ -59,5 +60,15 @@ public class FlatPayload {
 	public void setLandlordId(int landlordId) {
 		this.landlordId = landlordId;
 	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+	
+	
 
 }
