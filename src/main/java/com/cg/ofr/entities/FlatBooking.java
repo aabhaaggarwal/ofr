@@ -41,7 +41,7 @@ public class FlatBooking {
 	@Column(name = "status")
 	private String status;
 	
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name = "flat")
 	private Flat flat;
 

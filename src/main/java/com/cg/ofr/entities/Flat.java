@@ -1,5 +1,7 @@
 package com.cg.ofr.entities;
 
+import java.util.List;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
@@ -46,8 +49,8 @@ public class Flat {
 	private Landlord landlord;
 
 	@JsonIgnore
-	@OneToOne(mappedBy = "flat")
-	private FlatBooking flatBooking;
+	@OneToMany(mappedBy = "flat")
+	private List<FlatBooking> flatBooking;
 	
 	public String getStatus() {
 		return status;
@@ -105,14 +108,15 @@ public class Flat {
 		this.landlord = landlord;
 	}
 
-	public FlatBooking getFlatBooking() {
+	public List<FlatBooking> getFlatBooking() {
 		return flatBooking;
 	}
 
-	public void setFlatBooking(FlatBooking flatBooking) {
+	public void setFlatBooking(List<FlatBooking> flatBooking) {
 		this.flatBooking = flatBooking;
-
 	}
+
+	
 
 }
 	

@@ -29,13 +29,13 @@ public class IFlatBookingServiceImpl implements IFlatBookingService {
 	@Override
 	public FlatBooking addFlatBooking(FlatBooking flatBooking) {
 		Optional<Flat> flat = iFlatRepository.findById(flatBooking.getFlat().getFlatId());
-		if(flat.get().getAvailability().equals("not available")) {
+		if(flat.get().getAvailability().equals("booked")) {
 			throw new FlatNotFoundException("Flat is not available with id :"+flat.get().getFlatId());
 		}
 		if(flatBooking.getBookingFrom().compareTo(flatBooking.getBookingTo())>0 || flatBooking.getBookingFrom().compareTo(flatBooking.getBookingTo())==0) {
 			throw new FlatBookingNotFoundException("Booking end date should exceed booking start date");
 		}
-		flat.get().setAvailability("pending");
+//		flat.get().setAvailability("pending");
 //		flatBooking.setStatus("pending");
 		return iFlatBookingRepository.save(flatBooking);
 	}
