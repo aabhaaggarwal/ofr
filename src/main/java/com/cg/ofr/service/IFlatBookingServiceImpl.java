@@ -36,7 +36,7 @@ public class IFlatBookingServiceImpl implements IFlatBookingService {
 			throw new FlatBookingNotFoundException("Booking end date should exceed booking start date");
 		}
 		flat.get().setAvailability("pending");
-		flatBooking.setStatus("pending");
+//		flatBooking.setStatus("pending");
 		return iFlatBookingRepository.save(flatBooking);
 	}
 
@@ -51,16 +51,16 @@ public class IFlatBookingServiceImpl implements IFlatBookingService {
 			throw new FlatBookingNotFoundException("Booking end date should exceed booking start date");
 		}
 		if(flatBooking.getStatus().equals("approved")) {
-		flatBooking.setStatus("approved");
+//		flatBooking.setStatus("approved");
 		flat.get().setAvailability("booked");
 		}
 		if(flatBooking.getStatus().equals("rejected")) {
-			flatBooking.setStatus("rejected");
+//			flatBooking.setStatus("rejected");
 			flat.get().setAvailability("available");
 		}
-		if(flatBooking.getStatus().equals("confirm")) {
-			flatBooking.setStatus("confirm");
-		}
+//		if(flatBooking.getStatus().equals("confirm")) {
+//			flatBooking.setStatus("confirm");
+//		}
 		return iFlatBookingRepository.save(flatBooking);
 	}
 

@@ -10,6 +10,7 @@ public class FlatBookingPayload {
 	private int members;
 	private int flatId;
 	private int tenantId;
+	private String status;
 
 	public int getBookingNo() {
 		return bookingNo;
@@ -58,4 +59,14 @@ public class FlatBookingPayload {
 	public void setTenantId(int tenantId) {
 		this.tenantId = tenantId;
 	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+	
+	
 }

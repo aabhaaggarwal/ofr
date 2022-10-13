@@ -23,7 +23,7 @@ public class IFlatServiceImpl implements IFlatService {
 
 	@Override
 	public Flat addFlat(Flat flat) {
-		flat.setStatus("requested");
+//		flat.setStatus("requested");
 		return iFlatRepository.save(flat);
 	}
 

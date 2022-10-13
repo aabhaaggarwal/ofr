@@ -42,6 +42,7 @@ public class FlatController {
 		flat.setFlatType(flatPayload.getFlatType());
 		flat.setAvailability(flatPayload.getAvailability());
 		flat.setFlatAddress(flatPayload.getFlatAddress());
+		flat.setStatus("requested");
 		flat.setLandlord(landlord);
 		Flat newFlat = iFlatService.addFlat(flat);
 		return new ResponseEntity<>(newFlat, HttpStatus.CREATED);

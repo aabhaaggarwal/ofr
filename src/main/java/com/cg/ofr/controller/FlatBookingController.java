@@ -69,6 +69,7 @@ public class FlatBookingController {
 		flatBooking.setBookingFrom(flatBookingPayload.getBookingFrom());
 		flatBooking.setBookingTo(flatBookingPayload.getBookingTo());
 		flatBooking.setMembers(flatBookingPayload.getMembers());
+		flatBooking.setStatus(flatBookingPayload.getStatus());
 		flatBooking.setFlat(flat);
 		flatBooking.setTenant(tenant);
 		FlatBooking updatedFlatBooking = iFlatBookingService.updateFlatBooking(flatBooking);
@@ -87,6 +88,7 @@ public class FlatBookingController {
 		flatBooking.setMembers(flatBookingPayload.getMembers());
 		flatBooking.setFlat(flat);
 		flatBooking.setTenant(tenant);
+		flatBooking.setStatus("pending");
 		FlatBooking newFlatBooking = iFlatBookingService.addFlatBooking(flatBooking);
 		return new ResponseEntity<>(newFlatBooking, HttpStatus.CREATED);
 	
