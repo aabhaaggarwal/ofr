@@ -11,7 +11,6 @@ import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-
 @Entity
 @Table(name="flataddress_tbl",uniqueConstraints= {@UniqueConstraint(columnNames={"houseno", "building","street"})})
 public class FlatAddress {
@@ -21,30 +20,24 @@ public class FlatAddress {
 	@Column(name = "address_id")
 	private int addressId;
 
-	@NotNull(message = "This field cannot be null")
 	@Column(name = "houseno")
 	private int houseNo;
 
 	@Column(name = "building", length = 50)
 	private String building;
 
-    @NotNull(message = "This field cannot be null")
 	@Column(name = "street", length = 50)
 	private String street;
 
-    @NotNull(message = "This field cannot be null")
 	@Column(name = "city", length = 30)
 	private String city;
 
-    @NotNull(message="This field cannot be null")
 	@Column(name = "state", length = 30)
 	private String state;
 
-    @NotNull(message = "This field cannot be null")
 	@Column(name = "pincode")
 	private int pincode;
 
-    @NotNull(message = "This field cannot be null")
 	@Column(name = "country", length = 30)
 	private String country;
 
