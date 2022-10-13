@@ -40,7 +40,7 @@ public class FlatController {
 		flat.setFlatId(flatPayload.getFlatId());
 		flat.setCost(flatPayload.getCost());
 		flat.setFlatType(flatPayload.getFlatType());
-		flat.setAvailability(flatPayload.getAvailability());
+		flat.setAvailability("available");
 		flat.setFlatAddress(flatPayload.getFlatAddress());
 		flat.setStatus("requested");
 		flat.setLandlord(landlord);
@@ -108,6 +108,7 @@ public class FlatController {
 		flat.setFlatType(flatPayload.getFlatType());
 		flat.setAvailability(flatPayload.getAvailability());
 		flat.setFlatAddress(flatPayload.getFlatAddress());
+		flat.setStatus(flatPayload.getStatus());
 		flat.setLandlord(landlord);
 		Flat updatedFlat = iFlatService.updateFlat(flat);
 		return new ResponseEntity<>(updatedFlat, HttpStatus.OK);

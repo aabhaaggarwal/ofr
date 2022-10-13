@@ -24,20 +24,16 @@ public class Flat {
 	@Column(name = "flat_id")
 	private int flatId;
 
-	@NotNull(message = "This field cannot be null")
 	@Positive(message = "Cost must be positive value")
 	@Column(name = "cost")
 	private float cost;
 
-	@NotNull(message = "This field cannot be null")
 	@Column(name = "flat_type", length = 20)
 	private String flatType;
 
-	@NotNull(message = "This field cannot be null")
 	@Column(name = "availability", length = 20)
 	private String availability;
 	
-	@NotNull(message = "This field cannot be null")
 	@Column(name = "status", length = 20)
 	private String status;
 
