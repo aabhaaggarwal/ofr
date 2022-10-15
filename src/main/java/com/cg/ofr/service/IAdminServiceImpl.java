@@ -6,8 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cg.ofr.entities.Admin;
+import com.cg.ofr.entities.Tenant;
 import com.cg.ofr.entities.User;
 import com.cg.ofr.exception.AdminNotFoundException;
+import com.cg.ofr.exception.TenantNotFoundException;
 import com.cg.ofr.repository.IAdminRepository;
 import com.cg.ofr.repository.IUserRepository;
 
@@ -41,6 +43,15 @@ public class IAdminServiceImpl implements IAdminService {
 		}
 		admin.setRole("admin");
 		return iAdminRepository.save(admin);
+	}
+	
+	@Override
+	public Admin viewAdmin(int id) throws AdminNotFoundException {
+		Optional<Admin> optionalAdmin = iAdminRepository.findById(id);
+		if (optionalAdmin.isEmpty()) {
+			throw new AdminNotFoundException("Admin not existing with id: " + id);
+		}
+		return optionalAdmin.get();
 	}
 
 }
