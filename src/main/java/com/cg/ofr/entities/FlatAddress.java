@@ -12,7 +12,7 @@ import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
-@Table(name="flataddress_tbl",uniqueConstraints= {@UniqueConstraint(columnNames={"houseno", "building","street"})})
+@Table(name="flataddress_tbl")
 public class FlatAddress {
 
 	@Id

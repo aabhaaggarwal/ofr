@@ -39,7 +39,8 @@ public class UserController {
 		LoginResponse loginResponse = new LoginResponse();
 	    loginResponse.setId(user.getUserId());
 	    loginResponse.setUsername(user.getUsername());
-		return new ResponseEntity<>(user, HttpStatus.OK);
+	    loginResponse.setRole(user.getRole());
+		return new ResponseEntity<>(loginResponse, HttpStatus.OK);
 
 	}
 

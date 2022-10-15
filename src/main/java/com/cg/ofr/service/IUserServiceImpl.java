@@ -44,7 +44,7 @@ public class IUserServiceImpl implements IUserService {
 		}
 		User user = optionalUser.get();
 		user.setPassword(password);
-		return user;
+		return iUserRepository.save(user);
 	}
 
 
