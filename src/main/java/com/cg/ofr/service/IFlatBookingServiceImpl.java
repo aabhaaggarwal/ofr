@@ -1,4 +1,5 @@
 package com.cg.ofr.service;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -35,6 +36,9 @@ public class IFlatBookingServiceImpl implements IFlatBookingService {
 		if(flatBooking.getBookingFrom().compareTo(flatBooking.getBookingTo())>0 || flatBooking.getBookingFrom().compareTo(flatBooking.getBookingTo())==0) {
 			throw new FlatBookingNotFoundException("Booking end date should exceed booking start date");
 		}
+		if(flatBooking.getBookingFrom().compareTo(LocalDate.now())<0) {
+			throw new FlatBookingNotFoundException("Booking start date should be present or future date");
+		}
 		flat.get().setAvailability("pending");
 		return iFlatBookingRepository.save(flatBooking);
 	}
@@ -48,6 +52,9 @@ public class IFlatBookingServiceImpl implements IFlatBookingService {
 		}
 		if(flatBooking.getBookingFrom().compareTo(flatBooking.getBookingTo())>0 || flatBooking.getBookingFrom().compareTo(flatBooking.getBookingTo())==0) {
 			throw new FlatBookingNotFoundException("Booking end date should exceed booking start date");
+		}
+		if(flatBooking.getBookingFrom().compareTo(LocalDate.now())<0) {
+			throw new FlatBookingNotFoundException("Booking start date should be present or future date");
 		}
 		if(flatBooking.getStatus().equals("approved")) {
 		flat.get().setAvailability("booked");
