@@ -56,10 +56,10 @@ public class IFlatServiceImpl implements IFlatService {
 		if (optionalFlat.isEmpty()) {
 			throw new FlatNotFoundException("Flat not existing with id:" + flat.getFlatId());
 		}
-		if(flat.getStatus()=="approved") {
+		if(flat.getStatus().equals("approved")) {
 		flat.setAvailability("available");
 		}
-		if(flat.getStatus()=="rejected") {
+		if(flat.getStatus().equals("rejected")) {
 			flat.setAvailability("not available");
 		}
 		return iFlatRepository.save(flat);
