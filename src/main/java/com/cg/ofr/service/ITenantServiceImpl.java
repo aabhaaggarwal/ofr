@@ -47,6 +47,9 @@ public class ITenantServiceImpl implements ITenantService {
 	@Override
 	public void deleteTenant(int tenantId) throws TenantNotFoundException {
 		Optional<Tenant> optionalTenant = iTenantRepository.findById(tenantId);
+		if(optionalTenant.get().getFlatBooking()!=null) {
+			throw new TenantNotFoundException("Tenant cannot be deleted as id is present in flatbooking");
+		}
 		if (optionalTenant.isEmpty()) {
 			throw new TenantNotFoundException("Tenant not existing with id: " + tenantId);
 		}

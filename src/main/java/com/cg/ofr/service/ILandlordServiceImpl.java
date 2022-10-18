@@ -47,6 +47,9 @@ public class ILandlordServiceImpl implements ILandlordService {
 	@Override
 	public void deleteLandlord(int landlordId) throws LandlordNotFoundException {
 		Optional<Landlord> optionalLandlord = iLandlordRepository.findById(landlordId);
+		if (optionalLandlord.get().getFlats()!=null) {
+			throw new LandlordNotFoundException("Landlord owns some flats");
+		}
 		if (optionalLandlord.isEmpty()) {
 			throw new LandlordNotFoundException("Landlord not found with this id: " + landlordId);
 		}

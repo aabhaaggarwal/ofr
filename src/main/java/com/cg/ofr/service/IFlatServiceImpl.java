@@ -35,6 +35,9 @@ public class IFlatServiceImpl implements IFlatService {
 	@Override
 	public void deleteFlat(int flatId) throws FlatNotFoundException {
 		Optional<Flat> optionalFlat = iFlatRepository.findById(flatId);
+		if(optionalFlat.get().getFlatBooking()!=null) {
+			throw new FlatNotFoundException("Flat cannot be deleted as it is booked");
+		}
 		if (optionalFlat.isEmpty()) {
 			throw new FlatNotFoundException("Flat not existing with id:" + flatId);
 		}
@@ -44,6 +47,7 @@ public class IFlatServiceImpl implements IFlatService {
 	@Override
 	public Flat viewFlat(int id) throws FlatNotFoundException {
 		Optional<Flat> optionalFlat = iFlatRepository.findById(id);
+		
 		if (optionalFlat.isEmpty()) {
 			throw new FlatNotFoundException("Flat not existing with id: " + id);
 		}
