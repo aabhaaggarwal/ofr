@@ -35,6 +35,7 @@ public class IFlatBookingServiceImpl implements IFlatBookingService {
 		if(flatBooking.getBookingFrom().compareTo(flatBooking.getBookingTo())>0 || flatBooking.getBookingFrom().compareTo(flatBooking.getBookingTo())==0) {
 			throw new FlatBookingNotFoundException("Booking end date should exceed booking start date");
 		}
+		flat.get().setAvailability("pending");
 		return iFlatBookingRepository.save(flatBooking);
 	}
 

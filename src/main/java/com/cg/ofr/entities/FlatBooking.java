@@ -11,6 +11,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.FutureOrPresent;
+
+import org.checkerframework.checker.optional.qual.Present;
 
 @Entity
 @Table(name = "flatbooking_tbl")
@@ -21,6 +24,7 @@ public class FlatBooking {
 	@Column(name = "booking_no", length = 20)
 	private int bookingNo;
 
+	@FutureOrPresent(message = "Invalid date")
 	@Column(name = "booking_from")
 	private LocalDate bookingFrom;
 

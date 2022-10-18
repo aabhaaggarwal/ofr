@@ -40,7 +40,7 @@ public class FlatController {
 		flat.setFlatId(flatPayload.getFlatId());
 		flat.setCost(flatPayload.getCost());
 		flat.setFlatType(flatPayload.getFlatType());
-		flat.setAvailability("available");
+		flat.setAvailability("pending");
 		flat.setFlatAddress(flatPayload.getFlatAddress());
 		flat.setStatus("requested");
 		flat.setLandlord(landlord);
